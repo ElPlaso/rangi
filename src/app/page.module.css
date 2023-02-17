@@ -105,11 +105,11 @@
 }
 
 .logo,
-.thirteen {
+.icon {
   position: relative;
 }
 
-.thirteen {
+.icon {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,15 +123,15 @@
   box-shadow: 0px 2px 8px -1px #0000001a;
 }
 
-.thirteen::before,
-.thirteen::after {
+.icon::before,
+.icon::after {
   content: '';
   position: absolute;
   z-index: -1;
 }
 
 /* Conic Gradient Animation */
-.thirteen::before {
+.icon::before {
   animation: 6s rotate linear infinite;
   width: 200%;
   height: 200%;
@@ -139,7 +139,7 @@
 }
 
 /* Inner Square */
-.thirteen::after {
+.icon::after {
   inset: 0;
   padding: 1px;
   border-radius: var(--border-radius);
@@ -164,7 +164,7 @@
 }
 
 @media (prefers-reduced-motion) {
-  .thirteen::before {
+  .icon::before {
     animation: none;
   }
 
@@ -256,7 +256,7 @@
   }
 
   .logo,
-  .thirteen img {
+  .icon img {
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
 }
