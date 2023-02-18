@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import './searchbar.css'
 
 async function getSamples(search: String) {
   let songID: String = ''
@@ -48,10 +49,18 @@ export default function SearchBar() {
   }
 
   return (
-    <input
-      data-lpignore
-      onInput={handleInput}
-      onKeyDown={handleKeyDown}
-    />
+    <>
+      <input
+        name="search_input"
+        className="prompt"
+        id="search"
+        onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        autoComplete="off"
+      />
+      <label htmlFor="search">
+        <span>Search</span>
+      </label>
+    </>
   )
 }
