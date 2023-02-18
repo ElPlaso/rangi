@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from './page.module.css'
+import SearchBar from './search_bar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -42,6 +43,10 @@ export default function Home() {
         <div className={styles.icon}>
           <Image src="/music_notes.svg" alt="Music Notes icon" width={40} height={31} priority />
         </div>
+      </div>
+
+      <div>
+        <SearchBar></SearchBar>
       </div>
 
       <div className={styles.grid}>
