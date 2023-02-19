@@ -93,10 +93,12 @@ export default function Home() {
           {samples.length > 0 ?
             (
               <>
-                <div>
-                  Showing results for: {searchResultTitle}
+                <div className={styles.center} style={{ marginTop: '2rem' }}>
+                  <h4 className={inter.className}>
+                    Samples used in {searchResultTitle}
+                  </h4>
                 </div>
-                <div className={styles.grid}>
+                <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
                   {samples?.map((sample) => {
                     return <SampleResult
                       key={sample.id}
