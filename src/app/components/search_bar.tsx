@@ -8,7 +8,7 @@ export default function SearchBar(props: any) {
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter" && input.trim().length > 0) {
-      props.getSamples(input)
+      props.getResults(input)
     }
   }
 

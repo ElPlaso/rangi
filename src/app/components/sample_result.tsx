@@ -14,7 +14,7 @@ export default function SampleResult(props: any) {
         <h5>{sample.year}</h5>
         <br></br>
         <Image
-          src={sample.imgUrl as string}
+          src={sample.imgUrl ? sample.imgUrl as string : 'https://images.genius.com/e0bb63ab1e7ddb2307011b443888ebf9.1000x1000x1.png'}
           alt="Song art image"
           width={300}
           height={300}
