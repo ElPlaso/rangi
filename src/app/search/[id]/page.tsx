@@ -39,8 +39,6 @@ export default async function SearchResultsPage({ params }: any) {
       </div>
       <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
         {searchResults?.map((result) => {
-          console.log(result['result']['full_title'])
-          console.log(result['result']['song_art_image_thumbnail_url'])
           return <SearchResult
             key={result['result'].id}
             result={

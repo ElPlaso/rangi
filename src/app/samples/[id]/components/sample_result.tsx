@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Sample from "../models/sample";
-import styles from '../styles/page.module.css'
+import Image from "next/image"
+import styles from '@/app/styles/page.module.css'
+import Sample from "@/app/models/sample"
 
 export default function SampleResult(props: any) {
 
