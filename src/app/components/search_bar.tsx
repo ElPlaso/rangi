@@ -1,14 +1,17 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation';
 import '../styles/searchbar.css'
 
 export default function SearchBar(props: any) {
+  const router = useRouter();
+
   const [input, setInput] = useState("")
 
   const handleKeyDown = (e: any) => {
     if (e.key === "Enter" && input.trim().length > 0) {
-      props.getResults(input)
+      router.push(`/search/${input}`)
     }
   }
 

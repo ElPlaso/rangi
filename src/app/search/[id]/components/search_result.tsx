@@ -1,24 +1,20 @@
 import Image from "next/image";
-import Result from "../models/result";
-import styles from '../styles/page.module.css'
+import styles from '@/app/styles/page.module.css'
+import Result from "@/app/models/result";
 
 export default function SearchResult(props: any) {
 
   const result: Result = props.result || {};
 
-  const handleClick = () => {
-    props.getSamples(result.id);
-  }
-
   return (
     <div className={styles.description}>
-      <div className={styles.card} onClick={handleClick}>
+      <div className={styles.card}>
         <h3>{result.title}</h3>
         <h5>{result.artist}</h5>
         <h5>{result.year}</h5>
         <br></br>
         <Image
-          src={result.imgUrl ? result.imgUrl as string : 'https://images.genius.com/e0bb63ab1e7ddb2307011b443888ebf9.1000x1000x1.png'}
+          src={result.imgUrl}
           alt="Song art image"
           width={300}
           height={300}
