@@ -7,15 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'images.genius.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.rapgenius.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'assets.genius.com',
+        hostname: '*.com',
       },
     ],
   },
