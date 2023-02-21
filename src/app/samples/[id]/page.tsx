@@ -33,7 +33,7 @@ async function getSongData(songID: String) {
 }
 
 export default async function SampleResultsPage({ params }: any) {
-  const songData = await getSongData(params.id)
+  const songData: any = await getSongData(params.id)
 
   let samples: any[] = songData['song_relationships']['0']['songs']
 
