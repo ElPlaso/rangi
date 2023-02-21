@@ -3,6 +3,7 @@ import { Inter } from '@next/font/google'
 import styles from '@/app/styles/page.module.css'
 import SearchBar from "@/app/components/search_bar"
 import Sample from "@/app/models/sample"
+import Home from "@/app/page"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,48 +34,59 @@ async function getSongData(songID: String) {
 }
 
 export default async function SampleResultsPage({ params }: any) {
-  const songData: any = await getSongData(params.id)
+  try {
 
-  let samples: any[] = songData['song_relationships']['0']['songs']
 
-  let title: string = songData['full_title']
+    const songData: any = await getSongData(params.id)
 
-  return (
-    <>
-      {
-        samples.length > 0 ?
-          <>
+    let samples: any[] = songData['song_relationships']['0']['songs']
+
+    let title: string = songData['full_title']
+
+    return (
+      <>
+        {
+          samples.length > 0 ?
+            <>
+              <div className={styles.center} style={{ marginTop: '2rem' }}>
+                <h4 className={inter.className}>
+                  Samples used in {title}
+                </h4>
+              </div>
+              <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
+                {samples?.map((sample) => {
+                  return <SampleResult
+                    key={sample.id}
+                    sample={
+                      new Sample(
+                        sample['title'],
+                        sample['artist_names'],
+                        sample['release_date_components'] ? sample['release_date_components']['year'] : '-',
+                        sample['song_art_image_thumbnail_url'],
+                      )
+                    }
+                  />;
+                })}
+              </div>
+            </> :
             <div className={styles.center} style={{ marginTop: '2rem' }}>
               <h4 className={inter.className}>
-                Samples used in {title}
+                No samples found for {title}
               </h4>
             </div>
-            <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
-              {samples?.map((sample) => {
-                return <SampleResult
-                  key={sample.id}
-                  sample={
-                    new Sample(
-                      sample['title'],
-                      sample['artist_names'],
-                      sample['release_date_components'] ? sample['release_date_components']['year'] : '-',
-                      sample['song_art_image_thumbnail_url'],
-                    )
-                  }
-                />;
-              })}
-            </div>
-          </> :
-          <div className={styles.center} style={{ marginTop: '2rem' }}>
-            <h4 className={inter.className}>
-              No samples found for {title}
-            </h4>
-          </div>
-      }
+        }
 
-      <div>
-        <SearchBar />
-      </div>
-    </>
-  )
+        <div>
+          <SearchBar />
+        </div>
+      </>
+    )
+  }
+  catch (e) {
+    console.log(e)
+    return (
+      <Home />
+    )
+  }
+
 }
