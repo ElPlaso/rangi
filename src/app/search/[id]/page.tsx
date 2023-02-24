@@ -19,7 +19,7 @@ async function getSearchResults(search: String) {
     headers: headers,
   };
 
-  // Get the Song ID of the first search result of the input.
+  // Get the Song ID of the first 9 search results of the input.
   results = await fetch('https://genius-song-lyrics1.p.rapidapi.com/search/?q=' + search + '&per_page=9&page=1', options)
     .then(response => response.json())
     .then(data => data['hits'])
@@ -31,13 +31,13 @@ async function getSearchResults(search: String) {
 export default async function SearchResultsPage({ params }: any) {
   try {
 
-    const searchResults = await getSearchResults(params.id)
+    const searchResults = await getSearchResults(decodeURI(params.id))
 
     return (
       <>
         <div className={styles.center} style={{ marginTop: '2rem' }}>
           <h4 className={inter.className}>
-            Showing results for {params.id}
+            Showing results for {decodeURI(params.id)}
           </h4>
         </div>
         <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>

@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 async function getSongData(songID: String) {
 
-  let song
+  let song: any[]
 
   let headers = new Headers()
   headers.append('X-RapidAPI-Key', process.env.NEXT_PUBLIC_RAPID_API_KEY as string)
@@ -35,7 +35,6 @@ async function getSongData(songID: String) {
 
 export default async function SampleResultsPage({ params }: any) {
   try {
-
 
     const songData: any = await getSongData(params.id)
 
