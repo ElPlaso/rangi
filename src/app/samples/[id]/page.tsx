@@ -56,6 +56,7 @@ export default async function SampleResultsPage({ params }: any) {
                     key={sample.id}
                     sample={
                       new Sample(
+                        sample.id,
                         sample['title'],
                         sample['artist_names'],
                         sample['release_date_components'] ? sample['release_date_components']['year'] : '-',
