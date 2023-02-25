@@ -47,11 +47,9 @@ export default async function SampleResultsPage({ params }: any) {
         {
           samples.length > 0 ?
             <>
-              <div className={styles.center} style={{ marginTop: '2rem' }}>
-                <h4 className={inter.className}>
-                  Samples used in {title}
-                </h4>
-              </div>
+              <h4 className={inter.className} style={{ marginTop: '2rem' }}>
+                Samples used in {title}
+              </h4>
               <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
                 {samples?.map((sample) => {
                   return <SampleResult
@@ -68,11 +66,9 @@ export default async function SampleResultsPage({ params }: any) {
                 })}
               </div>
             </> :
-            <div className={styles.center} style={{ marginTop: '2rem' }}>
-              <h4 className={inter.className}>
-                No samples found for {title}
-              </h4>
-            </div>
+            <h4 className={inter.className} style={{ marginTop: '2rem' }}>
+              No samples found for {title}
+            </h4>
         }
 
         <div>

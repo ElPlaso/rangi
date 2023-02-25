@@ -35,11 +35,9 @@ export default async function SearchResultsPage({ params }: any) {
 
     return (
       <>
-        <div className={styles.center} style={{ marginTop: '2rem' }}>
-          <h4 className={inter.className}>
-            Showing results for {decodeURI(params.id)}
-          </h4>
-        </div>
+        <h3 className={inter.className} style={{ marginTop: '2rem' }}>
+          Showing results for {"'"}{decodeURI(params.id)}{"'"}
+        </h3>
         <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
           {searchResults?.map((result) => {
             return <SearchResult
