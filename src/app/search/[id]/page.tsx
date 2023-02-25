@@ -16,6 +16,7 @@ async function getSearchResults(search: String) {
   const options: RequestInit = {
     method: 'GET',
     headers: headers,
+    cache: 'no-store'
   };
 
   // Get the Song ID of the first 9 search results of the input.

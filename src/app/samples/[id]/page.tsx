@@ -17,6 +17,7 @@ async function getSongData(songID: String) {
   const options: RequestInit = {
     method: 'GET',
     headers: headers,
+    cache: 'no-store'
   };
 
   // Get the song data
