@@ -3,7 +3,6 @@ import { Inter } from '@next/font/google'
 import styles from '@/app/styles/page.module.css'
 import SearchBar from "@/app/components/search_bar"
 import Sample from "@/app/models/sample"
-import Home from "@/app/page"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,10 +33,10 @@ async function getSongData(songID: String) {
 }
 
 export default async function SampleResultsPage({ params }: any) {
-  try {
 
-    const songData: any = await getSongData(params.id)
+  const songData: any = await getSongData(params.id)
 
+  if (songData != null) {
     let samples: any[] = songData['song_relationships']['0']['songs']
 
     let title: string = songData['full_title']
@@ -70,18 +69,20 @@ export default async function SampleResultsPage({ params }: any) {
               No samples found for {title}
             </h4>
         }
-
         <div>
           <SearchBar />
         </div>
       </>
     )
   }
-  catch (e) {
-    console.log(e)
+  else {
     return (
-      <Home />
+      <>
+        <h4 className={inter.className} style={{ marginTop: '2rem' }} >There was a problem finding samples</h4>
+        <div>
+          <SearchBar />
+        </div>
+      </>
     )
   }
-
 }

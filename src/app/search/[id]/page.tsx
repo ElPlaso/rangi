@@ -3,7 +3,6 @@ import { Inter } from '@next/font/google'
 import styles from '@/app/styles/page.module.css'
 import Result from "@/app/models/result"
 import SearchBar from "@/app/components/search_bar"
-import Home from "@/app/page"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,38 +28,32 @@ async function getSearchResults(search: String) {
 }
 
 export default async function SearchResultsPage({ params }: any) {
-  try {
+  const searchResults = await getSearchResults(decodeURI(params.id))
 
-    const searchResults = await getSearchResults(decodeURI(params.id))
-
-    return (
-      <>
-        <h3 className={inter.className} style={{ marginTop: '2rem' }}>
-          Showing results for {"'"}{decodeURI(params.id)}{"'"}
-        </h3>
-        <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
-          {searchResults?.map((result) => {
-            return <SearchResult
-              key={result['result'].id}
-              result={
-                new Result(
-                  result['result'].id,
-                  result['result']['title'],
-                  result['result']['artist_names'],
-                  result['result']['release_date_components'] ? result['result']['release_date_components']['year'] : '-',
-                  result['result']['song_art_image_thumbnail_url'],
-                )
-              }
-            />;
-          })}
-        </div>
-        <div>
-          <SearchBar />
-        </div>
-      </>
-    )
-  }
-  catch (e) {
-    return <Home />
-  }
+  return (
+    <>
+      <h3 className={inter.className} style={{ marginTop: '2rem' }}>
+        Showing results for {"'"}{decodeURI(params.id)}{"'"}
+      </h3>
+      <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
+        {searchResults?.map((result) => {
+          return <SearchResult
+            key={result['result'].id}
+            result={
+              new Result(
+                result['result'].id,
+                result['result']['title'],
+                result['result']['artist_names'],
+                result['result']['release_date_components'] ? result['result']['release_date_components']['year'] : '-',
+                result['result']['song_art_image_thumbnail_url'],
+              )
+            }
+          />;
+        })}
+      </div>
+      <div>
+        <SearchBar />
+      </div>
+    </>
+  )
 }
