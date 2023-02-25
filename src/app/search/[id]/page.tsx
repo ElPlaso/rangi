@@ -3,6 +3,8 @@ import { Inter } from '@next/font/google'
 import styles from '@/app/styles/page.module.css'
 import Result from "@/app/models/result"
 import SearchBar from "@/app/components/search_bar"
+import Image from 'next/image'
+import Link from "next/link"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,9 +35,9 @@ export default async function SearchResultsPage({ params }: any) {
 
   return (
     <>
-      <h3 className={inter.className} style={{ marginTop: '2rem' }}>
+      <p className={inter.className} style={{ marginTop: '4rem' }}>
         Showing results for {"'"}{decodeURI(params.id)}{"'"}
-      </h3>
+      </p>
       <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
         {searchResults?.map((result) => {
           return <SearchResult
@@ -52,7 +54,7 @@ export default async function SearchResultsPage({ params }: any) {
           />;
         })}
       </div>
-      <div>
+      <div style={{ marginBottom: '3rem' }}>
         <SearchBar />
       </div>
     </>

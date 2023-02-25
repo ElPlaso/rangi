@@ -47,9 +47,9 @@ export default async function SampleResultsPage({ params }: any) {
         {
           samples.length > 0 ?
             <>
-              <h4 className={inter.className} style={{ marginTop: '2rem' }}>
+              <p className={inter.className} style={{ marginTop: '2rem' }}>
                 Samples used in {title}
-              </h4>
+              </p>
               <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
                 {samples?.map((sample) => {
                   return <SampleResult
@@ -67,11 +67,11 @@ export default async function SampleResultsPage({ params }: any) {
                 })}
               </div>
             </> :
-            <h4 className={inter.className} style={{ marginTop: '2rem' }}>
+            <p className={inter.className} style={{ marginTop: '2rem' }}>
               No samples found for {title}
-            </h4>
+            </p>
         }
-        <div>
+        <div style={{ marginBottom: '3rem' }}>
           <SearchBar />
         </div>
       </>
@@ -81,7 +81,7 @@ export default async function SampleResultsPage({ params }: any) {
     return (
       <>
         <h4 className={inter.className} style={{ marginTop: '2rem' }} >There was a problem finding samples</h4>
-        <div>
+        <div style={{ marginBottom: '4rem' }}>
           <SearchBar />
         </div>
       </>
