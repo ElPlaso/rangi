@@ -40,7 +40,11 @@ export default async function SampleResultsPage({ params }: any) {
   if (songData != null) {
     let samples: any[] = songData['song_relationships']['0']['songs']
 
+    let songsThatSampleThisSong : any[] = songData['song_relationships']['1']['songs']
+
     let title: string = songData['full_title']
+
+    let shortTitle: string = songData['title']
 
     return (
       <>
@@ -70,6 +74,30 @@ export default async function SampleResultsPage({ params }: any) {
             <p className={inter.className} style={{ marginTop: '2rem' }}>
               No samples found for {title}
             </p>
+        }
+        {
+          songsThatSampleThisSong.length > 0 &&
+            <>
+              <p className={inter.className} style={{ marginTop: '2rem' }}>
+                Songs that sample {shortTitle}
+              </p>
+              <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
+                {songsThatSampleThisSong?.map((song) => {
+                  return <SampleResult
+                    key={song.id}
+                    sample={
+                      new Sample(
+                        song.id,
+                        song['title'],
+                        song['artist_names'],
+                        song['release_date_components'] ? song['release_date_components']['year'] : '-',
+                        song['song_art_image_thumbnail_url'],
+                      )
+                    }
+                  />;
+                })}
+              </div>
+            </>
         }
         <div style={{ marginBottom: '3rem' }}>
           <SearchBar />
