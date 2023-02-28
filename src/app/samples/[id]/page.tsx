@@ -1,4 +1,5 @@
 import SampleResult from "./components/sample_result"
+import UsedInResult from "./components/used_in_result"
 import { Inter } from '@next/font/google'
 import styles from '@/app/styles/page.module.css'
 import SearchBar from "@/app/components/search_bar"
@@ -83,7 +84,7 @@ export default async function SampleResultsPage({ params }: any) {
               </p>
               <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
                 {songsThatSampleThisSong?.map((song) => {
-                  return <SampleResult
+                  return <UsedInResult
                     key={song.id}
                     sample={
                       new Sample(

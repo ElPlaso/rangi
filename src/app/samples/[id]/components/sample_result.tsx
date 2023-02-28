@@ -11,7 +11,7 @@ export default function SampleResult(props: any) {
   const sample: Sample = props.sample || {};
 
   return (
-    <Link href={`/samples/${sample.id}`} className={styles.card}>
+    <Link href={`/samples/${sample.id}`} className={styles.card} style={{justifyContent: 'center'}}>
       <h4 className={inter.className}>{sample.title}</h4>
       <p className={inter.className}>{sample.artist}</p>
       <p className={inter.className}>{sample.year}</p>
