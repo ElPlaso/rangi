@@ -41,6 +41,7 @@ export default async function SearchResultsPage({ params }: any) {
       <div className={styles.grid} style={{ marginTop: '2rem', marginBottom: '4rem', }}>
         {searchResults?.map((result) => {
           return <SearchResult
+          type={'samples'}
             key={result['result'].id}
             result={
               new Result(

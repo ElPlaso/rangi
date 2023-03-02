@@ -8,6 +8,7 @@ import SearchResult from "./search/[id]/components/search_result";
 import Result from "./models/result";
 
 import { Inter } from "@next/font/google";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,7 +70,22 @@ export default function Home() {
       <div>
         {songResults.length > 0 && (
           <div>
-            <h2 className={inter.className}>Songs</h2>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "end",
+              }}
+            >
+              <h2 className={inter.className}>Songs</h2>
+              <p
+                className={styles.card}
+              >
+                <Link href={`/search/${input}`} className={inter.className}>
+                  More results <span>{'>'}</span>           
+                </Link>
+              </p>
+            </div>
             <div
               className={styles.grid}
               style={{ marginTop: "1rem", marginBottom: "2rem" }}
