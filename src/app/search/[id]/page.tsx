@@ -44,15 +44,25 @@ export default async function SearchResultsPage({ params }: any) {
   return (
     <>
       <div className={styles.description}>
-        <Link href={`/`}>
-          <h2 className={inter.className}>Samplify</h2>
-        </Link>
+        <p>
+          <Link href="/">
+            <Image
+              className={styles.logo}
+              src="/samplify.svg"
+              alt="Samplify X Logo"
+              width={150}
+              height={20}
+              priority
+            />
+          </Link>
+        </p>
+        <div>
+          Showing results for {"'"}
+          {decodeURI(params.id)}
+          {"'"}
+        </div>
       </div>
-      <p className={inter.className} style={{ marginTop: "4rem" }}>
-        Showing results for {"'"}
-        {decodeURI(params.id)}
-        {"'"}
-      </p>
+
       <div
         className={styles.grid}
         style={{ marginTop: "2rem", marginBottom: "4rem" }}

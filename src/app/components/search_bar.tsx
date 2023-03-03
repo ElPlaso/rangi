@@ -20,7 +20,7 @@ export default function SearchBar(props: any) {
   }
 
   return (
-    <>
+    <div>
       <input
         name="search_input"
         className="prompt"
@@ -32,6 +32,6 @@ export default function SearchBar(props: any) {
       <label htmlFor="search">
         <span>Search</span>
       </label>
-    </>
+    </div>
   )
 }

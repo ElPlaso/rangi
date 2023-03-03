@@ -5,6 +5,7 @@ import styles from "@/app/styles/page.module.css";
 import SearchBar from "@/app/components/search_bar";
 import Sample from "@/app/models/sample";
 import Link from "next/link";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,18 +57,29 @@ export default async function SampleResultsPage({ params }: any) {
     return (
       <>
         <div className={styles.description}>
-          <Link href='/'>
-            <h2 className={inter.className}>Samplify</h2>
-          </Link>
+          <p>
+            <Link href="/">
+              <Image
+                className={styles.logo}
+                src="/samplify.svg"
+                alt="Samplify X Logo"
+                width={150}
+                height={20}
+                priority
+              />
+            </Link>
+          </p>
+          <div>{title}</div>
         </div>
-        {samples.length > 0 ? (
+
+        {samples.length > 0 && (
           <>
-            <p className={inter.className} style={{ marginTop: "2rem" }}>
-              Samples used in {title}
-            </p>
+            <h4 className={inter.className} style={{ marginTop: "3rem" }}>
+              {shortTitle} Samples
+            </h4>
             <div
               className={styles.grid}
-              style={{ marginTop: "2rem", marginBottom: "4rem" }}
+              style={{ marginTop: "2rem", marginBottom: "2rem" }}
             >
               {samples?.map((sample) => {
                 return (
@@ -89,16 +101,12 @@ export default async function SampleResultsPage({ params }: any) {
               })}
             </div>
           </>
-        ) : (
-          <p className={inter.className} style={{ marginTop: "2rem" }}>
-            No samples found for {title}
-          </p>
         )}
         {songsThatSampleThisSong.length > 0 && (
           <>
-            <p className={inter.className} style={{ marginTop: "2rem" }}>
+            <h4 className={inter.className} style={{ marginTop: "2rem" }}>
               Songs that sample {shortTitle}
-            </p>
+            </h4>
             <div
               className={styles.grid}
               style={{ marginTop: "2rem", marginBottom: "4rem" }}
@@ -125,6 +133,12 @@ export default async function SampleResultsPage({ params }: any) {
           </>
         )}
 
+        {samples.length == 0 && songsThatSampleThisSong.length === 0 && (
+          <h4 className={inter.className} style={{ marginTop: "2rem" }}>
+            No info.
+          </h4>
+        )}
+
         <div style={{ marginBottom: "3rem" }}>
           <SearchBar />
         </div>
@@ -133,8 +147,13 @@ export default async function SampleResultsPage({ params }: any) {
   } else {
     return (
       <>
+        <div className={styles.description}>
+          <Link href="/">
+            <h2 className={inter.className}>Samplify</h2>
+          </Link>
+        </div>
         <h4 className={inter.className} style={{ marginTop: "2rem" }}>
-          There was a problem finding samples
+          Song not found.
         </h4>
         <div style={{ marginBottom: "4rem" }}>
           <SearchBar />
