@@ -6,10 +6,10 @@ import AlbumAppearanceCard from "./components/album_appearance_card";
 import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
 import React, { useState, useEffect } from "react";
-import SearchResult from "@/app/search/[id]/components/search_result";
 import Sample from "@/app/models/sample";
 import "@/app/styles/scrollbar.css";
 import Link from "next/link";
+import SampleResult from "@/app/samples/[id]/components/sample_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +19,8 @@ export default function AlbumPage({ params }: any) {
   const [albumData, setAlbumData] = useState(null as any);
 
   const [currentSongID, setCurrentSongID] = useState(null as any);
+
+  const [currentSongData, setCurrentSongData] = useState(null as any);
 
   const [currentSamples, setCurrentSamples] = useState([] as any[]);
 
@@ -80,9 +82,10 @@ export default function AlbumPage({ params }: any) {
       options
     )
       .then((response) => response.json())
-      .then((data) =>
-        setCurrentSamples(data["song"]["song_relationships"]["0"]["songs"])
-      )
+      .then((data) => {
+        setCurrentSamples(data["song"]["song_relationships"]["0"]["songs"]);
+        setCurrentSongData(data["song"]);
+      })
       .catch((err) => console.error(err));
 
     console.log("hello");
@@ -90,34 +93,68 @@ export default function AlbumPage({ params }: any) {
   }, [currentSongID]);
 
   return (
-    <>
-      <div className={styles.description}>
-        <Link href={`/`}>
-          <h2 className={inter.className}>Samplify</h2>
-        </Link>
-      </div>
-      {albumData != null && (
-        <div style={{ display: "flex", margin: "2rem" }}>
-          <Image
-            src={albumData["cover_art_url"]}
-            alt={"Album Art"}
-            width={100}
-            height={100}
+    <div>
+      <Link href={`/`}>
+        <h2
+          className={inter.className}
+          style={{ marginLeft: "1rem", marginBottom: "2rem" }}
+        >
+          Samplify
+        </h2>
+      </Link>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "end",
+        }}
+      >
+        {albumData != null && (
+          <div
             style={{
-              objectFit: "cover",
-              borderRadius: "5px",
+              display: "flex",
+              marginBottom: "2rem",
+              marginLeft: "1rem",
             }}
-          />
-          <div style={{ paddingLeft: "1rem" }}>
-            <h1 className={inter.className}>{albumData["name"]}</h1>
-            {albumData["artist"]["name"] && (
-              <h2 className={inter.className}>{albumData["artist"]["name"]}</h2>
-            )}
+          >
+            <Image
+              src={albumData["cover_art_url"]}
+              alt={"Album Art"}
+              width={100}
+              height={100}
+              style={{
+                objectFit: "cover",
+                borderRadius: "5px",
+              }}
+            />
+            <div style={{ paddingLeft: "1rem" }}>
+              <h1 className={inter.className}>{albumData["name"]}</h1>
+              {albumData["artist"]["name"] && (
+                <h2 className={inter.className}>
+                  {albumData["artist"]["name"]}
+                </h2>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-      <div style={{ display: "flex", marginBottom: "4rem" }}>
-        <ul style={{ height: "500px", width: "18%", overflowY: "scroll" }}>
+        )}
+        {currentSongData && (
+          <p className={styles.card}>
+            <Link
+              href={`/samples/${currentSongData["id"]}`}
+              className={inter.className}
+            >
+              {currentSongData["title"]} <span>{">"}</span>
+            </Link>
+          </p>
+        )}
+      </div>
+      <div style={{ display: "flex" }}>
+        <ul
+          style={{
+            height: "500px",
+            overflowY: "scroll",
+          }}
+        >
           {songs?.map((song: any, index) => {
             return (
               <div
@@ -138,36 +175,41 @@ export default function AlbumPage({ params }: any) {
             );
           })}
         </ul>
-        <div>
-          <div className={styles.grid} style={{ padding: "1rem" }}>
-            {currentSongID && currentSamples.length == 0 ? (
-              <>
-                <h1 className={inter.className}>...</h1>
-              </>
-            ) : (
-              currentSamples?.map((sample) => {
-                return (
-                  <SearchResult
-                    key={sample.id}
-                    type="samples"
-                    result={
-                      new Sample(
-                        sample.id,
-                        sample["title"],
-                        sample["artist_names"],
-                        sample["release_date_components"]
-                          ? sample["release_date_components"]["year"]
-                          : "-",
-                        sample["song_art_image_thumbnail_url"]
-                      )
-                    }
-                  />
-                );
-              })
-            )}
-          </div>
+        <div
+          className={styles.grid}
+          style={{
+            marginLeft: "1rem",
+          }}
+        >
+          {currentSongID && currentSamples.length == 0 ? (
+            <>
+              <h1 className={inter.className} style={{ margin: "1rem" }}>
+                ...
+              </h1>
+            </>
+          ) : (
+            currentSamples?.map((sample) => {
+              return (
+                <SampleResult
+                  key={sample.id}
+                  type="samples"
+                  sample={
+                    new Sample(
+                      sample.id,
+                      sample["title"],
+                      sample["artist_names"],
+                      sample["release_date_components"]
+                        ? sample["release_date_components"]["year"]
+                        : "-",
+                      sample["song_art_image_thumbnail_url"]
+                    )
+                  }
+                />
+              );
+            })
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
