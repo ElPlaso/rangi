@@ -8,7 +8,8 @@ import styles from "@/app/styles/page.module.css";
 import React, { useState, useEffect } from "react";
 import SearchResult from "@/app/search/[id]/components/search_result";
 import Sample from "@/app/models/sample";
-import "@/app/styles/scrollbar.css"
+import "@/app/styles/scrollbar.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,11 +54,10 @@ export default function AlbumPage({ params }: any) {
       .then((response) => response.json())
       .then((data) => setAlbumData(data["album"]))
       .catch((err) => console.error(err));
-
-  },[params.id]);
+  }, [params.id]);
 
   const handleSongSelect = (index: number) => {
-    setCurrentSongID(songs[index]['song'].id);
+    setCurrentSongID(songs[index]["song"].id);
   };
 
   useEffect(() => {
@@ -90,7 +90,12 @@ export default function AlbumPage({ params }: any) {
   }, [currentSongID]);
 
   return (
-    <div style={{ justifyContent: "left" }}>
+    <>
+      <div className={styles.description}>
+        <Link href={`/`}>
+          <h2 className={inter.className}>Samplify</h2>
+        </Link>
+      </div>
       {albumData != null && (
         <div style={{ display: "flex", margin: "2rem" }}>
           <Image
@@ -111,11 +116,14 @@ export default function AlbumPage({ params }: any) {
           </div>
         </div>
       )}
-      <div style={{ display: "flex", marginBottom: '4rem'}}>
-        <ul style={{height:'500px', width:'18%', overflowY: 'scroll'}}>
+      <div style={{ display: "flex", marginBottom: "4rem" }}>
+        <ul style={{ height: "500px", width: "18%", overflowY: "scroll" }}>
           {songs?.map((song: any, index) => {
             return (
-              <div key={song["song"].id} onClick={handleSongSelect.bind(handleSongSelect, index)}>
+              <div
+                key={song["song"].id}
+                onClick={handleSongSelect.bind(handleSongSelect, index)}
+              >
                 <AlbumAppearanceCard
                   clicked={song["song"].id == currentSongID}
                   result={
@@ -160,6 +168,6 @@ export default function AlbumPage({ params }: any) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

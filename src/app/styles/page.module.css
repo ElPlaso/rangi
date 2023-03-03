@@ -239,10 +239,10 @@
 
   .description div {
     align-items: flex-end;
-    pointer-events: none;
+    pointer-events: all;
     inset: auto 0 0;
     padding: 2rem;
-    height: 200px;
+    height: 100px;
     background: linear-gradient(
       to bottom,
       transparent 0%,

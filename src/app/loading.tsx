@@ -3,11 +3,9 @@ import LoadingIndicator from "./components/loading_indicator";
 export default function Loading() {
   return (
     <>
-      <div>
+        <div></div>
         <LoadingIndicator />
-      </div>
-      <div>
-      </div>
+        <div></div>
     </>
   )
 }

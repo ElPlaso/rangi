@@ -6,6 +6,7 @@ import styles from "./styles/page.module.css";
 import "./styles/searchbar.css";
 import SearchResult from "./search/[id]/components/search_result";
 import Result from "./models/result";
+import Image from "next/image";
 
 import { Inter } from "@next/font/google";
 import Link from "next/link";
@@ -66,6 +67,33 @@ export default function Home() {
 
   return (
     <>
+      <div className={styles.description}>
+        <div className={styles.description} style={{display: 'flex', justifyContent: 'space-between'}}>
+          <a
+            href="https://github.com/ElPlaso"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/el_plaso.svg"
+              alt="Stool El Plaso Logo"
+              className={styles.smallerLogo}
+              width={125}
+              height={25}
+              priority
+            />
+          </a>
+          <a
+            href="https://docs.genius.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginBottom: "0.1rem" }}
+          >
+            <h2 className={inter.className}>Genius</h2>
+          </a>
+        </div>
+      </div>
+
       <Splash />
       <div>
         {songResults.length > 0 && (
@@ -78,11 +106,9 @@ export default function Home() {
               }}
             >
               <h2 className={inter.className}>Songs</h2>
-              <p
-                className={styles.card}
-              >
+              <p className={styles.card}>
                 <Link href={`/search/${input}`} className={inter.className}>
-                  More results <span>{'>'}</span>           
+                  More results <span>{">"}</span>
                 </Link>
               </p>
             </div>
