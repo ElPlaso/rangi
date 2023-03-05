@@ -24,11 +24,11 @@ async function getSearchResults(search: String) {
     cache: "no-store",
   };
 
-  // Get the Song ID of the first 9 search results of the input.
+  // Get the Song ID of the first 15 search results of the input.
   results = await fetch(
     "https://genius-song-lyrics1.p.rapidapi.com/search/?q=" +
       search +
-      "&per_page=9&page=1",
+      "&per_page=15&page=1",
     options
   )
     .then((response) => response.json())

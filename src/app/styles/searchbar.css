@@ -42,7 +42,7 @@ textarea.prompt + label {
   padding: 0;
   margin: 0;
   width: 100%;
-  border-top: 1px solid white;
+  border-top: 1px solid #333;
   -webkit-transition: width 0.4s ease;
   transition: width 0.4s ease;
   height: 0px;
@@ -81,7 +81,7 @@ textarea.prompt:valid + label > span {
 
 input.prompt:valid + label,
 textarea.prompt:valid + label {
-  border-color: white;
+  border-color: #333;
 }
 
 
@@ -90,7 +90,7 @@ textarea.prompt + label > span {
   font-weight: 300;
   margin: 0;
   position: absolute;
-  color: #8F8F8F;
+  color: #333;
   font-size: 48px;
   top: -66px;
   left: 0px;
