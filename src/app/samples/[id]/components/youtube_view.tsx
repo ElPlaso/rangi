@@ -125,32 +125,34 @@ export default function YoutubeView(props: any) {
         <div className={styles.grid} />
       </div>
 
-      <div
-        className={styles.grid}
-        style={{ textAlign: "center", marginTop: "1rem" }}
-      >
-        {props.samples?.map((sample: any, index: number) => {
-          return (
-            <div
-              key={sample.id}
-              className={styles.card}
-              style={
-                index === currentIndex
-                  ? {
-                      background: "rgba(var(--card-rgb), 0.1)",
-                      border: "1px solid rgba(var(--card-border-rgb), 0.15)",
-                    }
-                  : {}
-              }
-              onClick={() => {
-                handleClick(index);
-              }}
-            >
-              <p className={inter.className}>{sample["title"]}</p>
-            </div>
-          );
-        })}
-      </div>
+      {props.samples.length > 1 && (
+        <div
+          className={styles.grid}
+          style={{ textAlign: "center", marginTop: "1rem" }}
+        >
+          {props.samples?.map((sample: any, index: number) => {
+            return (
+              <div
+                key={sample.id}
+                className={styles.card}
+                style={
+                  index === currentIndex
+                    ? {
+                        background: "rgba(var(--card-rgb), 0.1)",
+                        border: "1px solid rgba(var(--card-border-rgb), 0.15)",
+                      }
+                    : {}
+                }
+                onClick={() => {
+                  handleClick(index);
+                }}
+              >
+                <p className={inter.className}>{sample["title"]}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }
