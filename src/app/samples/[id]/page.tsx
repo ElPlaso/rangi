@@ -6,6 +6,7 @@ import SearchBar from "@/app/components/search_bar";
 import Sample from "@/app/models/sample";
 import Link from "next/link";
 import Image from "next/image";
+import YoutubeView from "./components/youtube_view";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,6 +55,12 @@ export default async function SampleResultsPage({ params }: any) {
 
     let shortTitle: string = songData["title"];
 
+    let regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
+
+    let url: string = songData["youtube_url"];
+
+    let youtubeId = url ? url.match(regex)![1] : null;
+
     return (
       <>
         <div className={styles.description}>
@@ -71,6 +78,15 @@ export default async function SampleResultsPage({ params }: any) {
           </p>
           <div>{title}</div>
         </div>
+
+        {youtubeId && samples.length > 0 && (
+          <>
+            <h4 className={inter.className} style={{ marginTop: "3rem" }}>
+              Compare
+            </h4>
+            <YoutubeView id={youtubeId} samples={samples} />
+          </>
+        )}
 
         {samples.length > 0 && (
           <>
