@@ -71,7 +71,9 @@ export default function YoutubeView(props: any) {
   }, [currentIndex, props.samples]);
 
   const handleClick = async (index: any) => {
-    setCurrentIndex(index);
+    if (!loading) {
+      setCurrentIndex(index);
+    }
   };
 
   return (
