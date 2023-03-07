@@ -24,39 +24,47 @@ export default function YoutubeView(props: any) {
 
   const [loading, setLoading] = useState(false);
 
+  const [urls, setUrls] = useState(Array(props.samples.length).fill(null));
+
   useEffect(() => {
     const fetchData = async () => {
-      let headers = new Headers();
-      headers.append(
-        "X-RapidAPI-Key",
-        process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-      );
-      headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
+      if (urls[currentIndex] == null) {
+        let headers = new Headers();
+        headers.append(
+          "X-RapidAPI-Key",
+          process.env.NEXT_PUBLIC_RAPID_API_KEY as string
+        );
+        headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
 
-      const options: RequestInit = {
-        method: "GET",
-        headers: headers,
-        cache: "no-store",
-      };
+        const options: RequestInit = {
+          method: "GET",
+          headers: headers,
+          cache: "no-store",
+        };
 
-      setLoading(true);
+        setLoading(true);
 
-      // Get the song data
-      let url = await fetch(
-        "https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=" +
-          props.samples[currentIndex].id,
-        options
-      )
-        .then((response) => response.json())
-        .then((data) => data["song"]["youtube_url"])
-        .catch((err) => console.error(err));
+        // Get the song data
+        let url = await fetch(
+          "https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=" +
+            props.samples[currentIndex].id,
+          options
+        )
+          .then((response) => response.json())
+          .then((data) => data["song"]["youtube_url"])
+          .catch((err) => console.error(err));
 
-      let regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
+        let regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
 
-      let sampleYoutubeId: string = url ? url.match(regex)[1] : null;
-      setCurrentSampleId(sampleYoutubeId);
+        let sampleYoutubeId: string = url ? url.match(regex)[1] : "";
+        setCurrentSampleId(sampleYoutubeId);
 
-      setLoading(false);
+        urls[currentIndex] = sampleYoutubeId;
+
+        setLoading(false);
+      } else {
+        setCurrentSampleId(urls[currentIndex]);
+      }
     };
 
     fetchData();
@@ -105,7 +113,7 @@ export default function YoutubeView(props: any) {
               >
                 {loading ? (
                   <LoadingIndicator />
-                ) : currentSampleId ? (
+                ) : currentSampleId != "" && currentSampleId ? (
                   <YouTube videoId={currentSampleId} opts={opts} />
                 ) : (
                   <p className={inter.className}>Url not found</p>
