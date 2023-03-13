@@ -1,4 +1,4 @@
-import SearchResult from "./components/search_result";
+import SearchResult from "../../components/search_result";
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import Result from "@/app/models/result";

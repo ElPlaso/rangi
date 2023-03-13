@@ -3,8 +3,8 @@
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import React, { useState } from "react";
-import SearchResult from "@/app/search/[id]/components/search_result";
-import Sample from "@/app/models/sample";
+import SearchResult from "@/app/components/search_result";
+import Result from "@/app/models/result";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -87,7 +87,7 @@ export default function AlbumAppearanceResult({ songData }: any) {
                     key={sample.id}
                     type="samples"
                     result={
-                      new Sample(
+                      new Result(
                         sample.id,
                         sample["title"],
                         sample["artist_names"],

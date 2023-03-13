@@ -4,7 +4,7 @@ import { Inter } from "@next/font/google";
 import React, { useState } from "react";
 import styles from "@/app/styles/page.module.css";
 import "../styles/searchbar.css";
-import SearchResult from "../search/[id]/components/search_result";
+import SearchResult from "./search_result";
 import Link from "next/link";
 import Result from "../models/result";
 import LoadingIndicator from "./loading_indicator";

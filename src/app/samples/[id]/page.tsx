@@ -1,12 +1,12 @@
 import SampleResult from "./components/sample_result";
-import UsedInResult from "./components/used_in_result";
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import SearchBar from "@/app/components/search_bar";
-import Sample from "@/app/models/sample";
+import Result from "@/app/models/result";
 import Link from "next/link";
 import Image from "next/image";
 import YoutubeView from "./components/youtube_view";
+import SearchResult from "@/app/components/search_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -101,8 +101,8 @@ export default async function SampleResultsPage({ params }: any) {
                 return (
                   <SampleResult
                     key={sample.id}
-                    sample={
-                      new Sample(
+                    result={
+                      new Result(
                         sample.id,
                         sample["title"],
                         sample["artist_names"],
@@ -129,10 +129,11 @@ export default async function SampleResultsPage({ params }: any) {
             >
               {songsThatSampleThisSong?.map((song) => {
                 return (
-                  <UsedInResult
+                  <SearchResult
                     key={song.id}
-                    sample={
-                      new Sample(
+                    type="samples"
+                    result={
+                      new Result(
                         song.id,
                         song["title"],
                         song["artist_names"],
