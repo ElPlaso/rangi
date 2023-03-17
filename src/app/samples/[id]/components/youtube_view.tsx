@@ -2,7 +2,7 @@
 
 import LoadingIndicator from "@/app/components/loading_indicator";
 import styles from "@/app/styles/page.module.css";
-import "@/app/styles/pagedisplay.css";
+import "@/app/styles/styles.css";
 import { Inter } from "@next/font/google";
 import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function YoutubeView(props: any) {
   const opts = {
-    height: "225",
-    width: "400",
+    width: "300",
+    height: "169",
     playerVars: {
       autoplay: 0,
     },
@@ -60,6 +60,7 @@ export default function YoutubeView(props: any) {
         setCurrentSampleId(sampleYoutubeId);
 
         urls[currentIndex] = sampleYoutubeId;
+        setUrls(urls);
 
         setLoading(false);
       } else {
@@ -68,7 +69,7 @@ export default function YoutubeView(props: any) {
     };
 
     fetchData();
-  }, [currentIndex, props.samples]);
+  }, [currentIndex, props.samples, urls]);
 
   const handleClick = async (index: any) => {
     if (!loading) {
@@ -81,7 +82,7 @@ export default function YoutubeView(props: any) {
       <div style={{ marginTop: "1rem" }}>
         <div className={styles.card}>
           <div
-            className="flexIfNonMobile"
+            className="videoComparisonRow"
             style={{
               margin: "1rem",
               justifyContent: "space-between",
@@ -92,8 +93,16 @@ export default function YoutubeView(props: any) {
               <p className={inter.className} style={{ marginBottom: "1rem" }}>
                 Song
               </p>
-
-              <YouTube videoId={props.id} opts={opts} />
+              <div
+                className="videoContainer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <YouTube videoId={props.id} opts={opts} />
+              </div>
             </div>
             <span>
               <h1 className={inter.className} style={{ margin: "1rem" }}>
@@ -105,9 +114,8 @@ export default function YoutubeView(props: any) {
                 Sample
               </p>
               <div
+                className="videoContainer"
                 style={{
-                  width: "400px",
-                  height: "225px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

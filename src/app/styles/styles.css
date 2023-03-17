@@ -1,0 +1,20 @@
+.videoComparisonRow {
+    display: flex;
+}
+
+.videoContainer{
+    width: 400px;
+    height: 225px;
+}
+
+/* Mobile and Tablet */
+@media (max-width: 1023px) {
+    .videoComparisonRow{
+        display: block;
+        text-align: center;
+    }
+    .videoContainer{
+        width: 300px;
+        height: 169px;
+    }
+}
