@@ -2,10 +2,12 @@
 
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
+import "@/app/styles/styles.css";
+import "@/app/styles/accordion.css";
 import React, { useState } from "react";
-import SearchResult from "@/app/components/search_result";
 import Result from "@/app/models/result";
 import Link from "next/link";
+import AlbumSample from "./album_sample";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,10 +42,11 @@ export default function AlbumAppearanceResult({ songData }: any) {
 
   const [loaded, setLoaded] = useState(false);
 
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   const handleClick = async () => {
     if (!loaded) {
+      setHidden(false);
       setLoading(true);
       let data = await getSamples(song.id);
       setSamples(data);
@@ -56,57 +59,62 @@ export default function AlbumAppearanceResult({ songData }: any) {
 
   return (
     <>
-      <div className={styles.card} onClick={handleClick}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>
-            <span>
-              <h3 className={inter.className}>{song["title"]}</h3>
-              <p className={inter.className}>{song["artist_names"]}</p>
-            </span>
-          </div>
-          <div>
-            <span>
-              <Link href={`/samples/${song.id}`} className={inter.className}>
-                <p className={styles.card}>More -{">"}</p>
-              </Link>
-            </span>
-          </div>
+      <input className="accordion" type="checkbox" id={song.id} />
+      <label
+        htmlFor={song.id}
+        className="cardish albumAppearance"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginLeft: "0.5rem",
+        }}
+        onClick={handleClick}
+      >
+        <div>
+          <Link href={`/samples/${song.id}`} className={inter.className}>
+            <h4 className="textLink">{song["title"]}</h4>
+          </Link>
+          <p className={inter.className}>{song["artist_names"]}</p>
         </div>
-        <div className={styles.grid}>
-          {loading ? (
-            <p className={inter.className} style={{ margin: "2rem" }}>
-              Loading . . .
-            </p>
-          ) : (
-            loaded &&
-            !hidden &&
-            (samples?.length > 0 ? (
-              samples?.map((sample) => {
-                return (
-                  <SearchResult
-                    key={sample.id}
-                    type="samples"
-                    result={
-                      new Result(
-                        sample.id,
-                        sample["title"],
-                        sample["artist_names"],
-                        sample["release_date_components"]
-                          ? sample["release_date_components"]["year"]
-                          : "-",
-                        sample["song_art_image_thumbnail_url"]
-                      )
-                    }
-                  />
-                );
-              })
-            ) : (
+      </label>
+
+      <div className="content">
+        {!hidden && (
+          <div className={styles.grid}>
+            {loading ? (
               <p className={inter.className} style={{ margin: "2rem" }}>
-                No samples found.
+                Loading . . .
               </p>
-            ))
-          )}
-        </div>
+            ) : (
+              loaded &&
+              (samples?.length > 0 ? (
+                samples?.map((sample) => {
+                  return (
+                    <AlbumSample
+                      key={sample.id}
+                      type="samples"
+                      result={
+                        new Result(
+                          sample.id,
+                          sample["title"],
+                          sample["artist_names"],
+                          sample["release_date_components"]
+                            ? sample["release_date_components"]["year"]
+                            : "-",
+                          sample["song_art_image_thumbnail_url"]
+                        )
+                      }
+                    />
+                  );
+                })
+              ) : (
+                <p className={inter.className} style={{ margin: "2rem" }}>
+                  No samples found.
+                </p>
+              ))
+            )}
+          </div>
+        )}
       </div>
     </>
   );

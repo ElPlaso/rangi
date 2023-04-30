@@ -7,6 +7,36 @@
     height: 225px;
 }
 
+.cardish {
+    padding: 1rem 1.2rem;
+    border-radius: var(--border-radius);
+    background: rgba(var(--card-rgb), 0);
+    border: 1px solid rgba(var(--card-border-rgb), 0);
+    transition: background 200ms, border 200ms;
+}
+
+.cardish p {
+    margin: 0;
+    opacity: 0.6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 34ch;
+}
+  
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+    .albumAppearance:hover {
+      background: rgba(var(--card-rgb), 0.1);
+    }
+    .albumSample:hover{
+      border: 1px solid rgba(var(--card-border-rgb), 0.15);
+    }
+    .textLink:hover{
+        text-decoration: underline;
+    }
+  }
+
 /* Mobile and Tablet */
 @media (max-width: 1023px) {
     .videoComparisonRow{
@@ -16,5 +46,8 @@
     .videoContainer{
         width: 300px;
         height: 169px;
+    }
+    .albumAppearance {
+        padding: 1rem 2.5rem;
     }
 }
