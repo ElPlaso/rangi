@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import "@/app/styles/styles.css";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -8,13 +9,8 @@ export default function AlbumTitle(props: any) {
   const albumData = props.albumData;
 
   return (
-    <div
-      style={{
-        display: "flex",
-        margin: "1rem",
-        alignItems: "end",
-      }}
-    >
+    <div className="albumTitleContainer">
+      <div>
       <Image
         src={albumData["cover_art_url"]}
         alt={"Album Art"}
@@ -24,7 +20,8 @@ export default function AlbumTitle(props: any) {
           objectFit: "cover",
         }}
       />
-      <div style={{ paddingLeft: "1rem" }}>
+      </div>
+      <div className="albumTitleHeader" style={{ paddingLeft: "1rem" }}>
         <h3 className={inter.className}>Samples used in:</h3>
         <h1 className={inter.className}>{albumData["name"]}</h1>
         {albumData["artist"]["name"] && (

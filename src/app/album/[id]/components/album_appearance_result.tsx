@@ -45,7 +45,7 @@ export default function AlbumAppearanceResult({ songData }: any) {
   const [hidden, setHidden] = useState(true);
 
   const handleClick = async () => {
-    if (!loaded) {
+    if (!loaded && !loading)  {
       setHidden(false);
       setLoading(true);
       let data = await getSamples(song.id);
