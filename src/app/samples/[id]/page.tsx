@@ -6,7 +6,8 @@ import Result from "@/app/models/result";
 import Link from "next/link";
 import Image from "next/image";
 import YoutubeView from "./components/youtube_view";
-import SearchResult from "@/app/components/search_result";
+import "@/app/styles/horizontal_scroll.css";
+import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -123,30 +124,7 @@ export default async function SampleResultsPage({ params }: any) {
             <h4 className={inter.className} style={{ marginTop: "2rem" }}>
               Songs that sample {shortTitle}
             </h4>
-            <div
-              className={styles.grid}
-              style={{ marginTop: "2rem", marginBottom: "4rem" }}
-            >
-              {songsThatSampleThisSong?.map((song) => {
-                return (
-                  <SearchResult
-                    key={song.id}
-                    type="samples"
-                    result={
-                      new Result(
-                        song.id,
-                        song["title"],
-                        song["artist_names"],
-                        song["release_date_components"]
-                          ? song["release_date_components"]["year"]
-                          : "-",
-                        song["song_art_image_thumbnail_url"]
-                      )
-                    }
-                  />
-                );
-              })}
-            </div>
+            <SampledByScrollingList sampledByResults={songsThatSampleThisSong} />
           </>
         )}
 

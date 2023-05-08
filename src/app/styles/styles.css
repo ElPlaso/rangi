@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.videoComparisonRow span{
+    transition: transform 200ms;
+}
+
 .videoContainer{
     width: 400px;
     height: 225px;
@@ -13,6 +17,15 @@
     background: rgba(var(--card-rgb), 0);
     border: 1px solid rgba(var(--card-border-rgb), 0);
     transition: background 200ms, border 200ms;
+}
+
+.hovered {
+    background: rgba(var(--card-rgb), 0.1);
+
+    border-radius: var(--border-radius);
+    margin-left: 2px;
+    margin-right: 2px;
+    
 }
 
 .cardish p {
@@ -40,6 +53,9 @@
     }
     .textLink:hover{
         text-decoration: underline;
+    }
+    .videoComparisonRow .videoContainer:hover .videoComparisonRow span{
+        transform: translateX(4px);
     }
   }
 

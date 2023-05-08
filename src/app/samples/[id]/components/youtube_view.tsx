@@ -80,7 +80,6 @@ export default function YoutubeView(props: any) {
   return (
     <>
       <div style={{ marginTop: "1rem" }}>
-        <div className={styles.card}>
           <div
             className="videoComparisonRow"
             style={{
@@ -133,7 +132,6 @@ export default function YoutubeView(props: any) {
           </div>
         </div>
         <div className={styles.grid} />
-      </div>
 
       {props.samples.length > 1 && (
         <div
@@ -150,8 +148,9 @@ export default function YoutubeView(props: any) {
                     ? {
                         background: "rgba(var(--card-rgb), 0.1)",
                         border: "1px solid rgba(var(--card-border-rgb), 0.15)",
+                        cursor: 'pointer'
                       }
-                    : {}
+                    : {cursor: 'pointer'}
                 }
                 onClick={() => {
                   handleClick(index);
