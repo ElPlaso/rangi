@@ -77,10 +77,9 @@ export default async function AlbumPage({ params }: any) {
           </p>
         </Link>
       </div>
-      <div style={{ width: "90%" }}>
+
+      <div className="container">
         {albumData && <AlbumTitle albumData={albumData} />}
-      </div>
-      <div style={{ width: "90%" }}>
         <ol>
           {songs?.map((song) => {
             return (

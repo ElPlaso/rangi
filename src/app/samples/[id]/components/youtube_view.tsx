@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingIndicator from "@/app/components/loading_indicator";
+import "@/app/styles/horizontal_scroll.css";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import { Inter } from "@next/font/google";
@@ -10,9 +11,25 @@ import YouTube from "react-youtube";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function YoutubeView(props: any) {
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
+
   const opts = {
-    width: "300",
-    height: "169",
+    width: windowWidth > 1023 ? "400" : "300",
+    height: windowWidth > 1023 ? "225" : "169",
     playerVars: {
       autoplay: 0,
     },
@@ -80,58 +97,64 @@ export default function YoutubeView(props: any) {
   return (
     <>
       <div style={{ marginTop: "1rem" }}>
-          <div
-            className="videoComparisonRow"
-            style={{
-              margin: "1rem",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <p className={inter.className} style={{ marginBottom: "1rem" }}>
-                Song
-              </p>
-              <div
-                className="videoContainer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <YouTube videoId={props.id} opts={opts} />
-              </div>
+        <div
+          className="videoComparisonRow"
+          style={{
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div className="cardish hovered">
+            <p className={inter.className} style={{ marginBottom: "1rem" }}>
+              Song
+            </p>
+            <div
+              className="videoContainer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <YouTube videoId={props.id} opts={opts} />
             </div>
-            <span>
-              <h1 className={inter.className} style={{ margin: "1rem" }}>
-                {"->"}
-              </h1>
-            </span>
-            <div>
-              <p className={inter.className} style={{ marginBottom: "1rem" }}>
-                Sample
-              </p>
-              <div
-                className="videoContainer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                {loading ? (
-                  <LoadingIndicator />
-                ) : currentSampleId != "" && currentSampleId ? (
-                  <YouTube videoId={currentSampleId} opts={opts} />
-                ) : (
-                  <p className={inter.className}>Url not found</p>
-                )}
-              </div>
+          </div>
+          <span>
+            <h1
+              className={inter.className}
+              style={{
+                marginLeft: "1rem",
+                marginRight: "1rem",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {"->"}
+            </h1>
+          </span>
+          <div className="cardish hovered">
+            <p className={inter.className} style={{ marginBottom: "1rem" }}>
+              Sample
+            </p>
+            <div
+              className="videoContainer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {loading ? (
+                <LoadingIndicator />
+              ) : currentSampleId != "" && currentSampleId ? (
+                <YouTube videoId={currentSampleId} opts={opts} />
+              ) : (
+                <p className={inter.className}>Url not found</p>
+              )}
             </div>
           </div>
         </div>
-        <div className={styles.grid} />
+      </div>
+      <div className={styles.grid} />
 
       {props.samples.length > 1 && (
         <div
@@ -148,9 +171,9 @@ export default function YoutubeView(props: any) {
                     ? {
                         background: "rgba(var(--card-rgb), 0.1)",
                         border: "1px solid rgba(var(--card-border-rgb), 0.15)",
-                        cursor: 'pointer'
+                        cursor: "pointer",
                       }
-                    : {cursor: 'pointer'}
+                    : { cursor: loading ? "wait" :"pointer" }
                 }
                 onClick={() => {
                   handleClick(index);

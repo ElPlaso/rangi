@@ -21,6 +21,7 @@ export default function AlbumSample(props: any) {
             style={{
               objectFit: "cover",
               borderRadius: "5px",
+              border: "1px solid #eaeaea",
             }}
           />
         </div>

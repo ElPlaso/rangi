@@ -23,7 +23,7 @@ export default function SampledByResult(props: any) {
                 objectFit: "cover",
                 borderRadius: "5px",
                 marginBottom: '1rem',
-                border: "3px solid #eaeaea",
+                border: "1px solid #eaeaea",
               }}
             />
         </div>
@@ -34,7 +34,7 @@ export default function SampledByResult(props: any) {
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
           }}>
-          <h4 className={`${inter.className} overflow-ellipsis`}>{result.title}</h4>
+          <h5 className={`${inter.className} overflow-ellipsis`}>{result.title}</h5>
           <p className={`${inter.className} overflow-ellipsis hidden`}>{result.artist}</p>
           <p className={`${inter.className} overflow-ellipsis hidden`}>{result.year}</p>
         </div>

@@ -1,4 +1,3 @@
-import SampleResult from "./components/sample_result";
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import SearchBar from "@/app/components/search_bar";
@@ -6,8 +5,8 @@ import Result from "@/app/models/result";
 import Link from "next/link";
 import Image from "next/image";
 import YoutubeView from "./components/youtube_view";
-import "@/app/styles/horizontal_scroll.css";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
+import SearchResult from "@/app/components/search_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -81,26 +80,25 @@ export default async function SampleResultsPage({ params }: any) {
         </div>
 
         {youtubeId && samples.length > 0 && (
-          <>
-            <h4 className={inter.className} style={{ marginTop: "3rem" }}>
+          <div>
+            <h4 className={styles.code} style={{ marginTop: "3rem" }}>
               Compare
             </h4>
             <YoutubeView id={youtubeId} samples={samples} />
-          </>
+          </div>
         )}
 
         {samples.length > 0 && (
-          <>
-            <h4 className={inter.className} style={{ marginTop: "3rem" }}>
-              {shortTitle} Samples
-            </h4>
+          <div style={{ marginTop: "3rem", padding: "1rem" }}>
+            <h4 className={styles.code}>{shortTitle} Samples</h4>
             <div
               className={styles.grid}
               style={{ marginTop: "2rem", marginBottom: "2rem" }}
             >
               {samples?.map((sample) => {
                 return (
-                  <SampleResult
+                  <SearchResult
+                    type="samples"
                     key={sample.id}
                     result={
                       new Result(
@@ -117,19 +115,23 @@ export default async function SampleResultsPage({ params }: any) {
                 );
               })}
             </div>
-          </>
+          </div>
         )}
         {songsThatSampleThisSong.length > 0 && (
           <>
-            <h4 className={inter.className} style={{ marginTop: "2rem" }}>
-              Songs that sample {shortTitle}
-            </h4>
-            <SampledByScrollingList sampledByResults={songsThatSampleThisSong} />
+            <div className="container">
+              <h4 className={styles.code}>
+                Songs that sample {shortTitle}
+              </h4>
+            </div>
+            <SampledByScrollingList
+              sampledByResults={songsThatSampleThisSong}
+            />
           </>
         )}
 
         {samples.length == 0 && songsThatSampleThisSong.length === 0 && (
-          <h4 className={inter.className} style={{ marginTop: "2rem" }}>
+          <h4 className={styles.code} style={{ marginTop: "2rem" }}>
             No info.
           </h4>
         )}
@@ -144,10 +146,10 @@ export default async function SampleResultsPage({ params }: any) {
       <>
         <div className={styles.description}>
           <Link href="/">
-            <h2 className={inter.className}>Samplify</h2>
+            <h2 className={styles.code}>Samplify</h2>
           </Link>
         </div>
-        <h4 className={inter.className} style={{ marginTop: "2rem" }}>
+        <h4 className={styles.code} style={{ marginTop: "2rem" }}>
           Song not found.
         </h4>
         <div style={{ marginBottom: "4rem" }}>

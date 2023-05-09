@@ -1,119 +1,125 @@
 .videoComparisonRow {
-    display: flex;
+  display: flex;
+  cursor: pointer;
 }
 
-.videoComparisonRow span{
-    transition: transform 200ms;
+.videoComparisonRow span {
+  transition: transform 200ms;
 }
 
-.videoContainer{
-    width: 400px;
-    height: 225px;
+.videoContainer {
+  width: 400px;
+  height: 225px;
 }
 
 .cardish {
-    padding: 1rem 1.2rem;
-    border-radius: var(--border-radius);
-    background: rgba(var(--card-rgb), 0);
-    border: 1px solid rgba(var(--card-border-rgb), 0);
-    transition: background 200ms, border 200ms;
+  padding: 1rem 1.2rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
 }
 
 .hovered {
-    background: rgba(var(--card-rgb), 0.1);
-
-    border-radius: var(--border-radius);
-    margin-left: 2px;
-    margin-right: 2px;
-    
+  background: rgba(var(--card-rgb), 0.1);
+  border-radius: var(--border-radius);
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .cardish p {
-    margin: 0;
-    opacity: 0.6;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    max-width: 34ch;
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-width: 34ch;
 }
 
-.albumTitleContainer{
-    display: flex;
-    margin: 1rem;
-    align-items: end;
+.container {
+  width: var(--max-width);
+  max-width: 100%;
 }
-  
+
+.albumTitleContainer {
+  display: flex;
+  margin: 1rem;
+  align-items: end;
+}
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-    .albumAppearance:hover {
-      background: rgba(var(--card-rgb), 0.1);
-    }
-    .albumSample:hover{
-      border: 1px solid rgba(var(--card-border-rgb), 0.15);
-    }
-    .textLink:hover{
-        text-decoration: underline;
-    }
-    .videoComparisonRow .videoContainer:hover .videoComparisonRow span{
-        transform: translateX(4px);
-    }
+  .albumAppearance:hover {
+    background: rgba(var(--card-rgb), 0.1);
   }
+  .albumSample:hover {
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+  .textLink:hover {
+    text-decoration: underline;
+  }
+  .videoComparisonRow:hover > span {
+    transform: translateX(4px);
+  }
+}
 
 /* Mobile and Tablet */
 @media (max-width: 1023px) {
-    .videoComparisonRow{
-        display: block;
-        text-align: center;
-    }
-    .videoContainer{
-        width: 300px;
-        height: 169px;
-    }
-    .albumAppearance {
-        padding: 1rem 2.5rem 2rem;
-        margin-bottom: 0.5rem;
-        background: rgba(var(--card-rgb), 0.1);
-        border: 1px solid rgba(var(--card-border-rgb), 0.15);
-    }
-    .textLink{
-        text-decoration: underline;
-    }
+  .container {
+    max-width: 320px;
+  }
+  .videoComparisonRow {
+    display: block;
+    text-align: center;
+  }
+  .videoContainer {
+    width: 300px;
+    height: 169px;
+  }
+  .albumAppearance {
+    padding: 1rem 2.5rem 2rem;
+    margin-bottom: 0.5rem;
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+  .textLink {
+    text-decoration: underline;
+  }
 
-    .albumTitleContainer{
-        margin: 1rem;
-        justify-content: center;
-    }
+  .albumTitleContainer {
+    margin: 1rem;
+    justify-content: center;
+  }
 
-    .albumTitleHeader{
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        width: 100%;
-        align-items: flex-end;
-        justify-content: space-around;
-        pointer-events: all;
-        inset: auto 0 0;
-        padding: 2rem;
-        height: 100px;
-        background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgb(var(--background-end-rgb)) 40%
-        );
-        z-index: 1;
-    }
+  .albumTitleHeader {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-around;
+    pointer-events: all;
+    inset: auto 0 0;
+    padding: 2rem;
+    height: 100px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgb(var(--background-end-rgb)) 40%
+    );
+    z-index: 1;
+  }
 
-    .albumTitleHeader h3{
-        display: none;
-    }
+  .albumTitleHeader h3 {
+    display: none;
+  }
 
-    .albumTitleHeader h2{
-        font-size: 0.8rem;
-        font-family: var(--font-mono);
-    }
+  .albumTitleHeader h2 {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+  }
 
-    .albumTitleHeader h1{
-        font-size: 0.8rem;
-        font-family: var(--font-mono);
-    }
+  .albumTitleHeader h1 {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+  }
 }

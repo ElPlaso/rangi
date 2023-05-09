@@ -1,11 +1,13 @@
-'use client'
+"use client";
 
-import Result from '@/app/models/result';
-import React, { useRef, useState, useEffect } from 'react';
-import SampledByResult from './sampled_by_result';
+import Result from "@/app/models/result";
+import React, { useRef, useState, useEffect } from "react";
+import SampledByResult from "./sampled_by_result";
+import "@/app/styles/horizontal_scroll.css";
+import { Inter } from "@next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function SampledByScrollingList(props: any) {
-
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryItemSize, setGalleryItemSize] = useState<number>(0);
   const [scrollInterval, setScrollInterval] = useState<NodeJS.Timer>();
@@ -18,10 +20,13 @@ export default function SampledByScrollingList(props: any) {
       const clientWidth = gallery.clientWidth;
       const maxScrollLeft = scrollWidth - clientWidth;
       if (scrollLeft < maxScrollLeft) {
-        const nextPageLeft = Math.min(scrollLeft + galleryItemSize, maxScrollLeft);
+        const nextPageLeft = Math.min(
+          scrollLeft + galleryItemSize,
+          maxScrollLeft
+        );
         gallery.scrollTo({
           left: nextPageLeft,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
     }
@@ -35,7 +40,7 @@ export default function SampledByScrollingList(props: any) {
         const prevPageLeft = Math.max(scrollLeft - galleryItemSize, 0);
         gallery.scrollTo({
           left: prevPageLeft,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
     }
@@ -59,14 +64,17 @@ export default function SampledByScrollingList(props: any) {
     const gallery = galleryRef.current;
 
     const handleResize = () => {
-      setGalleryItemSize(gallery?.querySelector('.item:first-child')?.getBoundingClientRect().width || 0);
+      setGalleryItemSize(
+        gallery?.querySelector(".item:first-child")?.getBoundingClientRect()
+          .width || 0
+      );
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -97,8 +105,20 @@ export default function SampledByScrollingList(props: any) {
           );
         })}
       </div>
-      <span className="btn prev" onClick={scrollToPrevPage} onMouseDown={handlePrevMouseDown} onMouseUp={handleMouseUp} onMouseOut={handleMouseUp}></span>
-      <span className="btn next" onClick={scrollToNextPage} onMouseDown={handleNextMouseDown} onMouseUp={handleMouseUp} onMouseOut={handleMouseUp}></span>
+      <span
+        className="btn prev"
+        onClick={scrollToPrevPage}
+        onMouseDown={handlePrevMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseOut={handleMouseUp}
+      ></span>
+      <span
+        className="btn next"
+        onClick={scrollToNextPage}
+        onMouseDown={handleNextMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseOut={handleMouseUp}
+      ></span>
     </div>
   );
 }

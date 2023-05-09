@@ -44,13 +44,14 @@
   grid-template-columns: repeat(3, minmax(33%, auto));
   width: var(--max-width);
   max-width: 100%;
+  grid-gap: 0.5rem;
 }
 
 .card {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0.15);
   transition: background 200ms, border 200ms;
 }
 
@@ -98,7 +99,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -126,7 +127,7 @@
 
 .icon::before,
 .icon::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
@@ -156,7 +157,6 @@
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }
 
   .card:hover span {
