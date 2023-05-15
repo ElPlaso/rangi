@@ -3,6 +3,7 @@ import styles from "./styles/page.module.css";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import Link from "next/link";
+import SideNavigation from "./components/side_navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,8 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <main className={styles.main}>{children}</main>
+          <SideNavigation />
+          <main className={styles.main}>{children}</main>
       </body>
     </html>
   );

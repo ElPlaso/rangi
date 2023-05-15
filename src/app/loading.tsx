@@ -1,11 +1,10 @@
-import LoadingIndicator from "./components/loading_indicator";
+import LoadingIndicator from "@/app/components/loading_indicator";
+import "@/app/styles/styles.css";
 
 export default function Loading() {
   return (
-    <>
-        <div></div>
-        <LoadingIndicator />
-        <div></div>
-    </>
-  )
+    <div className="center">
+      <LoadingIndicator />
+    </div>
+  );
 }

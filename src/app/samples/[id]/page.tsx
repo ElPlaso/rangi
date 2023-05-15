@@ -1,12 +1,10 @@
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
-import SearchBar from "@/app/components/search_bar";
 import Result from "@/app/models/result";
 import Link from "next/link";
-import Image from "next/image";
 import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
-import SearchResult from "@/app/components/search_result";
+import SampleResult from "@/app/components/sample_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,19 +61,10 @@ export default async function SampleResultsPage({ params }: any) {
 
     return (
       <>
-        <div className={styles.description}>
-          <p>
-            <Link href="/">
-              <Image
-                className={styles.logo}
-                src="/samplify.svg"
-                alt="Samplify X Logo"
-                width={150}
-                height={20}
-                priority
-              />
-            </Link>
-          </p>
+        <div
+          className={styles.description}
+          style={{ width: "100%", justifyContent: "end" }}
+        >
           <div>{title}</div>
         </div>
 
@@ -97,7 +86,7 @@ export default async function SampleResultsPage({ params }: any) {
             >
               {samples?.map((sample) => {
                 return (
-                  <SearchResult
+                  <SampleResult
                     type="samples"
                     key={sample.id}
                     result={
@@ -120,9 +109,7 @@ export default async function SampleResultsPage({ params }: any) {
         {songsThatSampleThisSong.length > 0 && (
           <>
             <div className="container">
-              <h4 className={styles.code}>
-                Songs that sample {shortTitle}
-              </h4>
+              <h4 className={styles.code}>Songs that sample {shortTitle}</h4>
             </div>
             <SampledByScrollingList
               sampledByResults={songsThatSampleThisSong}
@@ -135,10 +122,6 @@ export default async function SampleResultsPage({ params }: any) {
             No info.
           </h4>
         )}
-
-        <div style={{ marginBottom: "3rem" }}>
-          <SearchBar />
-        </div>
       </>
     );
   } else {
@@ -152,9 +135,6 @@ export default async function SampleResultsPage({ params }: any) {
         <h4 className={styles.code} style={{ marginTop: "2rem" }}>
           Song not found.
         </h4>
-        <div style={{ marginBottom: "4rem" }}>
-          <SearchBar />
-        </div>
       </>
     );
   }

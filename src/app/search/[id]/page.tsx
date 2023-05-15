@@ -1,10 +1,7 @@
-import SearchResult from "../../components/search_result";
 import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import Result from "@/app/models/result";
-import SearchBar from "@/app/components/search_bar";
-import Image from "next/image";
-import Link from "next/link";
+import SampleResult from "@/app/components/sample_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -43,19 +40,10 @@ export default async function SearchResultsPage({ params }: any) {
 
   return (
     <>
-      <div className={styles.description}>
-        <p>
-          <Link href="/">
-            <Image
-              className={styles.logo}
-              src="/samplify.svg"
-              alt="Samplify X Logo"
-              width={150}
-              height={20}
-              priority
-            />
-          </Link>
-        </p>
+      <div
+        className={styles.description}
+        style={{ width: "100%", justifyContent: "end" }}
+      >
         <div>
           Showing results for {"'"}
           {decodeURI(params.id)}
@@ -65,11 +53,11 @@ export default async function SearchResultsPage({ params }: any) {
 
       <div
         className={styles.grid}
-        style={{ marginTop: "2rem", marginBottom: "4rem" }}
+        style={{ marginTop: "2rem" }}
       >
         {searchResults?.map((result) => {
           return (
-            <SearchResult
+            <SampleResult
               type={"samples"}
               key={result["result"].id}
               result={
@@ -86,9 +74,6 @@ export default async function SearchResultsPage({ params }: any) {
             />
           );
         })}
-      </div>
-      <div style={{ marginBottom: "3rem" }}>
-        <SearchBar />
       </div>
     </>
   );

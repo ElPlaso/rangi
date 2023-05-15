@@ -18,7 +18,9 @@ export default function AlbumTitle(props: any) {
         height={150}
         style={{
           objectFit: "cover",
+          borderRadius: "7px",
         }}
+
       />
       </div>
       <div className="albumTitleHeader" style={{ paddingLeft: "1rem" }}>

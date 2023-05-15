@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import Result from "@/app/models/result";
 import Link from "next/link";
 import AlbumSample from "./album_sample";
+import DotsLoader from "@/app/components/dots_loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,7 +46,7 @@ export default function AlbumAppearanceResult({ songData }: any) {
   const [hidden, setHidden] = useState(true);
 
   const handleClick = async () => {
-    if (!loaded && !loading)  {
+    if (!loaded && !loading) {
       setHidden(false);
       setLoading(true);
       let data = await getSamples(song.id);
@@ -83,7 +84,7 @@ export default function AlbumAppearanceResult({ songData }: any) {
           <div className={styles.grid}>
             {loading ? (
               <p className={inter.className} style={{ margin: "2rem" }}>
-                Loading . . .
+                <DotsLoader />
               </p>
             ) : (
               loaded &&
@@ -108,9 +109,11 @@ export default function AlbumAppearanceResult({ songData }: any) {
                   );
                 })
               ) : (
-                <p className={inter.className} style={{ margin: "2rem" }}>
-                  No samples found.
-                </p>
+                <div className="cardish hovered">
+                  <p className={inter.className} style={{ margin: "2rem" }}>
+                    No samples found.
+                  </p>
+                </div>
               ))
             )}
           </div>

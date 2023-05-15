@@ -1,8 +1,5 @@
 import { Inter } from "@next/font/google";
-import Image from "next/image";
-import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
-import Link from "next/link";
 import AlbumAppearanceResult from "./components/album_appearance_result";
 import AlbumTitle from "./components/album_title";
 
@@ -62,22 +59,6 @@ export default async function AlbumPage({ params }: any) {
   const albumData: any = await getAlbumData(params.id);
 
   return (
-    <>
-      <div className={styles.description}>
-        <Link href={`/`}>
-          <p>
-            <Image
-              className={styles.logo}
-              src="/samplify.svg"
-              alt="Samplify X Logo"
-              width={150}
-              height={20}
-              priority
-            />
-          </p>
-        </Link>
-      </div>
-
       <div className="container">
         {albumData && <AlbumTitle albumData={albumData} />}
         <ol>
@@ -91,6 +72,5 @@ export default async function AlbumPage({ params }: any) {
           })}
         </ol>
       </div>
-    </>
   );
 }
