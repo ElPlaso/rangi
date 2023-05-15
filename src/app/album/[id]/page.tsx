@@ -59,8 +59,10 @@ export default async function AlbumPage({ params }: any) {
   const albumData: any = await getAlbumData(params.id);
 
   return (
-      <div className="container">
-        {albumData && <AlbumTitle albumData={albumData} />}
+    <>
+      {albumData && <AlbumTitle albumData={albumData} />}
+
+      <div className="container" style={{ marginTop: "150px" }}>
         <ol>
           {songs?.map((song) => {
             return (
@@ -72,5 +74,6 @@ export default async function AlbumPage({ params }: any) {
           })}
         </ol>
       </div>
+    </>
   );
 }
