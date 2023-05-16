@@ -74,11 +74,6 @@
 @media (max-width: 1023px) {
   .gallery {
     position: relative;
-    width: 80%;
-    max-width: 320px;
-  }
-
-  .gallery .btn {
-    display: none;
+    width: 100%;
   }
 }

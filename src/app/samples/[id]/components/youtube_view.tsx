@@ -28,8 +28,8 @@ export default function YoutubeView(props: any) {
   }, [windowWidth]);
 
   const opts = {
-    width: windowWidth > 1023 ? "400" : "300",
-    height: windowWidth > 1023 ? "225" : "169",
+    width: windowWidth > 1300 ? "400" : "300",
+    height: windowWidth > 1300 ? "225" : "169",
     playerVars: {
       autoplay: 0,
     },

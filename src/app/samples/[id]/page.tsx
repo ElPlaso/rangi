@@ -5,6 +5,7 @@ import Link from "next/link";
 import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
+import SongTitle from "./components/song_title";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +50,7 @@ export default async function SampleResultsPage({ params }: any) {
     let songsThatSampleThisSong: any[] =
       songData["song_relationships"]["1"]["songs"];
 
-    let title: string = songData["full_title"];
+    // let title: string = songData["full_title"];
 
     let shortTitle: string = songData["title"];
 
@@ -61,67 +62,63 @@ export default async function SampleResultsPage({ params }: any) {
 
     return (
       <>
-        <div
-          className={styles.description}
-          style={{ width: "100%", justifyContent: "end" }}
-        >
-          <div>{title}</div>
-        </div>
+        <SongTitle songData={songData} />
 
-        {youtubeId && samples.length > 0 && (
-          <div>
-            <h4 className={styles.code} style={{ marginTop: "3rem" }}>
-              Compare
-            </h4>
-            <YoutubeView id={youtubeId} samples={samples} />
-          </div>
-        )}
-
-        {samples.length > 0 && (
-          <div style={{ marginTop: "3rem", padding: "1rem" }}>
-            <h4 className={styles.code}>{shortTitle} Samples</h4>
-            <div
-              className={styles.grid}
-              style={{ marginTop: "2rem", marginBottom: "2rem" }}
-            >
-              {samples?.map((sample) => {
-                return (
-                  <SampleResult
-                    type="samples"
-                    key={sample.id}
-                    result={
-                      new Result(
-                        sample.id,
-                        sample["title"],
-                        sample["artist_names"],
-                        sample["release_date_components"]
-                          ? sample["release_date_components"]["year"]
-                          : "-",
-                        sample["song_art_image_thumbnail_url"]
-                      )
-                    }
-                  />
-                );
-              })}
+        <div className="container content" style={{ marginTop: "150px"}}>
+          {youtubeId && samples.length > 0 && (
+            <div>
+              <h4 className={styles.code}>
+                Compare
+              </h4>
+              <YoutubeView id={youtubeId} samples={samples} />
             </div>
-          </div>
-        )}
-        {songsThatSampleThisSong.length > 0 && (
-          <>
-            <div className="container">
+          )}
+
+          {samples.length > 0 && (
+            <div style={{ marginTop: "3rem" }}>
+              <h4 className={styles.code}>{shortTitle} Samples</h4>
+              <div
+                className={styles.grid}
+                style={{ marginTop: "2rem", marginBottom: "2rem" }}
+              >
+                {samples?.map((sample) => {
+                  return (
+                    <SampleResult
+                      type="samples"
+                      key={sample.id}
+                      result={
+                        new Result(
+                          sample.id,
+                          sample["title"],
+                          sample["artist_names"],
+                          sample["release_date_components"]
+                            ? sample["release_date_components"]["year"]
+                            : "-",
+                          sample["song_art_image_thumbnail_url"]
+                        )
+                      }
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {songsThatSampleThisSong.length > 0 && (
+            <div>
               <h4 className={styles.code}>Songs that sample {shortTitle}</h4>
+              <SampledByScrollingList
+                sampledByResults={songsThatSampleThisSong}
+              />
             </div>
-            <SampledByScrollingList
-              sampledByResults={songsThatSampleThisSong}
-            />
-          </>
-        )}
+          )}
 
-        {samples.length == 0 && songsThatSampleThisSong.length === 0 && (
-          <h4 className={styles.code} style={{ marginTop: "2rem" }}>
-            No info.
-          </h4>
-        )}
+          {samples.length == 0 && songsThatSampleThisSong.length === 0 && (
+            <h4 className={styles.code} style={{ marginTop: "2rem" }}>
+              No info.
+            </h4>
+          )}
+        </div>
       </>
     );
   } else {

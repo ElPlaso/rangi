@@ -52,7 +52,8 @@
   padding-top: 150px;
 }
 
-.albumTitleContainer {
+.albumTitleContainer,
+.songTitleContainer {
   position: fixed;
   padding-top: 1.5rem;
   padding-left: 6.5rem;
@@ -66,12 +67,13 @@
   text-overflow: ellipsis;
 }
 
-.albumTitleHeader {
-  max-width: 50%;
+.songTitleContainer {
+  padding-top: 2.5rem;
 }
 
-.albumTitleHeader h1 + h2 + h3 {
-  text-overflow: ellipsis;
+.albumTitleHeader,
+.songTitleHeader {
+  max-width: 50%;
 }
 
 .scrolled {
@@ -109,16 +111,22 @@
 /* Mobile and Tablet */
 @media (max-width: 1023px) {
   .container {
-    max-width: 320px;
+    max-width: 340px;
   }
+
   .videoComparisonRow {
     display: block;
-    text-align: center;
   }
   .videoContainer {
     width: 300px;
     height: 169px;
   }
+
+
+  .videoComparisonRow span{
+    text-align: center;
+  }
+
   .albumAppearance {
     padding: 1rem 2.5rem 2rem;
     margin-bottom: 0.5rem;
@@ -129,7 +137,8 @@
     text-decoration: underline;
   }
 
-  .albumTitleContainer {
+  .albumTitleContainer,
+  .songTitleContainer {
     padding-left: 1rem;
     margin-left: 0;
     z-index: 0;
@@ -139,19 +148,27 @@
     display: flex;
   }
 
-  .albumTitleHeader {
+  .albumTitleHeader,
+  .songTitleHeader {
     padding-right: 1rem;
   }
 
   .albumTitleHeader h2,
-  .albumTitleHeader h1 {
+  .albumTitleHeader h1,
+  .songTitleHeader h2,
+  .songTitleHeader h1 {
     font-size: 0.8rem;
     font-family: var(--font-mono);
   }
 }
 
-@media screen and (max-width: 1300px) and (min-width: 1023px){
-  .albumTitleContainer{
+@media screen and (max-width: 1300px) and (min-width: 1023px) {
+  .albumTitleContainer,
+  .songTitleContainer {
     margin-left: 27.5%;
+  }
+  .videoContainer {
+    width: 300px;
+    height: 169px;
   }
 }
