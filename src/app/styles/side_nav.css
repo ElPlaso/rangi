@@ -2,20 +2,26 @@
   height: 100%;
   width: 20%;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   left: 0;
   background-color: rgba(var(--card-rgb), 0.15);
   padding-top: 20px;
   overflow-x: hidden;
   padding-left: 10px;
+  padding-right: 10px;
+  transition: all 300ms ease;
+}
+
+.sidenav .toggle {
+  display: none;
 }
 
 .sidenav h2 {
   margin-left: 0.5rem;
 }
 
-.sidenav .divider{
+.sidenav .divider {
   margin: 0.5rem;
   border-bottom: 1px solid rgba(var(--card-border-rgb), 0.15);
 }
@@ -40,14 +46,107 @@
   bottom: 0;
   width: 100%;
   padding: 1rem 2rem 1rem 1rem;
+}
 
+.sidenav::-webkit-scrollbar {
+  display: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .sidenav .listitem:hover{
+  .sidenav .listitem:hover {
     background: rgba(var(--card-rgb), 0.25);
     border-radius: 12px;
     padding: 0.5rem;
     margin-left: 0rem;
+  }
+}
+
+
+@media screen and (max-height: 500px){
+  .sidenav .footer{
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .sidenav {
+    width: 50px;
+    padding: 0.25rem;
+    transition: all 300ms ease;
+    background-color: transparent;
+  }
+
+  .sidenav .toggle {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    z-index: 3;
+    border-radius: 0.5rem;
+    padding-top: 0.3rem;
+    color: black;
+  }
+
+  .sidenav .divider,
+  .sidenav .item,
+  .sidenav .listitem,
+  .sidenav .footer {
+    display: none;
+  }
+
+  .sidenav .nav-search{
+    margin-top: 3rem;
+  }
+
+  /* prevents below content scrolling when sidenav is expanded */
+  .expanded + * {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .expanded {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: all 300ms ease;
+  }
+
+  .expanded .toggle {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+  }
+
+  .expanded .divider,
+  .expanded .item,
+  .expanded .listitem,
+  .expanded .footer {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1023px){
+  .sidenav .footer{
+    padding-left: 0.5rem;
+  }
+  .sidenav {
+    min-width: 22.5%;
+  }
+}
+
+/* dark pref */
+@media (prefers-color-scheme: dark) {
+  .expanded {
+    background-color: black;
+  }
+  .sidenav .toggle {
+    color: white;
+    background-color: black;
   }
 }

@@ -47,9 +47,6 @@ export default function AlbumTitle(props: any) {
       id="header"
       className="albumTitleContainer"
       style={{
-        paddingTop: scrolled ? "1rem" : "1.5rem",
-        paddingBottom: "1rem",
-        paddingLeft: scrolled ?  "1rem ": "7.5rem",
         backgroundColor: scrolled ? avgColor : "transparent",
         backgroundImage: scrolled
           ? "linear-gradient(" + avgColor + avgColor + ")"

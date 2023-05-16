@@ -62,7 +62,7 @@ export default async function AlbumPage({ params }: any) {
     <>
       {albumData && <AlbumTitle albumData={albumData} />}
 
-      <div className="container" style={{ marginTop: "150px" }}>
+      <div className="container albumSampleList">
         <ol>
           {songs?.map((song) => {
             return (

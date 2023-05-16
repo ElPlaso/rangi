@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Search() {
+export default function Search(props: any) {
   const [songResults, setSongResults] = useState([]);
   const [albumResults, setAlbumResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -101,8 +101,7 @@ export default function Search() {
 
   return (
     <div className="search">
-      <h3 className={inter.className}>Search</h3>
-      <input type="text" ref={inputRef} onChange={handleOnChange} />
+      <input type="text" ref={inputRef} onChange={handleOnChange} placeholder="Search songs & albums" />
       <div className="search-results">
         {loading ? (
           <div style={{ textAlign: "center" }}>
@@ -123,7 +122,11 @@ export default function Search() {
               <h4
                 onClick={clearResults}
                 className={inter.className}
-                style={{textDecoration: "underline", marginRight: "0.5rem", cursor: "pointer"}}
+                style={{
+                  textDecoration: "underline",
+                  marginRight: "0.5rem",
+                  cursor: "pointer",
+                }}
               >
                 Clear
               </h4>
@@ -146,40 +149,44 @@ export default function Search() {
             </div>
             {songResults.length > 0 &&
               songResults.map((result: any) => (
-                <SearchResult
-                  type="samples"
-                  key={result["result"].id}
-                  result={
-                    new Result(
-                      result["result"].id,
-                      result["result"]["title"],
-                      result["result"]["artist_names"],
-                      result["result"]["release_date_components"]
-                        ? result["result"]["release_date_components"]["year"]
-                        : "-",
-                      result["result"]["song_art_image_thumbnail_url"]
-                    )
-                  }
-                />
+                <div key={result["result"].id} onClick={props.onResultClick}>
+                  <SearchResult
+                    type="samples"
+                    key={result["result"].id}
+                    result={
+                      new Result(
+                        result["result"].id,
+                        result["result"]["title"],
+                        result["result"]["artist_names"],
+                        result["result"]["release_date_components"]
+                          ? result["result"]["release_date_components"]["year"]
+                          : "-",
+                        result["result"]["song_art_image_thumbnail_url"]
+                      )
+                    }
+                  />
+                </div>
               ))}
             <h3 className={inter.className}>Albums</h3>
             {albumResults.length > 0 &&
               albumResults.map((result: any) => (
-                <SearchResult
-                  type="album"
-                  key={result["result"].id}
-                  result={
-                    new Result(
-                      result["result"].id,
-                      result["result"]["name"],
-                      result["result"]["artist"]["name"],
-                      result["result"]["release_date_components"]
-                        ? result["result"]["release_date_components"]["year"]
-                        : "-",
-                      result["result"]["cover_art_url"]
-                    )
-                  }
-                />
+                <div key={result["result"].id} onClick={props.onResultClick}>
+                  <SearchResult
+                    type="album"
+                    key={result["result"].id}
+                    result={
+                      new Result(
+                        result["result"].id,
+                        result["result"]["name"],
+                        result["result"]["artist"]["name"],
+                        result["result"]["release_date_components"]
+                          ? result["result"]["release_date_components"]["year"]
+                          : "-",
+                        result["result"]["cover_art_url"]
+                      )
+                    }
+                  />
+                </div>
               ))}
           </>
         ) : (
@@ -187,16 +194,15 @@ export default function Search() {
             <div className="search-error">
               <p className={inter.className} style={{ display: "flex" }}>
                 A problem occurred, please&nbsp;
-                <div
+                <h4
                   style={{
                     textDecoration: "underline",
-                    fontWeight: "bold",
                     cursor: "pointer",
                   }}
                   onClick={retry}
                 >
                   try again.
-                </div>
+                </h4>
               </p>
             </div>
           )

@@ -127,13 +127,8 @@ export default async function SampleResultsPage({ params }: any) {
   } else {
     return (
       <>
-        <div className={styles.description}>
-          <Link href="/">
-            <h2 className={styles.code}>Samplify</h2>
-          </Link>
-        </div>
         <h4 className={styles.code} style={{ marginTop: "2rem" }}>
-          Song not found.
+          A problem occurred.
         </h4>
       </>
     );
