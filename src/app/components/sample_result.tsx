@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
+import "@/app/styles/styles.css";
 import Result from "@/app/models/result";
 import Link from "next/link";
 import { Inter } from "@next/font/google";
@@ -11,7 +12,7 @@ export default function SampleResult(props: any) {
 
   return (
     <Link href={`/${props.type}/${result.id}`} className={styles.card}>
-      <div style={{ display: "flex" }}>
+      <div className="sample-result">
         <div>
           <span>
             <Image
@@ -27,7 +28,7 @@ export default function SampleResult(props: any) {
             />
           </span>
         </div>
-        <div style={{ paddingLeft: "1rem" }}>
+        <div className="sample-result-text">
           <h4 className={inter.className}>{result.title}</h4>
           <p className={inter.className}>{result.artist}</p>
           <p className={inter.className}>{result.year}</p>

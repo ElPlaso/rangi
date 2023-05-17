@@ -110,7 +110,7 @@ export default function AlbumAppearanceResult({ songData }: any) {
                 })
               ) : (
                 <div className="cardish hovered">
-                  <p className={inter.className} style={{ margin: "2rem" }}>
+                  <p className={inter.className}>
                     No samples found.
                   </p>
                 </div>

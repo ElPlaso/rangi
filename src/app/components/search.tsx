@@ -101,7 +101,12 @@ export default function Search(props: any) {
 
   return (
     <div className="search">
-      <input type="text" ref={inputRef} onChange={handleOnChange} placeholder="Search songs & albums" />
+      <input
+        type="text"
+        ref={inputRef}
+        onChange={handleOnChange}
+        placeholder="Search songs & albums"
+      />
       <div className="search-results">
         {loading ? (
           <div style={{ textAlign: "center" }}>
@@ -139,13 +144,15 @@ export default function Search(props: any) {
               }}
             >
               <h3 className={inter.className}>Songs</h3>
-              <Link
-                href={`/search/${input}`}
-                className={inter.className}
-                style={{ marginRight: "1rem", textDecoration: "underline" }}
-              >
-                More
-              </Link>
+              <div onClick={props.onResultClick}>
+                <Link
+                  href={`/search/${input}`}
+                  className={inter.className}
+                  style={{ marginRight: "1rem", textDecoration: "underline" }}
+                >
+                  More
+                </Link>
+              </div>
             </div>
             {songResults.length > 0 &&
               songResults.map((result: any) => (

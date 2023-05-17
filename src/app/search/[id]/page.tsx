@@ -39,7 +39,7 @@ export default async function SearchResultsPage({ params }: any) {
   const searchResults = await getSearchResults(decodeURI(params.id));
 
   return (
-    <>
+    <div className="container">
       <div
         className={styles.description}
         style={{ width: "100%", justifyContent: "end" }}
@@ -51,10 +51,7 @@ export default async function SearchResultsPage({ params }: any) {
         </div>
       </div>
 
-      <div
-        className={styles.grid}
-        style={{ marginTop: "2rem" }}
-      >
+      <div className={styles.grid} style={{ marginTop: "2rem" }}>
         {searchResults?.map((result) => {
           return (
             <SampleResult
@@ -75,6 +72,6 @@ export default async function SearchResultsPage({ params }: any) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

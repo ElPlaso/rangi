@@ -165,16 +165,15 @@ export default function YoutubeView(props: any) {
             return (
               <div
                 key={sample.id}
-                className={styles.card}
-                style={
-                  index === currentIndex
-                    ? {
-                        background: "rgba(var(--card-rgb), 0.1)",
-                        border: "1px solid rgba(var(--card-border-rgb), 0.15)",
-                        cursor: "pointer",
-                      }
-                    : { cursor: loading ? "wait" :"pointer" }
+                className={
+                  index == currentIndex ? "cardish hovered" : styles.card
                 }
+                style={{
+                  padding: "0.5rem",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  cursor: loading ? "wait" : "pointer",
+                }}
                 onClick={() => {
                   handleClick(index);
                 }}

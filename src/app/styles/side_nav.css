@@ -61,9 +61,8 @@
   }
 }
 
-
-@media screen and (max-height: 500px){
-  .sidenav .footer{
+@media screen and (max-height: 500px) {
+  .sidenav .footer {
     position: relative;
   }
 }
@@ -97,7 +96,7 @@
     display: none;
   }
 
-  .sidenav .nav-search{
+  .sidenav .nav-search {
     margin-top: 3rem;
   }
 
@@ -131,8 +130,8 @@
   }
 }
 
-@media screen and (max-width: 1300px) and (min-width: 1023px){
-  .sidenav .footer{
+@media screen and (max-width: 1300px) and (min-width: 1023px) {
+  .sidenav .footer {
     padding-left: 0.5rem;
   }
   .sidenav {

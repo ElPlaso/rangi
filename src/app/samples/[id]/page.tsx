@@ -64,7 +64,7 @@ export default async function SampleResultsPage({ params }: any) {
       <>
         <SongTitle songData={songData} />
 
-        <div className="container content" style={{ marginTop: "150px"}}>
+        <div className="container" style={{ marginTop: "150px"}}>
           {youtubeId && samples.length > 0 && (
             <div>
               <h4 className={styles.code}>
