@@ -2,7 +2,7 @@
   height: 100%;
   width: 20%;
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   left: 0;
   background-color: rgba(var(--card-rgb), 0.15);
@@ -92,7 +92,8 @@
   .sidenav .divider,
   .sidenav .item,
   .sidenav .listitem,
-  .sidenav .footer {
+  .sidenav .footer,
+  .sidenav .blur{
     display: none;
   }
 

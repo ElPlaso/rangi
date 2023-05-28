@@ -105,7 +105,7 @@ input[type="text"] {
 @media (prefers-color-scheme: dark) {
   .search input:focus ~ .search-results,
   .search-results:hover {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.75);
     color: white;
   }
 }
