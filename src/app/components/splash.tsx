@@ -3,7 +3,7 @@ import styles from '../styles/page.module.css'
 
 export default function Splash() {
   return (
-    <div className={styles.center}>
+    <div className={styles.center} style={{zIndex: -1}}>
       <div className={styles.icon}>
         <Image src="/music_notes.svg" alt="Music Notes icon" width={40} height={31} priority />
       </div>

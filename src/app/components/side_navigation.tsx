@@ -11,7 +11,6 @@ import StarIcon from "@mui/icons-material/Star";
 import HamburgerIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Search from "./search";
-import Splash from "./splash";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,10 +62,6 @@ export default function SideNavigation() {
         <Search onResultClick={toggleExpanded} />
       </div>
       <div className="divider" />
-      <div className="item">
-        <Splash />
-      </div>
-      <div className="divider" />
       <Link href="/" onClick={toggleExpanded}>
         <div className="listitem">
           <MusicIcon />
@@ -80,13 +75,16 @@ export default function SideNavigation() {
         </div>
       </Link>
       <div className="divider" />
-
+      <div
+        className={`${styles.center} blur`}
+        style={{ pointerEvents: "none", zIndex: -1 }}
+      />
       <div className="footer">
         <a
           href="https://github.com/ElPlaso"
           target="_blank"
           rel="noopener noreferrer"
-          style={{paddingTop: "3.5px"}}
+          style={{ paddingTop: "3.5px" }}
         >
           <Image
             src="/el_plaso.svg"
