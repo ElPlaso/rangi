@@ -5,7 +5,6 @@ import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import "@/app/styles/accordion.css";
 import React, { useState } from "react";
-import Result from "@/app/models/result";
 import Link from "next/link";
 import AlbumSample from "./album_sample";
 import DotsLoader from "@/app/components/dots_loader";
@@ -94,25 +93,21 @@ export default function AlbumAppearanceResult({ songData }: any) {
                     <AlbumSample
                       key={sample.id}
                       type="samples"
-                      result={
-                        new Result(
-                          sample.id,
-                          sample["title"],
-                          sample["artist_names"],
-                          sample["release_date_components"]
-                            ? sample["release_date_components"]["year"]
-                            : "-",
-                          sample["song_art_image_thumbnail_url"]
-                        )
-                      }
+                      result={{
+                        id: sample.id,
+                        title: sample["title"],
+                        artist: sample["artist_names"],
+                        year: sample["release_date_components"]
+                          ? sample["release_date_components"]["year"]
+                          : "-",
+                        imgUrl: sample["song_art_image_thumbnail_url"],
+                      }}
                     />
                   );
                 })
               ) : (
                 <div className="cardish hovered">
-                  <p className={inter.className}>
-                    No samples found.
-                  </p>
+                  <p className={inter.className}>No samples found.</p>
                 </div>
               ))
             )}

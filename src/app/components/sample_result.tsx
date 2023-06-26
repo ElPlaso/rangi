@@ -1,18 +1,45 @@
+"use client";
 import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/models/result";
-import Link from "next/link";
 import { Inter } from "@next/font/google";
+import { IconButton } from "@mui/material";
+import { StarBorder as StarBorderIcon } from "@mui/icons-material";
+import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function SampleResult(props: any) {
-  const result: Result = props.result || {};
+export default function SampleResult(props: {
+  result: Result;
+  starrable?: boolean;
+}) {
+  const result: Result = props.result;
+  const starrable = props.starrable;
+  const router = useRouter();
+
+  const handleStar = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+  };
+
+  const handleCardClick = () => {
+    router.push(`/samples/${result.id}`);
+  };
 
   return (
-    <Link href={`/${props.type}/${result.id}`} className={styles.card}>
+    <div
+      onClick={handleCardClick}
+      className={styles.card}
+      style={{ cursor: "pointer" }}
+    >
       <div className="sample-result">
+        {starrable != false && (
+          <div className="sample-result-icon">
+            <IconButton onClick={handleStar} className="star-icon">
+              <StarBorderIcon />
+            </IconButton>
+          </div>
+        )}
         <div>
           <span>
             <Image
@@ -34,6 +61,6 @@ export default function SampleResult(props: any) {
           <p className={inter.className}>{result.year}</p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

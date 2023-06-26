@@ -10,6 +10,39 @@
   display: flex;
 }
 
+.sample-result {
+  display: flex;
+  position: relative;
+}
+
+.sample-result:hover .star-icon {
+  display: block;
+}
+
+.star-icon {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 2;
+}
+.star-icon .MuiIconButton-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .star-icon {
+    color: white;
+  }
+}
+
 .sample-result .sample-result-text {
   padding-left: 0.5rem;
 }

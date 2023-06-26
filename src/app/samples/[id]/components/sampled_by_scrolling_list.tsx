@@ -1,11 +1,8 @@
 "use client";
 
-import Result from "@/app/models/result";
 import React, { useRef, useState, useEffect } from "react";
 import SampledByResult from "./sampled_by_result";
 import "@/app/styles/horizontal_scroll.css";
-import { Inter } from "@next/font/google";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function SampledByScrollingList(props: any) {
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -89,17 +86,15 @@ export default function SampledByScrollingList(props: any) {
             <div className="item hovered" key={song.id}>
               <SampledByResult
                 type="samples"
-                result={
-                  new Result(
-                    song.id,
-                    song["title"],
-                    song["artist_names"],
-                    song["release_date_components"]
-                      ? song["release_date_components"]["year"]
-                      : "-",
-                    song["song_art_image_thumbnail_url"]
-                  )
-                }
+                result={{
+                  id: song.id,
+                  title: song["title"],
+                  artist: song["artist_names"],
+                  year: song["release_date_components"]
+                    ? song["release_date_components"]["year"]
+                    : "-",
+                  imgUrl: song["song_art_image_thumbnail_url"],
+                }}
               />
             </div>
           );

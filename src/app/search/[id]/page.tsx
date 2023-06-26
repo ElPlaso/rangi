@@ -1,9 +1,5 @@
-import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
-import Result from "@/app/models/result";
 import SampleResult from "@/app/components/sample_result";
-
-const inter = Inter({ subsets: ["latin"] });
 
 async function getSearchResults(search: String) {
   let results: any[] = [];
@@ -55,19 +51,17 @@ export default async function SearchResultsPage({ params }: any) {
         {searchResults?.map((result) => {
           return (
             <SampleResult
-              type={"samples"}
+              starrable={false}
               key={result["result"].id}
-              result={
-                new Result(
-                  result["result"].id,
-                  result["result"]["title"],
-                  result["result"]["artist_names"],
-                  result["result"]["release_date_components"]
-                    ? result["result"]["release_date_components"]["year"]
-                    : "-",
-                  result["result"]["song_art_image_thumbnail_url"]
-                )
-              }
+              result={{
+                id: result["result"].id,
+                title: result["result"]["title"],
+                artist: result["result"]["artist_names"],
+                year: result["result"]["release_date_components"]
+                  ? result["result"]["release_date_components"]["year"]
+                  : "-",
+                imgUrl: result["result"]["song_art_image_thumbnail_url"],
+              }}
             />
           );
         })}
