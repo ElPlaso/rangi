@@ -51,7 +51,6 @@ export default async function SearchResultsPage({ params }: any) {
         {searchResults?.map((result) => {
           return (
             <SampleResult
-              starrable={false}
               key={result["result"].id}
               result={{
                 id: result["result"].id,

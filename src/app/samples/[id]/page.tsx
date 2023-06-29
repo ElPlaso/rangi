@@ -29,10 +29,6 @@ async function getSongData(songID: String) {
     .then((data) => data["song"])
     .catch((err) => console.error(err));
 
-  // samples = song['song_relationships']['0']['songs']
-
-  // title: string = song['full_title']
-
   return song;
 }
 
@@ -44,8 +40,6 @@ export default async function SampleResultsPage({ params }: any) {
 
     let songsThatSampleThisSong: any[] =
       songData["song_relationships"]["1"]["songs"];
-
-    // let title: string = songData["full_title"];
 
     let shortTitle: string = songData["title"];
 
@@ -78,6 +72,15 @@ export default async function SampleResultsPage({ params }: any) {
                   return (
                     <SampleResult
                       key={sample.id}
+                      parent={{
+                        id: params.id,
+                        title: shortTitle,
+                        artist: songData["artist_names"],
+                        year: songData["release_date_components"]
+                          ? songData["release_date_components"]["year"]
+                          : "-",
+                        imgUrl: songData["song_art_image_thumbnail_url"],
+                      }}
                       result={{
                         id: sample.id,
                         title: sample["title"],

@@ -7,19 +7,26 @@ import { Inter } from "@next/font/google";
 import { IconButton } from "@mui/material";
 import { StarBorder as StarBorderIcon } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/starred/starred-slice";
 const inter = Inter({ subsets: ["latin"] });
 
-export default function SampleResult(props: {
+interface SampleResultProps {
   result: Result;
-  starrable?: boolean;
-}) {
+  parent?: Result;
+}
+
+export default function SampleResult(props: SampleResultProps) {
   const result: Result = props.result;
-  const starrable = props.starrable;
+  const parent: Result | undefined = props.parent;
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleStar = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
+    if (parent) {
+      dispatch(addItem({ sampler: parent, samplee: result }));
+    }
   };
 
   const handleCardClick = () => {
@@ -33,7 +40,7 @@ export default function SampleResult(props: {
       style={{ cursor: "pointer" }}
     >
       <div className="sample-result">
-        {starrable != false && (
+        {parent && (
           <div className="sample-result-icon">
             <IconButton onClick={handleStar} className="star-icon">
               <StarBorderIcon />
