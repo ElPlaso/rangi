@@ -7,7 +7,7 @@ export default function StarredPage() {
   return (
     <div className="container">
       <h1 className={inter.className}>Starred Samples</h1>
-      <div style={{ marginTop: "2rem" }}>
+      <div style={{ marginTop: "1rem" }}>
         <StarredList />
       </div>
     </div>
