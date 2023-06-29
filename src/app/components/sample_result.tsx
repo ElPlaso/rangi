@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
-import Result from "@/app/models/result";
+import Result from "@/app/types/result";
 import { Inter } from "@next/font/google";
 import { IconButton } from "@mui/material";
 import { StarBorder as StarBorderIcon } from "@mui/icons-material";
