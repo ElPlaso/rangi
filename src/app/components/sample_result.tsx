@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../features/starred/starred-slice";
 import { RootState } from "../store/store";
 import { alreadyStarred } from "../features/starred/utils";
+import { Tooltip } from "react-tooltip";
 const inter = Inter({ subsets: ["latin"] });
 
 interface SampleResultProps {
@@ -62,13 +63,27 @@ export default function SampleResult(props: SampleResultProps) {
         <div className="sample-result-icon">
           {parent &&
             (alreadyStarred(starred, { sampler: parent, samplee: result }) ? (
-              <IconButton onClick={handleUnstar} className="star-icon">
-                <StarIcon />
-              </IconButton>
+              <>
+                <IconButton onClick={handleUnstar} className="star-icon">
+                  <a data-tooltip-id={"unstar"} data-tooltip-content={"Unstar"}>
+                    <StarIcon />
+                  </a>
+                </IconButton>
+                <Tooltip
+                  className={inter.className}
+                  id="unstar"
+                  place="bottom"
+                />
+              </>
             ) : (
-              <IconButton onClick={handleStar} className="star-icon">
-                <StarBorderIcon />
-              </IconButton>
+              <>
+                <IconButton onClick={handleStar} className="star-icon">
+                  <a data-tooltip-id={"star"} data-tooltip-content={"Star"}>
+                    <StarBorderIcon />
+                  </a>
+                </IconButton>
+                <Tooltip className={inter.className} id="star" place="bottom" />
+              </>
             ))}
         </div>
       )}
