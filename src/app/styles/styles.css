@@ -10,12 +10,12 @@
   display: flex;
 }
 
-.sample-result {
+.sample-result, .starred-item{
   display: flex;
   position: relative;
 }
 
-.sample-result:hover .star-icon {
+.sample-result:hover .star-icon, .starred-item:hover .star-icon {
   display: block;
 }
 
@@ -32,14 +32,14 @@
   z-index: 2;
 }
 
-.star-icon .MuiIconButton-label {
+.star-icon .MuiIconButton-label{
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 @media (prefers-color-scheme: dark) {
-  .star-icon {
+  .star-icon{
     color: white;
   }
 }

@@ -53,6 +53,7 @@ export default function SampleResult(props: SampleResultProps) {
 
   return (
     <div
+      id={result.id}
       onClick={handleCardClick}
       className={`${styles.card} sample-result`}
       style={{ cursor: "pointer" }}
