@@ -6,8 +6,8 @@ import "@/app/styles/styles.css";
 import "@/app/styles/accordion.css";
 import React, { useState } from "react";
 import Link from "next/link";
-import AlbumSample from "./album_sample";
 import DotsLoader from "@/app/components/dots_loader";
+import SampleResult from "@/app/components/sample_result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -90,9 +90,17 @@ export default function AlbumAppearanceResult({ songData }: any) {
               (samples?.length > 0 ? (
                 samples?.map((sample) => {
                   return (
-                    <AlbumSample
+                    <SampleResult
                       key={sample.id}
-                      type="samples"
+                      parent={{
+                        id: song.id,
+                        title: song["title"],
+                        artist: song["artist_names"],
+                        year: song["release_date_components"]
+                          ? song["release_date_components"]["year"]
+                          : "-",
+                        imgUrl: song["song_art_image_thumbnail_url"],
+                      }}
                       result={{
                         id: sample.id,
                         title: sample["title"],
