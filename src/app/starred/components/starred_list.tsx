@@ -2,7 +2,6 @@
 
 import { RootState } from "@/app/store/store";
 import { useSelector } from "react-redux";
-import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import StarredItem from "./starred_item";
 import FlipMove from "react-flip-move";

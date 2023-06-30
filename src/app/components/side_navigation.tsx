@@ -75,10 +75,6 @@ export default function SideNavigation() {
         </div>
       </Link>
       <div className="divider" />
-      <div
-        className={`${styles.center} blur`}
-        style={{ pointerEvents: "none", zIndex: -1 }}
-      />
       <div className="footer">
         <a
           href="https://github.com/ElPlaso"

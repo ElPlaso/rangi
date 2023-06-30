@@ -146,7 +146,7 @@
   padding: 1px;
   border-radius: var(--border-radius);
   background: linear-gradient(
-    to bottom right,
+    to right,
     rgba(var(--tile-start-rgb), 1),
     rgba(var(--tile-end-rgb), 1)
   );

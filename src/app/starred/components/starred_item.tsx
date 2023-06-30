@@ -27,7 +27,10 @@ export default function StarredItem(props: { item: SampleRelation }) {
   };
 
   return (
-    <div className="starred-item hovered" style={{ padding: "1rem 1.25rem" }}>
+    <div
+      className="starred-item hovered shadowable"
+      style={{ padding: "1rem 1.25rem" }}
+    >
       <IconButton onClick={handleRemove} className="star-icon">
         <StarIcon />
       </IconButton>

@@ -56,7 +56,7 @@ export default function SampleResult(props: SampleResultProps) {
     <div
       id={result.id}
       onClick={handleCardClick}
-      className={`${styles.card} sample-result`}
+      className={`${styles.card} sample-result shadowable`}
       style={{ cursor: "pointer" }}
     >
       {parent && (
