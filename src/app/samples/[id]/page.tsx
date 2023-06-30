@@ -1,13 +1,8 @@
-import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
-import Result from "@/app/models/result";
-import Link from "next/link";
 import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
 import SongTitle from "./components/song_title";
-
-const inter = Inter({ subsets: ["latin"] });
 
 async function getSongData(songID: String) {
   let song: any[];
@@ -34,10 +29,6 @@ async function getSongData(songID: String) {
     .then((data) => data["song"])
     .catch((err) => console.error(err));
 
-  // samples = song['song_relationships']['0']['songs']
-
-  // title: string = song['full_title']
-
   return song;
 }
 
@@ -49,8 +40,6 @@ export default async function SampleResultsPage({ params }: any) {
 
     let songsThatSampleThisSong: any[] =
       songData["song_relationships"]["1"]["songs"];
-
-    // let title: string = songData["full_title"];
 
     let shortTitle: string = songData["title"];
 
@@ -64,12 +53,10 @@ export default async function SampleResultsPage({ params }: any) {
       <>
         <SongTitle songData={songData} />
 
-        <div className="container" style={{ marginTop: "150px"}}>
+        <div className="container" style={{ marginTop: "150px" }}>
           {youtubeId && samples.length > 0 && (
             <div>
-              <h4 className={styles.code}>
-                Compare
-              </h4>
+              <h4 className={styles.code}>Compare</h4>
               <YoutubeView id={youtubeId} samples={samples} />
             </div>
           )}
@@ -84,19 +71,25 @@ export default async function SampleResultsPage({ params }: any) {
                 {samples?.map((sample) => {
                   return (
                     <SampleResult
-                      type="samples"
                       key={sample.id}
-                      result={
-                        new Result(
-                          sample.id,
-                          sample["title"],
-                          sample["artist_names"],
-                          sample["release_date_components"]
-                            ? sample["release_date_components"]["year"]
-                            : "-",
-                          sample["song_art_image_thumbnail_url"]
-                        )
-                      }
+                      parent={{
+                        id: params.id,
+                        title: shortTitle,
+                        artist: songData["artist_names"],
+                        year: songData["release_date_components"]
+                          ? songData["release_date_components"]["year"]
+                          : "-",
+                        imgUrl: songData["song_art_image_thumbnail_url"],
+                      }}
+                      result={{
+                        id: sample.id,
+                        title: sample["title"],
+                        artist: sample["artist_names"],
+                        year: sample["release_date_components"]
+                          ? sample["release_date_components"]["year"]
+                          : "-",
+                        imgUrl: sample["song_art_image_thumbnail_url"],
+                      }}
                     />
                   );
                 })}

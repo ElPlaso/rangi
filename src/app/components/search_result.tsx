@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "@/app/styles/search.css";
-import Result from "@/app/models/result";
+import Result from "@/app/types/result";
 import Link from "next/link";
 import { Inter } from "@next/font/google";
 
