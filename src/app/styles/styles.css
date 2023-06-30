@@ -10,6 +10,48 @@
   display: flex;
 }
 
+.sample-result, .starred-item{
+  display: flex;
+  position: relative;
+}
+
+.starred-item{
+  border-radius: 6px;
+}
+
+.shadowable:hover {
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.sample-result:hover .star-icon, .starred-item:hover .star-icon {
+  display: block;
+}
+
+.star-icon {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 2;
+}
+
+.star-icon .MuiIconButton-label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .star-icon{
+    color: white;
+  }
+}
+
 .sample-result .sample-result-text {
   padding-left: 0.5rem;
 }
@@ -159,14 +201,13 @@
 
   .sample-result {
     flex-direction: column;
-    font-size: x-small;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: wrap;
   }
 
   .sample-result .sample-result-text {
     padding: 0;
+    margin-top: 0.5rem;
   }
 
   .videoComparisonRow {

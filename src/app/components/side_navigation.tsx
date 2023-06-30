@@ -36,7 +36,7 @@ export default function SideNavigation() {
     };
 
     window.addEventListener("resize", handleResize);
-  }, []);
+  }, [windowWidth]);
 
   useEffect(() => {
     const nav = document.getElementsByClassName("sidenav")[0];
@@ -68,17 +68,13 @@ export default function SideNavigation() {
           <h2 className={inter.className}>Home</h2>
         </div>
       </Link>
-      <Link href="/" onClick={toggleExpanded}>
+      <Link href="/starred" onClick={toggleExpanded}>
         <div className="listitem">
           <StarIcon />
           <h2 className={inter.className}>Starred</h2>
         </div>
       </Link>
       <div className="divider" />
-      <div
-        className={`${styles.center} blur`}
-        style={{ pointerEvents: "none", zIndex: -1 }}
-      />
       <div className="footer">
         <a
           href="https://github.com/ElPlaso"

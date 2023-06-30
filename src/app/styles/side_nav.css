@@ -86,7 +86,7 @@
     z-index: 3;
     border-radius: 0.5rem;
     padding-top: 0.3rem;
-    color: black;
+    color: rgb(18,18,18);
   }
 
   .sidenav .divider,
@@ -143,10 +143,10 @@
 /* dark pref */
 @media (prefers-color-scheme: dark) {
   .expanded {
-    background-color: black;
+    background-color: rgb(18,18,18);
   }
   .sidenav .toggle {
     color: white;
-    background-color: black;
+    background-color: rgb(18,18,18);
   }
 }

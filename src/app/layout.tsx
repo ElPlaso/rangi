@@ -1,11 +1,7 @@
 import "./styles/globals.css";
 import styles from "./styles/page.module.css";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
-import Link from "next/link";
 import SideNavigation from "./components/side_navigation";
-
-const inter = Inter({ subsets: ["latin"] });
+import LayoutWrapper from "./components/layout-wrapper";
 
 export default function RootLayout({
   children,
@@ -20,8 +16,10 @@ export default function RootLayout({
       */}
       <head />
       <body>
+        <LayoutWrapper>
           <SideNavigation />
           <main className={styles.main}>{children}</main>
+        </LayoutWrapper>
       </body>
     </html>
   );
