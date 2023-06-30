@@ -49,7 +49,11 @@ export default function SideNavigation() {
 
   const toggleExpanded = () => {
     if (windowWidth <= SMALL_SCREEN) {
-      setExpanded(!expanded);
+      if (expanded) {
+        setExpanded(false);
+      } else {
+        setExpanded(true);
+      }
     }
   };
 
