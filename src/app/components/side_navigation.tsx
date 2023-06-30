@@ -55,20 +55,22 @@ export default function SideNavigation() {
 
   return (
     <div className="sidenav">
+      {/* always toggle expanded */}
       <button className="toggle" onClick={toggleExpanded}>
         {expanded ? <CloseIcon /> : <HamburgerIcon />}
       </button>
+      {/* only toggle expanded if currently expanded */}
       <div className="item nav-search">
-        <Search onResultClick={toggleExpanded} />
+        <Search onResultClick={expanded ? toggleExpanded : () => {}} />
       </div>
       <div className="divider" />
-      <Link href="/" onClick={toggleExpanded}>
+      <Link href="/" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <MusicIcon />
           <h2 className={inter.className}>Home</h2>
         </div>
       </Link>
-      <Link href="/starred" onClick={toggleExpanded}>
+      <Link href="/starred" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <StarIcon />
           <h2 className={inter.className}>Starred</h2>
