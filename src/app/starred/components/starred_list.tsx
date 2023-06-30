@@ -58,7 +58,7 @@ export default function StarredList() {
   }
 
   return (
-    <div style={{ width: "100%" }}>
+    <div>
       <div className="search main-search" style={{ marginBottom: "0.5rem" }}>
         <input
           type="text"
@@ -70,11 +70,16 @@ export default function StarredList() {
           <button className="clear-button" onClick={handleClearInput}></button>
         )}
       </div>
-      <FlipMove className={styles.grid} duration={750}>
-        {visibleStarred.map((relation) => {
+      <FlipMove duration={750}>
+        {visibleStarred.map((relation, index) => {
           const key = `${relation.sampler.id}-${relation.samplee.id}`;
           return (
-            <div key={key}>
+            <div
+              key={key}
+              style={{
+                marginTop: index === 0 ? 0 : "0.5rem",
+              }}
+            >
               <StarredItem item={relation} />
             </div>
           );
