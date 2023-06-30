@@ -61,30 +61,33 @@ export default function SampleResult(props: SampleResultProps) {
     >
       {parent && (
         <div className="sample-result-icon">
-          {parent &&
-            (alreadyStarred(starred, { sampler: parent, samplee: result }) ? (
-              <>
-                <IconButton onClick={handleUnstar} className="star-icon">
-                  <a data-tooltip-id={"unstar"} data-tooltip-content={"Unstar"}>
-                    <StarIcon />
-                  </a>
-                </IconButton>
-                <Tooltip
-                  className={inter.className}
-                  id="unstar"
-                  place="bottom"
-                />
-              </>
-            ) : (
-              <>
-                <IconButton onClick={handleStar} className="star-icon">
-                  <a data-tooltip-id={"star"} data-tooltip-content={"Star"}>
-                    <StarBorderIcon />
-                  </a>
-                </IconButton>
-                <Tooltip className={inter.className} id="star" place="bottom" />
-              </>
-            ))}
+          {alreadyStarred(starred, { sampler: parent, samplee: result }) ? (
+            <>
+              <IconButton onClick={handleUnstar} className="star-icon">
+                <a data-tooltip-id={result.id} data-tooltip-content={"Unstar"}>
+                  <StarIcon />
+                </a>
+              </IconButton>
+              <Tooltip
+                className={inter.className}
+                id={result.id}
+                place="bottom"
+              />
+            </>
+          ) : (
+            <>
+              <IconButton onClick={handleStar} className="star-icon">
+                <a data-tooltip-id={result.id} data-tooltip-content={"Star"}>
+                  <StarBorderIcon />
+                </a>
+              </IconButton>
+              <Tooltip
+                className={inter.className}
+                id={result.id}
+                place="bottom"
+              />
+            </>
+          )}
         </div>
       )}
       <div>

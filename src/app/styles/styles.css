@@ -15,6 +15,14 @@
   position: relative;
 }
 
+.starred-item{
+  border-radius: 6px;
+}
+
+.starred-item:hover {
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
 .sample-result:hover .star-icon, .starred-item:hover .star-icon {
   display: block;
 }

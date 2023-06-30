@@ -70,12 +70,7 @@ export default function StarredList() {
           <button className="clear-button" onClick={handleClearInput}></button>
         )}
       </div>
-      <FlipMove
-        className={styles.grid}
-        duration={750}
-        easing="ease-out"
-        typeName="ul"
-      >
+      <FlipMove className={styles.grid} duration={750}>
         {visibleStarred.map((relation) => {
           const key = `${relation.sampler.id}-${relation.samplee.id}`;
           return (
