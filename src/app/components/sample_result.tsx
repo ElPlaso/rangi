@@ -91,21 +91,27 @@ export default function SampleResult(props: SampleResultProps) {
         </div>
       )}
       <div>
-        <span>
-          <Image
-            src={result.imgUrl}
-            alt="Cover Art"
-            width={100}
-            height={100}
-            style={{
-              objectFit: "cover",
-              borderRadius: "5px",
-              border: "1px solid #eaeaea",
-            }}
-          />
-        </span>
+        <Image
+          src={result.imgUrl}
+          alt="Cover Art"
+          width={100}
+          height={100}
+          style={{
+            objectFit: "cover",
+            borderRadius: "5px",
+            border: "1px solid #eaeaea",
+          }}
+        />
       </div>
-      <div className="sample-result-text">
+      <div
+        className="sample-result-text"
+        style={{
+          display: "-webkit-box",
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
         <h4 className={inter.className}>{result.title}</h4>
         <p className={inter.className}>{result.artist}</p>
         <p className={inter.className}>{result.year}</p>

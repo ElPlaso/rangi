@@ -174,7 +174,13 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+  .card {
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 550px) {
   .card {
     padding: 0.3rem;
   }

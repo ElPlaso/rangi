@@ -35,15 +35,9 @@ export default function SampledByResult(props: any) {
             overflow: "hidden",
           }}
         >
-          <h5 className={`${inter.className} overflow-ellipsis`}>
-            {result.title}
-          </h5>
-          <p className={`${inter.className} overflow-ellipsis hidden`}>
-            {result.artist}
-          </p>
-          <p className={`${inter.className} overflow-ellipsis hidden`}>
-            {result.year}
-          </p>
+          <h5 className={inter.className}>{result.title}</h5>
+          <p className={inter.className}>{result.artist}</p>
+          <p className={inter.className}>{result.year}</p>
         </div>
       </div>
     </Link>

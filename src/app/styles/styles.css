@@ -201,14 +201,13 @@
 
   .sample-result {
     flex-direction: column;
-    font-size: x-small;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: wrap;
   }
 
   .sample-result .sample-result-text {
     padding: 0;
+    margin-top: 0.5rem;
   }
 
   .videoComparisonRow {
