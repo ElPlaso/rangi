@@ -1,36 +1,14 @@
 import styles from "@/app/styles/page.module.css";
 import SampleResult from "@/app/components/sample_result";
+import Result from "@/app/types/result";
+import {GET as searchAPIGet } from "@/app/api/search/route";
 
-async function getSearchResults(search: String) {
-  let results: any[] = [];
-
-  let headers = new Headers();
-  headers.append(
-    "X-RapidAPI-Key",
-    process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-  );
-  headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
-
-  const options: RequestInit = {
-    method: "GET",
-    headers: headers,
-    cache: "no-store",
-  };
-
-  // Get the Song ID of the first 15 search results of the input.
-  results = await fetch(
-    "https://genius-song-lyrics1.p.rapidapi.com/search/?q=" +
-      search +
-      "&per_page=15&page=1",
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => data["hits"])
-    .catch((err) => console.error(err));
-
-  return results;
+async function getSearchResults(search: string) {
+  const searchParams = new URLSearchParams({q: search, num: "15"});
+  const request = new Request(`${process.env.URL}/api/search?${searchParams}`);
+  return (await searchAPIGet(request)).json();
 }
-
+ 
 export default async function SearchResultsPage({ params }: any) {
   const searchResults = await getSearchResults(decodeURI(params.id));
 
@@ -48,21 +26,8 @@ export default async function SearchResultsPage({ params }: any) {
       </div>
 
       <div className={styles.grid} style={{ marginTop: "2rem" }}>
-        {searchResults?.map((result) => {
-          return (
-            <SampleResult
-              key={result["result"].id}
-              result={{
-                id: result["result"].id,
-                title: result["result"]["title"],
-                artist: result["result"]["artist_names"],
-                year: result["result"]["release_date_components"]
-                  ? result["result"]["release_date_components"]["year"]
-                  : "-",
-                imgUrl: result["result"]["song_art_image_thumbnail_url"],
-              }}
-            />
-          );
+        {searchResults?.map((result: Result) => {
+          return <SampleResult key={result.id} result={result} />;
         })}
       </div>
     </div>
