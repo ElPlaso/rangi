@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description:
     "A search tool for exploring the world of music through samples." +
     "\n Find samples used in your favorite songs and albums and discover songs which sample your favourite songs.",
+  icons: "/favicon.ico",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
