@@ -2,10 +2,23 @@ import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
 import AlbumAppearanceResult from "./components/album_appearance_result";
 import AlbumTitle from "./components/album_title";
-import {GET as albumAppearancesAPIGet} from "@/app/api/album/route";
+import { GET as albumAppearancesAPIGet } from "@/app/api/album/route";
 import Result from "@/app/types/result";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export async function generateMetadata({ params }: any) {
+  const albumData: any = await getAlbumData(params.id);
+  if(!albumData) {
+    return{
+      title: "Album",
+    }
+  }
+  return {
+    title: albumData["name"],
+    description: `Samples used in ${albumData["name"]} by ${albumData["artist"]["name"]}`,
+  };
+}
 
 async function getAlbumData(id: String) {
   let headers = new Headers();
@@ -31,9 +44,7 @@ async function getAlbumData(id: String) {
 }
 
 async function getAlbumAppearances(id: String) {
-  const request = new Request(
-    `${process.env.URL}/api/album?id=${id}`
-  );
+  const request = new Request(`${process.env.URL}/api/album?id=${id}`);
 
   return (await albumAppearancesAPIGet(request)).json();
 }

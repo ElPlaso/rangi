@@ -4,6 +4,15 @@ import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
 import SongTitle from "./components/song_title";
 
+export async function generateMetadata({ params }: any) {
+  const songData: any = await getSongData(params.id);
+
+  return {
+    title: songData.title,
+    description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+  };
+}
+
 async function getSongData(songID: String) {
   let song: any[];
 
