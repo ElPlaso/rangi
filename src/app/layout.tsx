@@ -11,6 +11,31 @@ export const metadata: Metadata = {
     "\n Find samples used in your favorite songs and albums and discover songs which sample your favourite songs.",
   icons: "/favicon.ico",
   viewport: "width=device-width, initial-scale=1",
+  twitter: {
+    card: "summary",
+    site: "@samplify",
+    title: "Samplify",
+    description:
+      "A search tool for exploring the world of music through samples." +
+      "\n Find samples used in your favorite songs and albums and discover songs which sample your favourite songs.",
+    images: "/favicon.ico",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://samplify.vercel.app",
+    title: "Samplify",
+    description:
+      "A search tool for exploring the world of music through samples." +
+      "\n Find samples used in your favorite songs and albums and discover songs which sample your favourite songs.",
+    images: [
+      {
+        url: "/favicon.ico",
+        width: 800,
+        height: 600,
+        alt: "Samplify",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
