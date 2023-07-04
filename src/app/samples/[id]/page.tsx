@@ -3,33 +3,30 @@ import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
 import SongTitle from "./components/song_title";
+import { getSongData } from "./utils";
 
-async function getSongData(songID: String) {
-  let song: any[];
+export async function generateMetadata({ params }: any) {
+  const songData: any = await getSongData(params.id);
 
-  let headers = new Headers();
-  headers.append(
-    "X-RapidAPI-Key",
-    process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-  );
-  headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
+  if (!songData) {
+    return {
+      title: "Samples",
+    };
+  }
 
-  const options: RequestInit = {
-    method: "GET",
-    headers: headers,
-    cache: "no-store",
+  return {
+    title: songData.title,
+    description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+    twitter: {
+      card: "summary",
+      site: "@samplify",
+    },
+    openGraph: {
+      description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+      type: "website",
+      url: `https://samplify.vercel.app/samples/${params.id}`,
+    },
   };
-
-  // Get the song data
-  song = await fetch(
-    "https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=" + songID,
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => data["song"])
-    .catch((err) => console.error(err));
-
-  return song;
 }
 
 export default async function SampleResultsPage({ params }: any) {
