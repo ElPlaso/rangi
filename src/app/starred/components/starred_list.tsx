@@ -7,6 +7,7 @@ import StarredItem from "./starred_item";
 import FlipMove from "react-flip-move";
 import { Inter } from "@next/font/google";
 import { useState, useEffect } from "react";
+import DotsLoader from "@/app/components/dots_loader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +15,7 @@ export default function StarredList() {
   const starred = useSelector((state: RootState) => state.starred.items);
   const [visibleStarred, setVisibleStarred] = useState(starred);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [showList, setShowList] = useState(false);
 
   // filtering starred items
   useEffect(() => {
@@ -48,6 +50,17 @@ export default function StarredList() {
     setSearchInput("");
   };
 
+  // FlipMove relies on client-side rendering, so we need to wait for the client to render
+  // otherwise the initial ui will not match what was rendered on the server causing Hydration failure
+  useEffect(() => {
+    setShowList(true);
+  }, []);
+
+  // show a loading animation while waiting for the client to render
+  if(!showList) {
+    return <DotsLoader/>
+  }
+
   if (starred.length === 0) {
     return (
       <div className="cardish hovered">
@@ -69,21 +82,23 @@ export default function StarredList() {
           <button className="clear-button" onClick={handleClearInput}></button>
         )}
       </div>
-      <FlipMove duration={750}>
-        {visibleStarred.map((relation, index) => {
-          const key = `${relation.sampler.id}-${relation.samplee.id}`;
-          return (
-            <div
-              key={key}
-              style={{
-                marginTop: index === 0 ? 0 : "0.5rem",
-              }}
-            >
-              <StarredItem item={relation} />
-            </div>
-          );
-        })}
-      </FlipMove>
+      {showList && (
+        <FlipMove duration={750}>
+          {visibleStarred.map((relation, index) => {
+            const key = `${relation.sampler.id}-${relation.samplee.id}`;
+            return (
+              <div
+                key={key}
+                style={{
+                  marginTop: index === 0 ? 0 : "0.5rem",
+                }}
+              >
+                <StarredItem item={relation} />
+              </div>
+            );
+          })}
+        </FlipMove>
+      )}
     </div>
   );
 }

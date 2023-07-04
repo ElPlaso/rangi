@@ -15,6 +15,7 @@ import { addItem, removeItem } from "../features/starred/starred-slice";
 import { RootState } from "../store/store";
 import { alreadyStarred } from "../features/starred/utils";
 import { Tooltip } from "react-tooltip";
+import { useEffect, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 interface SampleResultProps {
@@ -28,6 +29,8 @@ export default function SampleResult(props: SampleResultProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const starred = useSelector((state: RootState) => state.starred.items);
+  const [resultIsStarred, setResultIsStarred] = useState(false);
+  const [showStar, setShowStar] = useState(false);
 
   const handleStar = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -52,6 +55,20 @@ export default function SampleResult(props: SampleResultProps) {
     router.push(`/samples/${result.id}`);
   };
 
+  // The Tooltip library relies on client-side rendering, so we need to wait for the client to render
+  // otherwise the initial ui will not match what was rendered on the server causing Hydration failure
+  useEffect(() => {
+    setShowStar(true);
+  }, []);
+
+  useEffect(() => {
+    if (parent) {
+      setResultIsStarred(
+        alreadyStarred(starred, { sampler: parent, samplee: result })
+      );
+    }
+  }, [starred]);
+
   return (
     <div
       id={result.id}
@@ -59,9 +76,9 @@ export default function SampleResult(props: SampleResultProps) {
       className={`${styles.card} sample-result shadowable`}
       style={{ cursor: "pointer" }}
     >
-      {parent && (
+      {showStar && (
         <div className="sample-result-icon">
-          {alreadyStarred(starred, { sampler: parent, samplee: result }) ? (
+          {resultIsStarred ? (
             <>
               <IconButton onClick={handleUnstar} className="star-icon">
                 <a data-tooltip-id={result.id} data-tooltip-content={"Unstar"}>
@@ -90,6 +107,7 @@ export default function SampleResult(props: SampleResultProps) {
           )}
         </div>
       )}
+
       <div>
         <Image
           src={result.imgUrl}
