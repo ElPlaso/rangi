@@ -81,30 +81,6 @@ export default function SideNavigation() {
         </div>
       </Link>
       <div className="divider" />
-      <div className="footer">
-        <a
-          href="https://github.com/ElPlaso"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ paddingTop: "3.5px" }}
-        >
-          <Image
-            src="/el_plaso.svg"
-            alt="Stool El Plaso Logo"
-            className={styles.smallerLogo}
-            width={125}
-            height={25}
-            priority
-          />
-        </a>
-        <a
-          href="https://docs.genius.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>Genius</h2>
-        </a>
-      </div>
     </div>
   );
 }

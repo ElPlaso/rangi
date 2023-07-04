@@ -39,15 +39,6 @@
   padding: 0.5rem;
 }
 
-.sidenav .footer {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 1rem 2rem 1rem 1rem;
-}
-
 .sidenav::-webkit-scrollbar {
   display: none;
 }
@@ -61,11 +52,6 @@
   }
 }
 
-@media screen and (max-height: 500px) {
-  .sidenav .footer {
-    position: relative;
-  }
-}
 
 @media screen and (max-width: 1023px) {
   .sidenav {
@@ -92,7 +78,6 @@
   .sidenav .divider,
   .sidenav .item,
   .sidenav .listitem,
-  .sidenav .footer,
   .sidenav .blur{
     display: none;
   }
@@ -125,16 +110,12 @@
 
   .expanded .divider,
   .expanded .item,
-  .expanded .listitem,
-  .expanded .footer {
+  .expanded .listitem {
     display: flex;
   }
 }
 
 @media screen and (max-width: 1300px) and (min-width: 1023px) {
-  .sidenav .footer {
-    padding-left: 0.5rem;
-  }
   .sidenav {
     min-width: 22.5%;
   }
