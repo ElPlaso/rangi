@@ -3,6 +3,7 @@ import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
 import SongTitle from "./components/song_title";
+import { getSongData } from "./utils";
 
 export async function generateMetadata({ params }: any) {
   const songData: any = await getSongData(params.id);
@@ -11,34 +12,6 @@ export async function generateMetadata({ params }: any) {
     title: songData.title,
     description: `Samples used in ${songData.title} by ${songData.artist_names}`,
   };
-}
-
-async function getSongData(songID: String) {
-  let song: any[];
-
-  let headers = new Headers();
-  headers.append(
-    "X-RapidAPI-Key",
-    process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-  );
-  headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
-
-  const options: RequestInit = {
-    method: "GET",
-    headers: headers,
-    cache: "no-store",
-  };
-
-  // Get the song data
-  song = await fetch(
-    "https://genius-song-lyrics1.p.rapidapi.com/song/details/?id=" + songID,
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => data["song"])
-    .catch((err) => console.error(err));
-
-  return song;
 }
 
 export default async function SampleResultsPage({ params }: any) {
