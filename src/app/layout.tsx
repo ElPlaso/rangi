@@ -2,6 +2,14 @@ import "./styles/globals.css";
 import styles from "./styles/page.module.css";
 import SideNavigation from "./components/side_navigation";
 import LayoutWrapper from "./components/layout-wrapper";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Samplify",
+  description:
+    "A search tool for exploring the world of music through samples." +
+    "\n Find samples used in your favorite songs and albums and discover songs which sample your favourite songs.",
+};
 
 export default function RootLayout({
   children,
@@ -10,10 +18,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
       <body>
         <LayoutWrapper>
