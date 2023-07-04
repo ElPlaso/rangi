@@ -56,19 +56,6 @@ export default function StarredList() {
     setShowList(true);
   }, []);
 
-  // show a loading animation while waiting for the client to render
-  if(!showList) {
-    return <DotsLoader/>
-  }
-
-  if (starred.length === 0) {
-    return (
-      <div className="cardish hovered">
-        <p className={inter.className}>You do not have any starred samples.</p>
-      </div>
-    );
-  }
-
   return (
     <div>
       <div className="search main-search" style={{ marginBottom: "0.5rem" }}>
@@ -82,22 +69,37 @@ export default function StarredList() {
           <button className="clear-button" onClick={handleClearInput}></button>
         )}
       </div>
-      {showList && (
-        <FlipMove duration={750}>
-          {visibleStarred.map((relation, index) => {
-            const key = `${relation.sampler.id}-${relation.samplee.id}`;
-            return (
-              <div
-                key={key}
-                style={{
-                  marginTop: index === 0 ? 0 : "0.5rem",
-                }}
-              >
-                <StarredItem item={relation} />
-              </div>
-            );
-          })}
-        </FlipMove>
+      {showList ? (
+        starred.length > 0 ? (
+          visibleStarred.length ? (
+            <FlipMove duration={750}>
+              {visibleStarred.map((relation, index) => {
+                const key = `${relation.sampler.id}-${relation.samplee.id}`;
+                return (
+                  <div
+                    key={key}
+                    style={{
+                      marginTop: index === 0 ? 0 : "0.5rem",
+                    }}
+                  >
+                    <StarredItem item={relation} />
+                  </div>
+                );
+              })}
+            </FlipMove>
+          ) : (
+            <div className="cardish hovered">
+              <p className={inter.className}>No samples found</p>
+            </div>
+          )
+        ) : (
+          <div className="cardish hovered">
+            <p className={inter.className}>You do not have any starred samples</p>
+          </div>
+        )
+      ) : (
+        // Show loader while waiting for client-side rendering
+        <DotsLoader />
       )}
     </div>
   );
