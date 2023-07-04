@@ -3,6 +3,7 @@ import styles from "./styles/page.module.css";
 import SideNavigation from "./components/side_navigation";
 import LayoutWrapper from "./components/layout-wrapper";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: {
@@ -38,7 +39,10 @@ export default function RootLayout({
       <body>
         <LayoutWrapper>
           <SideNavigation />
-          <main className={styles.main}>{children}</main>
+          <main className={styles.main}>
+            {children}
+            <Analytics />
+          </main>
         </LayoutWrapper>
       </body>
     </html>
