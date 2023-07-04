@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import "@/app/styles/side_nav.css";
 import Link from "next/link";
 import { Inter } from "@next/font/google";
-import Image from "next/image";
-import styles from "@/app/styles/page.module.css";
 import MusicIcon from "@mui/icons-material/MusicNote";
 import StarIcon from "@mui/icons-material/Star";
 import HamburgerIcon from "@mui/icons-material/Menu";
@@ -36,6 +34,8 @@ export default function SideNavigation() {
     };
 
     window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth]);
 
   useEffect(() => {

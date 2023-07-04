@@ -161,7 +161,7 @@ export default function YoutubeView(props: any) {
           className={styles.grid}
           style={{ textAlign: "center", marginTop: "1rem" }}
         >
-          {props.samples?.map((sample: any, index: number) => {
+          {props.samples.map((sample: any, index: number) => {
             return (
               <div
                 key={sample.id}

@@ -65,7 +65,7 @@ export default async function SampleResultsPage({ params }: any) {
                 className={styles.grid}
                 style={{ marginTop: "2rem", marginBottom: "2rem" }}
               >
-                {samples?.map((sample) => {
+                {samples.map((sample) => {
                   return (
                     <SampleResult
                       key={sample.id}

@@ -132,19 +132,20 @@ export default function Search(props: any) {
           </>
         ) : (
           error && (
-            <div className="search-error">
-              <p className={inter.className} style={{ display: "flex" }}>
-                A problem occurred, please&nbsp;
-                <h4
-                  style={{
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                  }}
-                  onClick={handleRetry}
-                >
-                  try again.
-                </h4>
-              </p>
+            <div
+              className={`search-error ${inter.className}`}
+              style={{ display: "flex" }}
+            >
+              A problem occurred, please&nbsp;
+              <h4
+                style={{
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                }}
+                onClick={handleRetry}
+              >
+                try again.
+              </h4>
             </div>
           )
         )}

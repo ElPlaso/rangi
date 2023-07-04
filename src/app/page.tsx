@@ -2,8 +2,6 @@ import Splash from "./components/splash";
 import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
 import styles from "@/app/styles/page.module.css";
-import Image from "next/image";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import Links from "./components/links";
 
 const inter = Inter({ subsets: ["latin"] });
