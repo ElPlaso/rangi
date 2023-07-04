@@ -6,14 +6,21 @@ import { Inter } from "@next/font/google";
 import SearchResult from "./search_result";
 import DotsLoader from "./dots_loader";
 import Link from "next/link";
+import { GET as multiSearchAPIGet } from "@/app/api/search/multi/route";
+import Result from "../types/result";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Search(props: any) {
-  const [songResults, setSongResults] = useState([]);
-  const [albumResults, setAlbumResults] = useState([]);
+  const [songResults, setSongResults] = useState<Result[]>([]);
+  const [albumResults, setAlbumResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const searchParams = new URLSearchParams({ q: input, num: "3" });
+  const request = new Request(
+    `${process.env.URL}/api/search/multi?${searchParams}`
+  );
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -28,33 +35,18 @@ export default function Search(props: any) {
     setInput("");
   };
 
-  // function to retry the request
-  const retry = () => {
-    let headers = new Headers();
-    headers.append(
-      "X-RapidAPI-Key",
-      process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-    );
-    headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
-    const options: RequestInit = {
-      method: "GET",
-      headers: headers,
-      cache: "no-store",
-    };
+  // for simply retrying the request in case of error, without cancel logic
+  const handleRetry = async () => {
     setLoading(true);
-    fetch(
-      "https://genius-song-lyrics1.p.rapidapi.com/search/multi/?q=" +
-        input +
-        "&per_page=3&page=1",
-      options
-    )
+    multiSearchAPIGet(request)
       .then((response) => response.json())
       .then((data) => {
-        setSongResults(data.sections[1]["hits"]);
-        setAlbumResults(data.sections[4]["hits"]);
+        setError(false);
+        setSongResults(data.songs);
+        setAlbumResults(data.albums);
       })
       .then(() => setLoading(false))
-      .catch((err) => console.error(err));
+      .catch(() => setError(true));
   };
 
   // set the songs when the input changes
@@ -62,38 +54,24 @@ export default function Search(props: any) {
     if (!input) {
       setSongResults([]);
       setAlbumResults([]);
+      setError(false);
       return;
     }
     let cancel = false;
+    setError(false);
     setLoading(true);
-    let headers = new Headers();
-    headers.append(
-      "X-RapidAPI-Key",
-      process.env.NEXT_PUBLIC_RAPID_API_KEY as string
-    );
-    headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
-    const options: RequestInit = {
-      method: "GET",
-      headers: headers,
-      cache: "no-store",
-    };
-    setLoading(true);
-    fetch(
-      "https://genius-song-lyrics1.p.rapidapi.com/search/multi/?q=" +
-        input +
-        "&per_page=3&page=1",
-      options
-    )
+    multiSearchAPIGet(request)
       .then((response) => response.json())
       .then((data) => {
+        // cancel the request
         if (cancel) return;
-        setSongResults(data.sections[1]["hits"]);
-        setAlbumResults(data.sections[4]["hits"]);
+        setSongResults(data.songs);
+        setAlbumResults(data.albums);
       })
       .then(() => setLoading(false))
-      .catch((err) => console.error(err));
-
+      .catch(() => setError(true));
     return () => {
+      // we wish to cancel the request if the input changes before the request is finished
       cancel = true;
     };
   }, [input]);
@@ -136,44 +114,24 @@ export default function Search(props: any) {
             </div>
             {songResults.length > 0 &&
               songResults.map((result: any) => (
-                <div key={result["result"].id} onClick={props.onResultClick}>
+                <div key={result.id} onClick={props.onResultClick}>
                   <SearchResult
                     type="samples"
-                    key={result["result"].id}
-                    result={{
-                      id: result["result"].id,
-                      title: result["result"]["title"],
-                      result: result["result"]["artist_names"],
-                      year: result["result"]["release_date_components"]
-                        ? result["result"]["release_date_components"]["year"]
-                        : "-",
-                      imgUrl: result["result"]["song_art_image_thumbnail_url"],
-                    }}
+                    key={result.id}
+                    result={result}
                   />
                 </div>
               ))}
             <h3 className={inter.className}>Albums</h3>
             {albumResults.length > 0 &&
               albumResults.map((result: any) => (
-                <div key={result["result"].id} onClick={props.onResultClick}>
-                  <SearchResult
-                    type="album"
-                    key={result["result"].id}
-                    result={{
-                      id: result["result"].id,
-                      title: result["result"]["name"],
-                      artist: result["result"]["artist"]["name"],
-                      year: result["result"]["release_date_components"]
-                        ? result["result"]["release_date_components"]["year"]
-                        : "-",
-                      imgUrl: result["result"]["cover_art_url"],
-                    }}
-                  />
+                <div key={result.id} onClick={props.onResultClick}>
+                  <SearchResult type="album" key={result.id} result={result} />
                 </div>
               ))}
           </>
         ) : (
-          input.trim().length > 0 && (
+          error && (
             <div className="search-error">
               <p className={inter.className} style={{ display: "flex" }}>
                 A problem occurred, please&nbsp;
@@ -182,7 +140,7 @@ export default function Search(props: any) {
                     textDecoration: "underline",
                     cursor: "pointer",
                   }}
-                  onClick={retry}
+                  onClick={handleRetry}
                 >
                   try again.
                 </h4>
