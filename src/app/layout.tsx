@@ -6,27 +6,19 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Samplify",
-  description: "A search tool for exploring the world of music through samples. Find samples used in your favorite songs and albums & Discover songs which sample your favourite songs.",
+  description:
+    "A search tool for exploring the world of music through samples. Find samples used in your favorite songs and albums & Discover songs which sample your favourite songs.",
   icons: "/favicon.ico",
   viewport: "width=device-width, initial-scale=1",
   twitter: {
     card: "summary",
     site: "@samplify",
     title: "Samplify",
-    images: "/favicon.ico",
   },
   openGraph: {
     type: "website",
     url: "https://samplify.vercel.app",
     title: "Samplify",
-    images: [
-      {
-        url: "/favicon.ico",
-        width: 800,
-        height: 600,
-        alt: "Samplify",
-      },
-    ],
   },
 };
 
