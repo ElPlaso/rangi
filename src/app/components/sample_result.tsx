@@ -5,10 +5,8 @@ import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
 import { Inter } from "@next/font/google";
 import { IconButton } from "@mui/material";
-import {
-  StarBorder as StarBorderIcon,
-  Star as StarIcon,
-} from "@mui/icons-material";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../features/starred/starred-slice";
