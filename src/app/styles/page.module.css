@@ -29,9 +29,6 @@
   position: relative;
   margin: 0;
   padding: 1rem;
-  /* background-color: rgba(var(--callout-rgb), 0.5);
-  border: 1px solid rgba(var(--callout-border-rgb), 0.3);
-  border-radius: var(--border-radius); */
 }
 
 .code {
@@ -53,11 +50,6 @@
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0.15);
   transition: background 200ms, border 200ms;
-}
-
-.card span {
-  display: inline-block;
-  /* transition: transform 200ms; */
 }
 
 .card h2 {
@@ -158,19 +150,11 @@
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
   }
-
-  /* .card:hover span {
-    transform: translateX(4px);
-  } */
 }
 
 @media (prefers-reduced-motion) {
   .icon::before {
     animation: none;
-  }
-
-  .card:hover span {
-    transform: none;
   }
 }
 
@@ -194,15 +178,6 @@
 
   .content {
     padding: 4rem;
-  }
-
-  /* .grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-  } */
-
-  .card:hover span {
-    transform: none;
   }
 
   .center {
