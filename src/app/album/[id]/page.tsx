@@ -2,6 +2,8 @@ import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
 import AlbumAppearanceResult from "./components/album_appearance_result";
 import AlbumTitle from "./components/album_title";
+import {GET as albumAppearancesAPIGet} from "@/app/api/album/route";
+import Result from "@/app/types/result";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,32 +31,15 @@ async function getAlbumData(id: String) {
 }
 
 async function getAlbumAppearances(id: String) {
-  let headers = new Headers();
-  headers.append(
-    "X-RapidAPI-Key",
-    process.env.NEXT_PUBLIC_RAPID_API_KEY as string
+  const request = new Request(
+    `${process.env.URL}/api/album?id=${id}`
   );
-  headers.append("X-RapidAPI-Host", "genius-song-lyrics1.p.rapidapi.com");
 
-  const options: RequestInit = {
-    method: "GET",
-    headers: headers,
-    cache: "no-store",
-  };
-
-  return fetch(
-    "https://genius-song-lyrics1.p.rapidapi.com/album/appearances/?id=" +
-      id +
-      "&page=1",
-    options
-  )
-    .then((response) => response.json())
-    .then((data) => data["album_appearances"])
-    .catch((err) => console.error(err));
+  return (await albumAppearancesAPIGet(request)).json();
 }
 
 export default async function AlbumPage({ params }: any) {
-  const songs: any[] = await getAlbumAppearances(params.id);
+  const songs: Result[] = await getAlbumAppearances(params.id);
 
   const albumData: any = await getAlbumData(params.id);
 
@@ -67,8 +52,7 @@ export default async function AlbumPage({ params }: any) {
           {songs?.map((song) => {
             return (
               <li className={inter.className} key={song.id}>
-                {" "}
-                <AlbumAppearanceResult songData={song} />
+                <AlbumAppearanceResult song={song} />
               </li>
             );
           })}
