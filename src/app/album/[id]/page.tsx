@@ -17,6 +17,15 @@ export async function generateMetadata({ params }: any) {
   return {
     title: albumData["name"],
     description: `Samples used in ${albumData["name"]} by ${albumData["artist"]["name"]}`,
+    twitter: {
+      card: "summary",
+      site: "@samplify",
+    },
+    openGraph: {
+      description: `Samples used in ${albumData["name"]} by ${albumData["artist"]["name"]}`,
+      type: "website",
+      url: `https://samplify.vercel.app/album/${params.id}`,
+    },
   };
 }
 

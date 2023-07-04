@@ -8,9 +8,24 @@ import { getSongData } from "./utils";
 export async function generateMetadata({ params }: any) {
   const songData: any = await getSongData(params.id);
 
+  if (!songData) {
+    return {
+      title: "Samples",
+    };
+  }
+
   return {
     title: songData.title,
     description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+    twitter: {
+      card: "summary",
+      site: "@samplify",
+    },
+    openGraph: {
+      description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+      type: "website",
+      url: `https://samplify.vercel.app/samples/${params.id}`,
+    },
   };
 }
 
