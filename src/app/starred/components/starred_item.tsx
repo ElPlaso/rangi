@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "@/app/features/starred/starred-slice";
 import { RootState } from "@/app/store/store";
 import StarredItemResult from "./starred_item_result";
+import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,6 +14,7 @@ export default function StarredItem(props: { item: SampleRelation }) {
   const starred = useSelector((state: RootState) => state.starred.items);
   const item = props.item;
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -25,10 +27,15 @@ export default function StarredItem(props: { item: SampleRelation }) {
     dispatch(removeItem(index));
   };
 
+  const onItemClick = () => {
+    router.push(`/compare/${item.sampler.id}/${item.samplee.id}`);
+  };
+
   return (
     <div
       className="starred-item hovered shadowable"
-      style={{ padding: "1rem 1.25rem" }}
+      onClick={onItemClick}
+      style={{ padding: "1rem 1.25rem", cursor: "pointer" }}
     >
       <button onClick={handleRemove} className="star-icon">
         <StarIcon />
