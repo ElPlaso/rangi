@@ -6,12 +6,12 @@ import DotsLoader from "@/app/components/dots_loader";
 export default function CompareModal({
   params,
 }: {
-  params: { id: string; compareId: string };
+  params: { songId: string; sampleId: string };
 }) {
   return (
     <Modal>
       <Suspense fallback={<DotsLoader />}>
-        <CompareView id={params.id} sampleId={params.compareId} />
+        <CompareView id={params.songId} sampleId={params.sampleId} />
       </Suspense>
     </Modal>
   );

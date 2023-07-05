@@ -55,7 +55,7 @@ export default function SampleResult(props: SampleResultProps) {
 
   const handlePlayClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    router.push(`/samples/${parent!.id}/${result.id}`);
+    router.push(`/compare/${parent!.id}/${result.id}`);
   };
 
   // The Tooltip library relies on client-side rendering, so we need to wait for the client to render

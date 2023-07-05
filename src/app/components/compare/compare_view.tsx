@@ -13,22 +13,23 @@ interface CompareViewProps {
   sampleId: string;
 }
 
-const getYoutubeIds = async (id: string, sampleId: string) => {
-  let regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
+const getSongs = async (id: string, sampleId: string) => {
   const songData: any = await getSongData(id);
   const sampleData: any = await getSongData(sampleId);
 
-  const songUrl = songData ? songData["youtube_url"] : "";
-  const sampleUrl = sampleData ? sampleData["youtube_url"] : "";
-
-  const songUrlId = songUrl.match(regex) ? songUrl.match(regex)[1] : "";
-  const sampleUrlId = sampleUrl.match(regex) ? sampleUrl.match(regex)[1] : "";
-
-  return [songUrlId, sampleUrlId];
+  return [songData, sampleData];
 };
 
 export default async function CompareView({ id, sampleId }: CompareViewProps) {
-  const [songYT, sampleYT] = await getYoutubeIds(id, sampleId);
+  const [song, sample] = await getSongs(id, sampleId);
+
+  const songUrl = song ? song["youtube_url"] : "";
+  const sampleUrl = sample ? sample["youtube_url"] : "";
+
+  const regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
+
+  const songYT = songUrl.match(regex) ? songUrl.match(regex)[1] : "";
+  const sampleYT = sampleUrl.match(regex) ? sampleUrl.match(regex)[1] : "";
 
   return (
     <div
@@ -38,7 +39,7 @@ export default async function CompareView({ id, sampleId }: CompareViewProps) {
         alignItems: "center",
       }}
     >
-      <VideoView id={songYT} label={"Song"} />
+      <VideoView id={songYT} label={song ? song["title"] : ""} />
       <span>
         <h1
           className={inter.className}
@@ -51,7 +52,7 @@ export default async function CompareView({ id, sampleId }: CompareViewProps) {
           {"->"}
         </h1>
       </span>
-      <VideoView id={sampleYT} label={"Sample"} />
+      <VideoView id={sampleYT} label={sample ? sample["title"] : ""} />
     </div>
   );
 }
