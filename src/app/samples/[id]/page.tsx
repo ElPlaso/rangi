@@ -1,5 +1,4 @@
 import styles from "@/app/styles/page.module.css";
-import YoutubeView from "./components/youtube_view";
 import SampledByScrollingList from "./components/sampled_by_scrolling_list";
 import SampleResult from "@/app/components/sample_result";
 import SongTitle from "./components/song_title";
@@ -31,6 +30,7 @@ export async function generateMetadata({ params }: any) {
 
 export default async function SampleResultsPage({ params }: any) {
   const songData: any = await getSongData(params.id);
+  console.log(songData)
 
   if (songData != null) {
     let samples: any[] = songData["song_relationships"]["0"]["songs"];
@@ -40,23 +40,11 @@ export default async function SampleResultsPage({ params }: any) {
 
     let shortTitle: string = songData["title"];
 
-    let regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
-
-    let url: string = songData["youtube_url"];
-
-    let youtubeId = url ? url.match(regex)![1] : null;
-
     return (
       <>
         <SongTitle songData={songData} />
 
         <div className="container" style={{ marginTop: "150px" }}>
-          {youtubeId && samples.length > 0 && (
-            <div>
-              <h4 className={styles.code}>Compare</h4>
-              <YoutubeView id={youtubeId} samples={samples} />
-            </div>
-          )}
 
           {samples.length > 0 && (
             <div style={{ marginTop: "3rem" }}>
