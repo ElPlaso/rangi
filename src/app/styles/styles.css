@@ -72,6 +72,9 @@
 .videoContainer {
   width: 400px;
   height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardish {
@@ -159,12 +162,6 @@
   }
   .videoComparisonRow:hover > span {
     transform: translateX(4px);
-  }
-}
-
-@media (max-width: 500px) {
-  .cardish {
-    padding: 0.3rem;
   }
 }
 

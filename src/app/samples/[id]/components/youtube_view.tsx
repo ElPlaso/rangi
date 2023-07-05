@@ -110,11 +110,6 @@ export default function YoutubeView(props: any) {
             </p>
             <div
               className="videoContainer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
             >
               <YouTube videoId={props.id} opts={opts} />
             </div>
@@ -137,11 +132,6 @@ export default function YoutubeView(props: any) {
             </p>
             <div
               className="videoContainer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
             >
               {loading ? (
                 <LoadingIndicator />
