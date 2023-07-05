@@ -13,6 +13,7 @@ import { RootState } from "../store/store";
 import { alreadyStarred } from "../features/starred/utils";
 import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
+import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 const inter = Inter({ subsets: ["latin"] });
 
 interface SampleResultProps {
@@ -52,6 +53,11 @@ export default function SampleResult(props: SampleResultProps) {
     router.push(`/samples/${result.id}`);
   };
 
+  const handlePlayClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    router.push(`/samples/${parent!.id}/${result.id}`);
+  };
+
   // The Tooltip library relies on client-side rendering, so we need to wait for the client to render
   // otherwise the initial ui will not match what was rendered on the server causing Hydration failure
   useEffect(() => {
@@ -73,26 +79,48 @@ export default function SampleResult(props: SampleResultProps) {
       className={`${styles.card} sample-result shadowable`}
       style={{ cursor: "pointer" }}
     >
-      {showStar && (
+      {showStar && parent && (
         <div className="sample-result-icon">
-          {resultIsStarred ? (
-            <>
+          <>
+            {resultIsStarred ? (
               <button onClick={handleUnstar} className="star-icon">
-                <a data-tooltip-id={result.id} data-tooltip-content={"Unstar"}>
-                  <StarIcon style={{paddingTop: 2}}/>
+                <a
+                  data-tooltip-id={`${result.id} star`}
+                  data-tooltip-content={"Unstar"}
+                >
+                  <StarIcon style={{ paddingTop: 2 }} />
                 </a>
               </button>
-            </>
-          ) : (
-            <>
+            ) : (
               <button onClick={handleStar} className="star-icon">
-                <a data-tooltip-id={result.id} data-tooltip-content={"Star"}>
-                  <StarBorderIcon style={{paddingTop: 2}}/>
+                <a
+                  data-tooltip-id={`${result.id} star`}
+                  data-tooltip-content={"Star"}
+                >
+                  <StarBorderIcon style={{ paddingTop: 2 }} />
                 </a>
               </button>
-            </>
-          )}
-          <Tooltip className={inter.className} id={result.id} place="bottom" />
+            )}
+
+            <button onClick={handlePlayClick} className="play-icon">
+              <a
+                data-tooltip-id={`${result.id} play`}
+                data-tooltip-content={"Compare"}
+              >
+                <PlayArrowOutlinedIcon />
+              </a>
+            </button>
+            <Tooltip
+              className={inter.className}
+              id={`${result.id} star`}
+              place="left"
+            />
+            <Tooltip
+              className={inter.className}
+              id={`${result.id} play`}
+              place="left"
+            />
+          </>
         </div>
       )}
 
