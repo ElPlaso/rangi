@@ -6,16 +6,13 @@
   transform: translateY(-50%);
 }
 
-.sample-result {
-  display: flex;
-}
-
-.sample-result, .starred-item{
+.sample-result,
+.starred-item {
   display: flex;
   position: relative;
 }
 
-.starred-item{
+.starred-item {
   border-radius: 6px;
 }
 
@@ -23,16 +20,26 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.sample-result:hover .star-icon, .starred-item:hover .star-icon {
+.sample-result:hover .star-icon,
+.starred-item:hover .star-icon,
+.sample-result:hover .play-icon {
   display: block;
 }
 
 .star-icon {
+  top: 10px;
+}
+
+.play-icon {
+  top: 50px;
+}
+
+.star-icon,
+.play-icon {
   display: none;
   background-color: transparent;
   border: none;
   position: absolute;
-  top: 10px;
   right: 10px;
   width: 40px;
   height: 40px;
@@ -42,17 +49,35 @@
   color: gray;
 }
 
-.star-icon:hover {
+.star-icon:hover,
+.play-icon:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.star-icon:active {
+.star-icon:active,
+.play-icon:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.videoContainer {
+  width: 400px;
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video {
+  background-color: white;
+}
+
 @media (prefers-color-scheme: dark) {
-  .star-icon{
+  .star-icon,
+  .play-icon {
     color: white;
+  }
+  .video {
+    background-color: rgb(18, 18, 18);
   }
 }
 
@@ -62,24 +87,12 @@
 
 .videoComparisonRow {
   display: flex;
-  cursor: pointer;
-}
-
-.videoComparisonRow span {
-  transition: transform 200ms;
-}
-
-.videoContainer {
-  width: 400px;
-  height: 225px;
+  cursor: default;
 }
 
 .cardish {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
 }
 
 .hovered {
@@ -157,15 +170,6 @@
   .textLink:hover {
     text-decoration: underline;
   }
-  .videoComparisonRow:hover > span {
-    transform: translateX(4px);
-  }
-}
-
-@media (max-width: 500px) {
-  .cardish {
-    padding: 0.3rem;
-  }
 }
 
 /* Mobile and Tablet */
@@ -203,7 +207,6 @@
   .videoComparisonRow span {
     text-align: center;
   }
-
   .albumAppearance {
     padding: 1rem 2.5rem 2rem;
     margin-bottom: 0.5rem;

@@ -30,7 +30,12 @@ export default function StarredItemResult(props: { result: Result }) {
           overflow: "hidden",
         }}
       >
-        <Link href={`/samples/${result.id}`}>
+        <Link
+          href={`/samples/${result.id}`}
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        >
           <h4 className={`${inter.className} textLink`}>{result.title}</h4>
         </Link>
         <p className={inter.className}>{result.artist}</p>
