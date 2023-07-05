@@ -1,7 +1,6 @@
 import SampleRelation from "@/app/types/sample-relation";
 import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
-import { IconButton } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "@/app/features/starred/starred-slice";
@@ -31,9 +30,9 @@ export default function StarredItem(props: { item: SampleRelation }) {
       className="starred-item hovered shadowable"
       style={{ padding: "1rem 1.25rem" }}
     >
-      <IconButton onClick={handleRemove} className="star-icon">
+      <button onClick={handleRemove} className="star-icon">
         <StarIcon />
-      </IconButton>
+      </button>
 
       <div
         style={{
