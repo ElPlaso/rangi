@@ -6,7 +6,7 @@ import "@/app/styles/styles.css";
 import { Inter } from "@next/font/google";
 import VideoView from "./video_view";
 import { useEffect, useState } from "react";
-import { getSongData } from "../../utils";
+import { getSongData } from "@/app/samples/[id]/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,8 +27,6 @@ export default function CompareView({ id, sampleId }: CompareViewProps) {
 
       let songUrlId = songData["youtube_url"].match(regex)[1];
       let sampleUrlId = sampleData["youtube_url"].match(regex)[1];
-
-      console.log(songUrlId, sampleUrlId);
 
       setSongYT(songUrlId ? songUrlId : "");
       setSampleYT(sampleUrlId ? sampleUrlId : "");

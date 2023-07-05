@@ -1,4 +1,4 @@
-import CompareView from "./components/compare_view";
+import CompareView from "@/app/components/compare/compare_view";
 
 export default function ComparePage({
   params,

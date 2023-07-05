@@ -30,7 +30,6 @@ export async function generateMetadata({ params }: any) {
 
 export default async function SampleResultsPage({ params }: any) {
   const songData: any = await getSongData(params.id);
-  console.log(songData)
 
   if (songData != null) {
     let samples: any[] = songData["song_relationships"]["0"]["songs"];
