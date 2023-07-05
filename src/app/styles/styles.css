@@ -29,21 +29,25 @@
 
 .star-icon {
   display: none;
+  background-color: transparent;
+  border: none;
   position: absolute;
   top: 10px;
   right: 10px;
   width: 40px;
   height: 40px;
-  border-radius: 50%; 
-  justify-content: center; 
-  align-items: center; 
-  z-index: 2;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+  color: gray;
 }
 
-.star-icon .MuiIconButton-label{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.star-icon:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.star-icon:active {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {

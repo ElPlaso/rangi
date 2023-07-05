@@ -4,7 +4,6 @@ import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
 import { Inter } from "@next/font/google";
-import { IconButton } from "@mui/material";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { useRouter } from "next/navigation";
@@ -78,31 +77,22 @@ export default function SampleResult(props: SampleResultProps) {
         <div className="sample-result-icon">
           {resultIsStarred ? (
             <>
-              <IconButton onClick={handleUnstar} className="star-icon">
+              <button onClick={handleUnstar} className="star-icon">
                 <a data-tooltip-id={result.id} data-tooltip-content={"Unstar"}>
-                  <StarIcon />
+                  <StarIcon style={{paddingTop: 2}}/>
                 </a>
-              </IconButton>
-              <Tooltip
-                className={inter.className}
-                id={result.id}
-                place="bottom"
-              />
+              </button>
             </>
           ) : (
             <>
-              <IconButton onClick={handleStar} className="star-icon">
+              <button onClick={handleStar} className="star-icon">
                 <a data-tooltip-id={result.id} data-tooltip-content={"Star"}>
-                  <StarBorderIcon />
+                  <StarBorderIcon style={{paddingTop: 2}}/>
                 </a>
-              </IconButton>
-              <Tooltip
-                className={inter.className}
-                id={result.id}
-                place="bottom"
-              />
+              </button>
             </>
           )}
+          <Tooltip className={inter.className} id={result.id} place="bottom" />
         </div>
       )}
 
