@@ -4,9 +4,6 @@ import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
 import { Inter } from "@next/font/google";
-import { IconButton } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../features/starred/starred-slice";
@@ -78,11 +75,11 @@ export default function SampleResult(props: SampleResultProps) {
         <div className="sample-result-icon">
           {resultIsStarred ? (
             <>
-              <IconButton onClick={handleUnstar} className="star-icon">
+              <button onClick={handleUnstar} className="star-icon">
                 <a data-tooltip-id={result.id} data-tooltip-content={"Unstar"}>
-                  <StarIcon />
+                  <div>Star</div>
                 </a>
-              </IconButton>
+              </button>
               <Tooltip
                 className={inter.className}
                 id={result.id}
@@ -91,11 +88,11 @@ export default function SampleResult(props: SampleResultProps) {
             </>
           ) : (
             <>
-              <IconButton onClick={handleStar} className="star-icon">
+              <button onClick={handleStar} className="star-icon">
                 <a data-tooltip-id={result.id} data-tooltip-content={"Star"}>
-                  <StarBorderIcon />
+                <div>Unstar</div>
                 </a>
-              </IconButton>
+              </button>
               <Tooltip
                 className={inter.className}
                 id={result.id}
