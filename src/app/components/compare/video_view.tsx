@@ -37,7 +37,7 @@ export default function VideoView({ id, label }: VideoViewProps) {
   };
 
   return (
-    <div className="cardish hovered">
+    <div className={`cardish shadowable video`}>
       <p className={inter.className} style={{ marginBottom: "1rem" }}>
         {label}
       </p>

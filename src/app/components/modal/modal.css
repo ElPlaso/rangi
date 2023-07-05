@@ -7,6 +7,7 @@
   bottom: 0;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.6);
+  overflow-y: hidden;
 }
 
 .modal-wrapper {
@@ -14,6 +15,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 100%;
-  padding: 6px;
+  max-width: 1000px;
+  border-radius: 25px;
 }

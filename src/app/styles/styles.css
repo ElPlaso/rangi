@@ -59,10 +59,25 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.videoContainer {
+  width: 400px;
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video {
+  background-color: white;
+}
+
 @media (prefers-color-scheme: dark) {
   .star-icon,
   .play-icon {
     color: white;
+  }
+  .video {
+    background-color: rgb(18, 18, 18);
   }
 }
 
@@ -72,27 +87,12 @@
 
 .videoComparisonRow {
   display: flex;
-  cursor: pointer;
-}
-
-.videoComparisonRow span {
-  transition: transform 200ms;
-}
-
-.videoContainer {
-  width: 400px;
-  height: 225px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: default;
 }
 
 .cardish {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
 }
 
 .hovered {
@@ -170,9 +170,6 @@
   .textLink:hover {
     text-decoration: underline;
   }
-  .videoComparisonRow:hover > span {
-    transform: translateX(4px);
-  }
 }
 
 /* Mobile and Tablet */
@@ -210,7 +207,6 @@
   .videoComparisonRow span {
     text-align: center;
   }
-
   .albumAppearance {
     padding: 1rem 2.5rem 2rem;
     margin-bottom: 0.5rem;
