@@ -20,13 +20,13 @@ export async function generateMetadata({
 
   return {
     title: `${song.title} & ${sample.title}`,
-    description: `Compare ${song.title} to ${sample.title}`,
+    description: `Compare ${song.title} by ${song.artist_names} to ${sample.title} by ${sample.artist_names}`,
     twitter: {
       card: "summary",
       site: "@samplify",
     },
     openGraph: {
-      description: `Compare ${song.title} to ${sample.title}`,
+      description: `Compare ${song.title} by ${song.artist_names} to ${sample.title} by ${sample.artist_names}`,
       type: "website",
       url: `https://samplify.vercel.app/compare/${params.songId}/${params.sampleId}`,
     },

@@ -44,13 +44,29 @@ export default async function Image({
               justifyContent: "center",
             }}
           >
-            <div style={{ display: "flex" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <img
                 src={song["song_art_image_thumbnail_url"]}
                 alt="Cover art"
                 width={400}
                 height={400}
-                style={{ marginBottom: "2rem", boxShadow: "0 0 10px #000" }}
+                style={{
+                  marginBottom: "2rem",
+                  boxShadow: "0 0 10px #000",
+                }}
+              />
+              <img
+                src={`${process.env.URL}/play.svg`}
+                alt="Play"
+                width={100}
+                height={100}
+                style={{ margin: "2rem" }}
               />
               <img
                 src={sample["song_art_image_thumbnail_url"]}
@@ -66,6 +82,7 @@ export default async function Image({
               alt="Samplify X Logo"
               width={400}
               height={50}
+              style={{ marginTop: "2rem" }}
             />
           </div>
         ) : (
