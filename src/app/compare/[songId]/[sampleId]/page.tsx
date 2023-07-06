@@ -1,16 +1,37 @@
 import CompareView from "@/app/components/compare/compare_view";
-import { getSongData } from "@/app/samples/[id]/utils";
+
 import { Inter } from "@next/font/google";
-import { cache } from "react";
+import { getSongs } from "./utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const getSongs = cache(async (id: string, sampleId: string) => {
-  const songData: any = await getSongData(id);
-  const sampleData: any = await getSongData(sampleId);
+export async function generateMetadata({
+  params,
+}: {
+  params: { songId: string; sampleId: string };
+}) {
+  const [song, sample] = await getSongs(params.songId, params.sampleId);
 
-  return [songData, sampleData];
-});
+  if (!song || !sample) {
+    return {
+      title: "Compare Songs",
+    };
+  }
+
+  return {
+    title: `${song.title} & ${sample.title}`,
+    description: `Compare ${song.title} to ${sample.title}`,
+    twitter: {
+      card: "summary",
+      site: "@samplify",
+    },
+    openGraph: {
+      description: `Compare ${song.title} to ${sample.title}`,
+      type: "website",
+      url: `https://samplify.vercel.app/compare/${params.songId}/${params.sampleId}`,
+    },
+  };
+}
 
 export default async function ComparePage({
   params,

@@ -1,6 +1,6 @@
 import CompareView from "@/app/components/compare/compare_view";
 import Modal from "@/app/components/modal/modal";
-import { getSongs } from "@/app/compare/[songId]/[sampleId]/page";
+import { getSongs } from "@/app/compare/[songId]/[sampleId]/utils";
 
 export default async function CompareModal({
   params,
