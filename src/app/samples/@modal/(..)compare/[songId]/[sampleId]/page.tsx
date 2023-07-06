@@ -1,18 +1,17 @@
 import CompareView from "@/app/components/compare/compare_view";
 import Modal from "@/app/components/modal/modal";
-import { Suspense } from "react";
-import DotsLoader from "@/app/components/dots_loader";
+import { getSongs } from "@/app/compare/[songId]/[sampleId]/page";
 
-export default function CompareModal({
+export default async function CompareModal({
   params,
 }: {
   params: { songId: string; sampleId: string };
 }) {
+  const [song, sample] = await getSongs(params.songId, params.sampleId);
+
   return (
     <Modal>
-      <Suspense fallback={<DotsLoader />}>
-        <CompareView id={params.songId} sampleId={params.sampleId} />
-      </Suspense>
+      <CompareView song={song} sample={sample} />
     </Modal>
   );
 }

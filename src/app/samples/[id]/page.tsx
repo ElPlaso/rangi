@@ -44,7 +44,6 @@ export default async function SampleResultsPage({ params }: any) {
         <SongTitle songData={songData} />
 
         <div className="container" style={{ marginTop: "150px" }}>
-
           {samples.length > 0 && (
             <div style={{ marginTop: "3rem" }}>
               <h4 className={styles.code}>{shortTitle} Samples</h4>

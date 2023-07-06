@@ -4,25 +4,15 @@ import "@/app/styles/horizontal_scroll.css";
 import "@/app/styles/styles.css";
 import { Inter } from "@next/font/google";
 import VideoView from "./video_view";
-import { getSongData } from "@/app/samples/[id]/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
 interface CompareViewProps {
-  id: string;
-  sampleId: string;
+  song: any;
+  sample: any;
 }
 
-const getSongs = async (id: string, sampleId: string) => {
-  const songData: any = await getSongData(id);
-  const sampleData: any = await getSongData(sampleId);
-
-  return [songData, sampleData];
-};
-
-export default async function CompareView({ id, sampleId }: CompareViewProps) {
-  const [song, sample] = await getSongs(id, sampleId);
-
+export default async function CompareView({ song, sample }: CompareViewProps) {
   const songUrl = song ? song["youtube_url"] : "";
   const sampleUrl = sample ? sample["youtube_url"] : "";
 
