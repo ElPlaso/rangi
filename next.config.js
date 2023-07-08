@@ -1,20 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: '*.com',
+        protocol: "https",
+        hostname: "*.com",
       },
       {
-        protocol: 'https',
-        hostname: '*.org',
+        protocol: "https",
+        hostname: "*.org",
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
