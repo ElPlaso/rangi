@@ -4,14 +4,17 @@ import "@/app/styles/styles.css";
 import styles from "@/app/styles/page.module.css";
 import Links from "./components/links";
 import Greeting from "./components/greeting";
+import RandomLyric from "./components/random_lyric";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <div className="container">
-      <Greeting />
-
+      <div style={{display: "flex", width: "100%", justifyContent: "space-between"}} >
+        <Greeting />
+        <RandomLyric />
+      </div>
       <Splash />
 
       <div className={styles.grid} style={{ marginTop: "1.5rem" }}>
