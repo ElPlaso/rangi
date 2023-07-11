@@ -8,7 +8,7 @@ import BouncingEllipsis from "./bouncing_ellipsis/bouncing_ellipsis";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RandomLyric() {
+export default function RandomLyricText() {
     const [randomLyric, setRandomLyric] = useState<RandomLyric>(null as any);
 
     useEffect(() => {

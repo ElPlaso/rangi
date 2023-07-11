@@ -4,7 +4,7 @@ import "@/app/styles/styles.css";
 import styles from "@/app/styles/page.module.css";
 import Links from "./components/links";
 import Greeting from "./components/greeting";
-import RandomLyric from "./components/random_lyric";
+import RandomLyricText from "./components/random_lyric_text";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +13,7 @@ export default function Home() {
     <div className="container">
       <div style={{display: "flex", width: "100%", justifyContent: "space-between"}} >
         <Greeting />
-        <RandomLyric />
+        <RandomLyricText />
       </div>
       <Splash />
 
