@@ -42,7 +42,7 @@ export default function AlbumTitle(props: any) {
   return (
     <div
       id="header"
-      className="albumTitleContainer"
+      className="albumTitleContainer space-x-4"
       style={{
         backgroundColor: scrolled ? avgColor : "transparent",
         backgroundImage: scrolled
@@ -65,8 +65,8 @@ export default function AlbumTitle(props: any) {
           }}
         />
       </div>
-      <div className="albumTitleHeader" style={{ paddingLeft: "1rem" }}>
-        <h3>Samples used in:</h3>
+      <div className="albumTitleHeader text-xl">
+        <h3 className="font-semibold">Samples used in</h3>
         <h1>{albumData["name"]}</h1>
         {albumData["artist"]["name"] && <h2>{albumData["artist"]["name"]}</h2>}
       </div>

@@ -45,7 +45,7 @@ export default function SongTitle(props: any) {
   return (
     <div
       id="header"
-      className="songTitleContainer"
+      className="songTitleContainer space-x-4"
       style={{
         backgroundColor: scrolled ? avgColor : "transparent",
         backgroundImage: scrolled
@@ -68,8 +68,8 @@ export default function SongTitle(props: any) {
           }}
         />
       </div>
-      <div className="songTitleHeader" style={{ paddingLeft: "1rem" }}>
-        <h3>Showing results for:</h3>
+      <div className="songTitleHeader text-xl">
+        <h3 className="font-semibold">Showing results for:</h3>
         {songData["full_title"] && <h2>{songData["full_title"]}</h2>}
       </div>
     </div>

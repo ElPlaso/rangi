@@ -49,7 +49,7 @@ export default function AlbumAppearanceResult({ song }: { song: Result }) {
       >
         <div>
           <Link href={`/samples/${song.id}`}>
-            <h4 className="textLink">{song["title"]}</h4>
+            <h4 className="textLink font-semibold">{song["title"]}</h4>
           </Link>
           <p>{song.artist}</p>
         </div>

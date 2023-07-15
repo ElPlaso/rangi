@@ -136,7 +136,7 @@ export default function SampleResult(props: SampleResultProps) {
           overflow: "hidden",
         }}
       >
-        <h4>{result.title}</h4>
+        <h4 className="font-semibold">{result.title}</h4>
         <p>{result.artist}</p>
         <p>{result.year}</p>
       </div>

@@ -32,7 +32,7 @@ export default function SampledByResult(props: any) {
             overflow: "hidden",
           }}
         >
-          <h5>{result.title}</h5>
+          <h5 className="font-medium">{result.title}</h5>
           <p>{result.artist}</p>
           <p>{result.year}</p>
         </div>

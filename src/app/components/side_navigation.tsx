@@ -68,13 +68,13 @@ export default function SideNavigation() {
       <Link href="/" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <MusicIcon />
-          <h2>Home</h2>
+          <h2 className="text-lg font-semibold">Home</h2>
         </div>
       </Link>
       <Link href="/starred" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <StarIcon />
-          <h2>Starred</h2>
+          <h2 className="text-lg font-semibold">Starred</h2>
         </div>
       </Link>
       <div className="divider" />
