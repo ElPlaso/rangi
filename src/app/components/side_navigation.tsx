@@ -77,10 +77,10 @@ export default function SideNavigation() {
           <h2 className="text-lg font-semibold">Home</h2>
         </div>
       </Link>
-      <Link href="/starred" onClick={expanded ? toggleExpanded : () => {}}>
+      <Link href="/stars" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <StarIcon />
-          <h2 className="text-lg font-semibold">Starred</h2>
+          <h2 className="text-lg font-semibold">Stars</h2>
         </div>
       </Link>
       <div className="divider" />

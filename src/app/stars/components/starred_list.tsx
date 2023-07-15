@@ -58,7 +58,7 @@ export default function StarredList() {
       <div className="search main-search" style={{ marginBottom: "0.5rem" }}>
         <input
           type="text"
-          placeholder="Search starred"
+          placeholder="Search stars"
           onChange={handleInputChange}
           value={searchInput}
         />

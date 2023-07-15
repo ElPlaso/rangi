@@ -6,6 +6,7 @@ import { removeItem } from "@/app/features/starred/starred-slice";
 import { RootState } from "@/app/store/store";
 import StarredItemResult from "./starred_item_result";
 import { useRouter } from "next/navigation";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function StarredItem(props: { item: SampleRelation }) {
   const starred = useSelector((state: RootState) => state.starred.items);
@@ -54,7 +55,7 @@ export default function StarredItem(props: { item: SampleRelation }) {
             alignItems: "center",
           }}
         >
-          <h2>{"->"}</h2>
+          <ArrowForwardIcon />
         </div>
         <StarredItemResult result={item.samplee} />
       </div>
