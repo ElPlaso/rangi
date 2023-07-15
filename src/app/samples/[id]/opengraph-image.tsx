@@ -43,16 +43,16 @@ export default async function Image({ params }: { params: { id: string } }) {
             <img
               src={songData["song_art_image_thumbnail_url"]}
               alt="Cover art"
-              width={400}
-              height={400}
+              width={200}
+              height={200}
               style={{ marginBottom: "2rem", boxShadow: "0 0 10px #000" }}
             />
 
             <img
               src="https://rangi.beatbotanica.com/rangi.png"
               alt="Rangi Logo"
-              width={400}
-              height={50}
+              width={200}
+              height={200}
             />
           </div>
         ) : (
@@ -61,7 +61,7 @@ export default async function Image({ params }: { params: { id: string } }) {
               src="https://rangi.beatbotanica.com/rangi.png"
               alt="Rangi Logo"
               width={400}
-              height={50}
+              height={400}
             />
           </>
         )}

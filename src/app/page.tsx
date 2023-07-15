@@ -32,7 +32,7 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-24 fixed bottom-0 p-5 w-full flex justify-center items-center lg:bg-transparent md:dark:bg-black sm:dark:bg-black max-sm:dark:bg-black backdrop-blur-2xl">
-        <div className="flex flex-row space-x-2">
+        <div className="flex flex-row space-x-2 items-center justify-center">
           <Image
             src={"/favicon.ico"}
             alt="BeatBotanica Logo"

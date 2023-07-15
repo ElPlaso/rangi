@@ -46,6 +46,10 @@
   border-radius: 50%;
   z-index: 1;
   cursor: pointer;
+  color: #2563eb;
+}
+
+.starred-item .star-icon {
   color: gray;
 }
 
@@ -72,10 +76,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .star-icon,
-  .play-icon {
-    color: white;
-  }
   .video {
     background-color: rgb(18, 18, 18);
   }

@@ -34,7 +34,7 @@ export default function StarredItemResult(props: { result: Result }) {
             event.stopPropagation();
           }}
         >
-          <h4 className={`textLink`}>{result.title}</h4>
+          <h4 className={`textLink font-semibold`}>{result.title}</h4>
         </Link>
         <p>{result.artist}</p>
         <p>{result.year}</p>
