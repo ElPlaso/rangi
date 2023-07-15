@@ -24,19 +24,22 @@ export default async function Image() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          backgroundColor: "#2563EB",
         }}
       >
         <img
           src="https://rangi.beatbotanica.com/rangi.png"
           alt="Rangi Logo"
           width={400}
-          height={50}
+          height={400}
+          style={{ filter: "invert(1)" }}
         />
         <img
           src="https://rangi.beatbotanica.com/bird.png"
-          alt="Rangi Logo"
-          width={50}
-          height={50}
+          alt="Bird Logo"
+          width={150}
+          height={150}
+          style={{ filter: "invert(1)" }}
         />
       </div>
     ),
