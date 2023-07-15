@@ -18,12 +18,12 @@ export async function generateMetadata({ params }: any) {
     description: `Samples used in ${songData.title} by ${songData.artist_names}`,
     twitter: {
       card: "summary",
-      site: "@samplify",
+      site: "@rangi",
     },
     openGraph: {
       description: `Samples used in ${songData.title} by ${songData.artist_names}`,
       type: "website",
-      url: `https://samplify.vercel.app/samples/${params.id}`,
+      url: `https://rangi.beatbotanica.com/samples/${params.id}`,
     },
   };
 }

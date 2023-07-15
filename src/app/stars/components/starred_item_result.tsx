@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Result from "@/app/types/result";
 import Link from "next/link";
-import { Inter } from "@next/font/google";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function StarredItemResult(props: { result: Result }) {
   const result = props.result;
@@ -36,10 +34,10 @@ export default function StarredItemResult(props: { result: Result }) {
             event.stopPropagation();
           }}
         >
-          <h4 className={`${inter.className} textLink`}>{result.title}</h4>
+          <h4 className={`textLink`}>{result.title}</h4>
         </Link>
-        <p className={inter.className}>{result.artist}</p>
-        <p className={inter.className}>{result.year}</p>
+        <p>{result.artist}</p>
+        <p>{result.year}</p>
       </div>
     </div>
   );

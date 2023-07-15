@@ -5,11 +5,8 @@ import { useSelector } from "react-redux";
 import "@/app/styles/styles.css";
 import StarredItem from "./starred_item";
 import FlipMove from "react-flip-move";
-import { Inter } from "@next/font/google";
 import { useState, useEffect } from "react";
 import DotsLoader from "@/app/components/dots_loader";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function StarredList() {
   const starred = useSelector((state: RootState) => state.starred.items);
@@ -61,7 +58,7 @@ export default function StarredList() {
       <div className="search main-search" style={{ marginBottom: "0.5rem" }}>
         <input
           type="text"
-          placeholder="Search starred"
+          placeholder="Search stars"
           onChange={handleInputChange}
           value={searchInput}
         />
@@ -89,12 +86,12 @@ export default function StarredList() {
             </FlipMove>
           ) : (
             <div className="cardish hovered">
-              <p className={inter.className}>No samples found</p>
+              <p>No samples found</p>
             </div>
           )
         ) : (
           <div className="cardish hovered">
-            <p className={inter.className}>You do not have any starred samples</p>
+            <p>You do not have any starred samples</p>
           </div>
         )
       ) : (

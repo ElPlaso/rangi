@@ -1,9 +1,6 @@
 import CompareView from "@/app/components/compare/compare_view";
 
-import { Inter } from "@next/font/google";
 import { getSongs } from "./utils";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata({
   params,
@@ -23,12 +20,12 @@ export async function generateMetadata({
     description: `Compare ${song.title} by ${song.artist_names} to ${sample.title} by ${sample.artist_names}`,
     twitter: {
       card: "summary",
-      site: "@samplify",
+      site: "@rangi",
     },
     openGraph: {
       description: `Compare ${song.title} by ${song.artist_names} to ${sample.title} by ${sample.artist_names}`,
       type: "website",
-      url: `https://samplify.vercel.app/compare/${params.songId}/${params.sampleId}`,
+      url: `https://rangi.beatbotanica.com/compare/${params.songId}/${params.sampleId}`,
     },
   };
 }
@@ -42,7 +39,7 @@ export default async function ComparePage({
 
   return (
     <div>
-      <h1 className={inter.className}>Compare</h1>
+      <h1 className="font-semibold text-2xl">Compare</h1>
       <div style={{ marginTop: "2rem" }}>
         <CompareView song={song} sample={sample} />
       </div>

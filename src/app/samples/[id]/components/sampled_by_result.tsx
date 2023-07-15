@@ -3,9 +3,6 @@ import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
 import Link from "next/link";
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function SampledByResult(props: any) {
   const result: Result = props.result || {};
@@ -35,9 +32,9 @@ export default function SampledByResult(props: any) {
             overflow: "hidden",
           }}
         >
-          <h5 className={inter.className}>{result.title}</h5>
-          <p className={inter.className}>{result.artist}</p>
-          <p className={inter.className}>{result.year}</p>
+          <h5 className="font-medium">{result.title}</h5>
+          <p>{result.artist}</p>
+          <p>{result.year}</p>
         </div>
       </div>
     </Link>

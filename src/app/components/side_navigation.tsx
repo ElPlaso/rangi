@@ -3,14 +3,11 @@
 import { useState, useEffect } from "react";
 import "@/app/styles/side_nav.css";
 import Link from "next/link";
-import { Inter } from "@next/font/google";
 import MusicIcon from "@mui/icons-material/MusicNote";
 import StarIcon from "@mui/icons-material/Star";
 import HamburgerIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Search from "./search";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function SideNavigation() {
   const [windowWidth, setWindowWidth] = useState(0);
@@ -60,8 +57,14 @@ export default function SideNavigation() {
   return (
     <div className="sidenav">
       {/* always toggle expanded */}
-      <button className="toggle" onClick={toggleExpanded}>
-        {expanded ? <CloseIcon /> : <HamburgerIcon />}
+      <button className="toggle backdrop-blur-lg" onClick={toggleExpanded}>
+        {expanded ? (
+          <CloseIcon />
+        ) : (
+          <div className="h-full flex items-center justify-center pb-1">
+            <HamburgerIcon />
+          </div>
+        )}
       </button>
       {/* only toggle expanded if currently expanded */}
       <div className="item nav-search">
@@ -71,13 +74,13 @@ export default function SideNavigation() {
       <Link href="/" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <MusicIcon />
-          <h2 className={inter.className}>Home</h2>
+          <h2 className="text-lg font-semibold">Home</h2>
         </div>
       </Link>
-      <Link href="/starred" onClick={expanded ? toggleExpanded : () => {}}>
+      <Link href="/stars" onClick={expanded ? toggleExpanded : () => {}}>
         <div className="listitem">
           <StarIcon />
-          <h2 className={inter.className}>Starred</h2>
+          <h2 className="text-lg font-semibold">Stars</h2>
         </div>
       </Link>
       <div className="divider" />

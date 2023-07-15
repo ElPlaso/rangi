@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
-import { Inter } from "@next/font/google";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { useRouter } from "next/navigation";
@@ -11,10 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../features/starred/starred-slice";
 import { RootState } from "../store/store";
 import { alreadyStarred } from "../features/starred/utils";
-import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-const inter = Inter({ subsets: ["latin"] });
 
 interface SampleResultProps {
   result: Result;
@@ -80,46 +77,21 @@ export default function SampleResult(props: SampleResultProps) {
       style={{ cursor: "pointer" }}
     >
       {showStar && parent && (
-        <div className="sample-result-icon">
+        <div className="sample-result-icon flex">
           <>
             {resultIsStarred ? (
               <button onClick={handleUnstar} className="star-icon">
-                <a
-                  data-tooltip-id={`${result.id} star`}
-                  data-tooltip-content={"Unstar"}
-                >
-                  <StarIcon style={{ paddingTop: 2 }} />
-                </a>
+                <StarIcon />
               </button>
             ) : (
               <button onClick={handleStar} className="star-icon">
-                <a
-                  data-tooltip-id={`${result.id} star`}
-                  data-tooltip-content={"Star"}
-                >
-                  <StarBorderIcon style={{ paddingTop: 2 }} />
-                </a>
+                <StarBorderIcon />
               </button>
             )}
 
             <button onClick={handlePlayClick} className="play-icon">
-              <a
-                data-tooltip-id={`${result.id} play`}
-                data-tooltip-content={"Compare"}
-              >
-                <PlayArrowOutlinedIcon />
-              </a>
+              <PlayArrowOutlinedIcon />
             </button>
-            <Tooltip
-              className={inter.className}
-              id={`${result.id} star`}
-              place="left"
-            />
-            <Tooltip
-              className={inter.className}
-              id={`${result.id} play`}
-              place="left"
-            />
           </>
         </div>
       )}
@@ -146,9 +118,9 @@ export default function SampleResult(props: SampleResultProps) {
           overflow: "hidden",
         }}
       >
-        <h4 className={inter.className}>{result.title}</h4>
-        <p className={inter.className}>{result.artist}</p>
-        <p className={inter.className}>{result.year}</p>
+        <h4 className="font-semibold">{result.title}</h4>
+        <p>{result.artist}</p>
+        <p>{result.year}</p>
       </div>
     </div>
   );

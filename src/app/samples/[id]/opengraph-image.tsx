@@ -5,7 +5,7 @@ import { getSongData } from "./utils";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "Samplify";
+export const alt = "Rangi";
 export const size = {
   width: 1200,
   height: 630,
@@ -49,8 +49,8 @@ export default async function Image({ params }: { params: { id: string } }) {
             />
 
             <img
-              src="https://samplify.vercel.app/samplify.svg"
-              alt="Samplify X Logo"
+              src="https://rangi.beatbotanica.com/rangi.png"
+              alt="Rangi Logo"
               width={400}
               height={50}
             />
@@ -58,8 +58,8 @@ export default async function Image({ params }: { params: { id: string } }) {
         ) : (
           <>
             <img
-              src="https://samplify.vercel.app/samplify.svg"
-              alt="Samplify X Logo"
+              src="https://rangi.beatbotanica.com/rangi.png"
+              alt="Rangi Logo"
               width={400}
               height={50}
             />
