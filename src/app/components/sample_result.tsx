@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../features/starred/starred-slice";
 import { RootState } from "../store/store";
 import { alreadyStarred } from "../features/starred/utils";
-import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 
@@ -78,38 +77,21 @@ export default function SampleResult(props: SampleResultProps) {
       style={{ cursor: "pointer" }}
     >
       {showStar && parent && (
-        <div className="sample-result-icon">
+        <div className="sample-result-icon flex">
           <>
             {resultIsStarred ? (
               <button onClick={handleUnstar} className="star-icon">
-                <a
-                  data-tooltip-id={`${result.id} star`}
-                  data-tooltip-content={"Unstar"}
-                >
-                  <StarIcon style={{ paddingTop: 2 }} />
-                </a>
+                <StarIcon />
               </button>
             ) : (
               <button onClick={handleStar} className="star-icon">
-                <a
-                  data-tooltip-id={`${result.id} star`}
-                  data-tooltip-content={"Star"}
-                >
-                  <StarBorderIcon style={{ paddingTop: 2 }} />
-                </a>
+                <StarBorderIcon />
               </button>
             )}
 
             <button onClick={handlePlayClick} className="play-icon">
-              <a
-                data-tooltip-id={`${result.id} play`}
-                data-tooltip-content={"Compare"}
-              >
-                <PlayArrowOutlinedIcon />
-              </a>
+              <PlayArrowOutlinedIcon />
             </button>
-            <Tooltip id={`${result.id} star`} place="left" />
-            <Tooltip id={`${result.id} play`} place="left" />
           </>
         </div>
       )}
