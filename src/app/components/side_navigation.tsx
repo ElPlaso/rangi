@@ -57,8 +57,14 @@ export default function SideNavigation() {
   return (
     <div className="sidenav">
       {/* always toggle expanded */}
-      <button className="toggle" onClick={toggleExpanded}>
-        {expanded ? <CloseIcon /> : <HamburgerIcon />}
+      <button className="toggle backdrop-blur-lg" onClick={toggleExpanded}>
+        {expanded ? (
+          <CloseIcon />
+        ) : (
+          <div className="h-full flex items-center justify-center pb-1">
+            <HamburgerIcon />
+          </div>
+        )}
       </button>
       {/* only toggle expanded if currently expanded */}
       <div className="item nav-search">
