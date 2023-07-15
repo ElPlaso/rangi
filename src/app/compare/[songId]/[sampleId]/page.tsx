@@ -39,7 +39,7 @@ export default async function ComparePage({
 
   return (
     <div>
-      <h1>Compare</h1>
+      <h1 className="font-semibold text-2xl">Compare</h1>
       <div style={{ marginTop: "2rem" }}>
         <CompareView song={song} sample={sample} />
       </div>

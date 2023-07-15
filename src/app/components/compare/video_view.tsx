@@ -34,7 +34,7 @@ export default function VideoView({ id, label }: VideoViewProps) {
   };
 
   return (
-    <div className={`cardish shadowable video`}>
+    <div>
       <p style={{ marginBottom: "1rem" }}>{label}</p>
       <div className="videoContainer">
         {id ? <YouTube videoId={id} opts={opts} /> : <p>Url not found</p>}
