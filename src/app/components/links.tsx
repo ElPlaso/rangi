@@ -1,29 +1,21 @@
 "use client";
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import GitHubIcon from "@mui/icons-material/GitHub";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ReactElement } from "react";
 
 export default function Links() {
   return (
-    <div className={styles.grid} style={{ marginTop: "1rem" }}>
-      <div
-        className={styles.card}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <p className={inter.className} style={{ cursor: "default" }}>
+    <div className="md:grid md:grid-cols-3 md:gap-x-3 sm:flex sm:flex-col md:space-y-0 sm:space-y-8 max-sm:space-y-8">
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-opacity-50 dark:text-opacity-50 text-black dark:text-white">
           Made by
         </p>
         <a
           href="https://github.com/ElPlaso"
           target="_blank"
           rel="noopener noreferrer"
+          className="mt-2"
         >
           <Image
             src="/el_plaso.svg"
@@ -35,15 +27,8 @@ export default function Links() {
           />
         </a>
       </div>
-      <div
-        className={styles.card}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <p className={inter.className} style={{ cursor: "default" }}>
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-opacity-50 dark:text-opacity-50 text-black dark:text-white">
           Powered by
         </p>
         <a
@@ -51,18 +36,11 @@ export default function Links() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h3 className={inter.className}>Genius</h3>
+          <h3 className="font-semibold">Genius</h3>
         </a>
       </div>
-      <div
-        className={styles.card}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <p className={inter.className} style={{ cursor: "default" }}>
+      <div className="flex flex-col items-center justify-center">
+        <p className="text-opacity-50 dark:text-opacity-50 text-black dark:text-white">
           Contribute or give feedback
         </p>
         <h3>

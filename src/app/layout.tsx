@@ -4,6 +4,12 @@ import SideNavigation from "./components/side_navigation";
 import LayoutWrapper from "./components/layout-wrapper";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { Inter } from "next/font/google";
+
+export const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -36,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <body>
+      <body className={inter.variable}>
         <LayoutWrapper>
           <SideNavigation />
           <main className={styles.main}>

@@ -1,80 +1,56 @@
 import Splash from "./components/splash";
-import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
-import styles from "@/app/styles/page.module.css";
 import Links from "./components/links";
 import Greeting from "./components/greeting";
 import Image from "next/image";
-
-const inter = Inter({ subsets: ["latin"] });
+import InfoCard from "./components/info_card";
 
 export default function Home() {
   return (
-    <div className="container">
-      <Greeting />
-
-      <Splash />
-
-      <div className={styles.grid} style={{ marginTop: "1.5rem" }}>
-        <div className={styles.card}>
-          <h2 className={inter.className}>Discover</h2>
-          <p className={inter.className}>
-            Discover new music through samples used in your favourite songs and
-            albums.
-          </p>
+    <>
+      <div className="container flex flex-col">
+        <div className="w-full">
+          <Greeting />
         </div>
-        <div className={styles.card}>
-          <h2 className={inter.className}>Compare</h2>
-          <p className={inter.className}>
-            Compare songs to their samples and the songs that sample them.
-          </p>
-        </div>
-        <div className={styles.card}>
-          <h2 className={inter.className}>Explore</h2>
-          <p className={inter.className}>
-            Explore the nearly endless knot of music and samples.
-          </p>
+        <div className="w-full">
+          <Splash />
+          <div className="md:grid md:grid-cols-3 md:gap-x-3 sm:flex sm:flex-col md:space-y-0 sm:space-y-2 max-sm:space-y-2 mb-8">
+            <InfoCard
+              title="Discover"
+              description="Discover new music through samples used in your favourite songs and albums."
+            />
+            <InfoCard
+              title="Compare"
+              description="Compare songs to their samples and the songs that sample them."
+            />
+            <InfoCard
+              title="Explore"
+              description="Explore the nearly endless knot of music and samples."
+            />
+          </div>
+          <Links />
         </div>
       </div>
-      <Links />
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "3rem",
-        }}
-      >
-        <p
-          className={inter.className}
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+      <div className="mt-24 fixed bottom-0 p-5 w-full flex justify-center items-center lg:bg-transparent md:dark:bg-black sm:dark:bg-black max-sm:dark:bg-black backdrop-blur-2xl">
+        <div className="flex flex-row space-x-2">
           <Image
             src={"/favicon.ico"}
             alt="BeatBotanica Logo"
             width={28}
             height={28}
-            style={{
-              marginRight: "0.25rem",
-            }}
           />
-          | Brought to you by{" "}
-          <a
-            href="https://beatbotanica.com"
-            style={{
-              textDecoration: "underline",
-              marginLeft: "0.25rem",
-              marginRight: "0.25rem",
-            }}
-          >
-            {" "}
-            beatbotanica.com
-          </a>
-        </p>
+          <div>
+            Brought to you by{" "}
+            <a
+              href="https://beatbotanica.com"
+              className="hover:underline text-blue-600"
+            >
+              {" "}
+              beatbotanica.com
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
