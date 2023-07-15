@@ -45,7 +45,7 @@ export default function Links() {
         </p>
         <h3>
           <a
-            href="https://github.com/ElPlaso/samplify_x/issues"
+            href="https://github.com/BeatBotanica/Rangi/issues"
             target="_blank"
             rel="noopener noreferrer"
           >

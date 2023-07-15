@@ -17,7 +17,7 @@ export default function Splash() {
       <Image
         className={styles.logo}
         src="/rangi.png"
-        alt="Samplify X Logo"
+        alt="Rangi Logo"
         width={200}
         height={50}
         priority

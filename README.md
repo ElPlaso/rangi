@@ -1,9 +1,9 @@
-## Samplify_x
+## Rangi
 
 This is a web app for finding samples used in songs and albums. It also serves a "wrapper" API which simplifies the sample finding process.
 The app itself consumes an API for Genius Songs Lyrics & More; found here: https://rapidapi.com/Glavier/api/genius-song-lyrics1. 
 
-View the live demo here: https://samplify.vercel.app/.
+View the live demo here: https://rangi.beatbotanica.com/.
 
 ## Usage
 

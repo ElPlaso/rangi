@@ -13,8 +13,8 @@ export const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Samplify",
-    default: "Samplify",
+    template: "%s | Rangi",
+    default: "Rangi",
   },
   description:
     "A search tool for exploring the world of music through samples. Find samples used in your favorite songs and albums & Discover songs which sample your favourite songs.",
@@ -22,15 +22,15 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1",
   twitter: {
     card: "summary",
-    site: "@samplify",
-    title: "Samplify",
+    site: "@rangi",
+    title: "Rangi",
   },
   openGraph: {
     description:
       "A search tool for exploring the world of music through samples. Find samples used in your favorite songs and albums & Discover songs which sample your favourite songs.",
     type: "website",
-    url: "https://samplify.vercel.app",
-    title: "Samplify",
+    url: "https://rangi.vercel.app",
+    title: "Rangi",
   },
 };
 
