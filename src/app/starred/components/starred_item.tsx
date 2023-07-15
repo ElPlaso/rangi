@@ -1,5 +1,4 @@
 import SampleRelation from "@/app/types/sample-relation";
-import { Inter } from "@next/font/google";
 import "@/app/styles/styles.css";
 import StarIcon from "@mui/icons-material/Star";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +6,6 @@ import { removeItem } from "@/app/features/starred/starred-slice";
 import { RootState } from "@/app/store/store";
 import StarredItemResult from "./starred_item_result";
 import { useRouter } from "next/navigation";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function StarredItem(props: { item: SampleRelation }) {
   const starred = useSelector((state: RootState) => state.starred.items);
@@ -57,7 +54,7 @@ export default function StarredItem(props: { item: SampleRelation }) {
             alignItems: "center",
           }}
         >
-          <h2 className={inter.className}>{"->"}</h2>
+          <h2>{"->"}</h2>
         </div>
         <StarredItemResult result={item.samplee} />
       </div>

@@ -2,14 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import "@/app/styles/search.css";
-import { Inter } from "@next/font/google";
 import SearchResult from "./search_result";
 import DotsLoader from "./dots_loader";
 import Link from "next/link";
 import { GET as multiSearchAPIGet } from "@/app/api/search/multi/route";
 import Result from "../types/result";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Search(props: any) {
   const [songResults, setSongResults] = useState<Result[]>([]);
@@ -101,11 +98,10 @@ export default function Search(props: any) {
                 alignItems: "center",
               }}
             >
-              <h3 className={inter.className}>Songs</h3>
+              <h3>Songs</h3>
               <div onClick={props.onResultClick}>
                 <Link
                   href={`/search/${input}`}
-                  className={inter.className}
                   style={{ marginRight: "1rem", textDecoration: "underline" }}
                 >
                   More
@@ -122,7 +118,7 @@ export default function Search(props: any) {
                   />
                 </div>
               ))}
-            <h3 className={inter.className}>Albums</h3>
+            <h3>Albums</h3>
             {albumResults.length > 0 &&
               albumResults.map((result: any) => (
                 <div key={result.id} onClick={props.onResultClick}>
@@ -132,10 +128,7 @@ export default function Search(props: any) {
           </>
         ) : (
           error && (
-            <div
-              className={`search-error ${inter.className}`}
-              style={{ display: "flex" }}
-            >
+            <div className={`search-error`} style={{ display: "flex" }}>
               A problem occurred, please&nbsp;
               <h4
                 style={{

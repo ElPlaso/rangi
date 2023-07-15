@@ -2,9 +2,6 @@ import Image from "next/image";
 import "@/app/styles/search.css";
 import Result from "@/app/types/result";
 import Link from "next/link";
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function SearchResult(props: any) {
   const result: Result = props.result || {};
@@ -29,9 +26,9 @@ export default function SearchResult(props: any) {
             </span>
           </div>
           <div style={{ paddingLeft: "1rem" }}>
-            <h4 className={inter.className}>{result.title}</h4>
-            <p className={inter.className}>{result.artist}</p>
-            <p className={inter.className}>{result.year}</p>
+            <h4>{result.title}</h4>
+            <p>{result.artist}</p>
+            <p>{result.year}</p>
           </div>
         </div>
       </Link>

@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import Result from "@/app/types/result";
-import { Inter } from "@next/font/google";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,6 @@ import { alreadyStarred } from "../features/starred/utils";
 import { Tooltip } from "react-tooltip";
 import { useEffect, useState } from "react";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
-const inter = Inter({ subsets: ["latin"] });
 
 interface SampleResultProps {
   result: Result;
@@ -110,16 +108,8 @@ export default function SampleResult(props: SampleResultProps) {
                 <PlayArrowOutlinedIcon />
               </a>
             </button>
-            <Tooltip
-              className={inter.className}
-              id={`${result.id} star`}
-              place="left"
-            />
-            <Tooltip
-              className={inter.className}
-              id={`${result.id} play`}
-              place="left"
-            />
+            <Tooltip id={`${result.id} star`} place="left" />
+            <Tooltip id={`${result.id} play`} place="left" />
           </>
         </div>
       )}
@@ -146,9 +136,9 @@ export default function SampleResult(props: SampleResultProps) {
           overflow: "hidden",
         }}
       >
-        <h4 className={inter.className}>{result.title}</h4>
-        <p className={inter.className}>{result.artist}</p>
-        <p className={inter.className}>{result.year}</p>
+        <h4>{result.title}</h4>
+        <p>{result.artist}</p>
+        <p>{result.year}</p>
       </div>
     </div>
   );

@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import "@/app/styles/styles.css";
-import { Inter } from "@next/font/google";
 import { FastAverageColor } from "fast-average-color";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function SongTitle(props: any) {
   const [avgColor, setAvgColor] = useState("fff");
@@ -17,9 +14,12 @@ export default function SongTitle(props: any) {
 
   useEffect(() => {
     const setColor = async () => {
-      let color = await fac.getColorAsync(songData["song_art_image_thumbnail_url"], {
-        algorithm: "sqrt",
-      });
+      let color = await fac.getColorAsync(
+        songData["song_art_image_thumbnail_url"],
+        {
+          algorithm: "sqrt",
+        }
+      );
       color.isLight ? setIsLight(true) : setIsLight(false);
       setAvgColor(color.hex);
     };
@@ -69,10 +69,8 @@ export default function SongTitle(props: any) {
         />
       </div>
       <div className="songTitleHeader" style={{ paddingLeft: "1rem" }}>
-        <h3 className={inter.className}>Showing results for:</h3>
-        {songData["full_title"] && (
-          <h2 className={inter.className}>{songData["full_title"]}</h2>
-        )}
+        <h3>Showing results for:</h3>
+        {songData["full_title"] && <h2>{songData["full_title"]}</h2>}
       </div>
     </div>
   );

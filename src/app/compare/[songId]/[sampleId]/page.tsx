@@ -1,9 +1,6 @@
 import CompareView from "@/app/components/compare/compare_view";
 
-import { Inter } from "@next/font/google";
 import { getSongs } from "./utils";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata({
   params,
@@ -42,7 +39,7 @@ export default async function ComparePage({
 
   return (
     <div>
-      <h1 className={inter.className}>Compare</h1>
+      <h1>Compare</h1>
       <div style={{ marginTop: "2rem" }}>
         <CompareView song={song} sample={sample} />
       </div>

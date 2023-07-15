@@ -1,6 +1,5 @@
 "use client";
 
-import { Inter } from "@next/font/google";
 import styles from "@/app/styles/page.module.css";
 import "@/app/styles/styles.css";
 import "@/app/styles/accordion.css";
@@ -11,14 +10,12 @@ import SampleResult from "@/app/components/sample_result";
 import Result from "@/app/types/result";
 import { GET as samplesAPIGet } from "@/app/api/samples/route";
 
-const inter = Inter({ subsets: ["latin"] });
-
 async function getSamples(id: String) {
   const request = new Request(`${process.env.URL}/api/samples?id=${id}`);
   return (await samplesAPIGet(request)).json();
 }
 
-export default function AlbumAppearanceResult({song}: { song: Result }) {
+export default function AlbumAppearanceResult({ song }: { song: Result }) {
   const [samples, setSamples] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -51,10 +48,10 @@ export default function AlbumAppearanceResult({song}: { song: Result }) {
         onClick={handleClick}
       >
         <div>
-          <Link href={`/samples/${song.id}`} className={inter.className}>
+          <Link href={`/samples/${song.id}`}>
             <h4 className="textLink">{song["title"]}</h4>
           </Link>
-          <p className={inter.className}>{song.artist}</p>
+          <p>{song.artist}</p>
         </div>
       </label>
 
@@ -62,7 +59,7 @@ export default function AlbumAppearanceResult({song}: { song: Result }) {
         {!hidden && (
           <div className={styles.grid}>
             {loading ? (
-              <p className={inter.className} style={{ margin: "2rem" }}>
+              <p style={{ margin: "2rem" }}>
                 <DotsLoader />
               </p>
             ) : (
@@ -79,7 +76,7 @@ export default function AlbumAppearanceResult({song}: { song: Result }) {
                 })
               ) : (
                 <div className="cardish hovered">
-                  <p className={inter.className}>No samples found.</p>
+                  <p>No samples found.</p>
                 </div>
               ))
             )}

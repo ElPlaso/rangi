@@ -2,10 +2,7 @@
 
 import "@/app/styles/horizontal_scroll.css";
 import "@/app/styles/styles.css";
-import { Inter } from "@next/font/google";
 import VideoView from "./video_view";
-
-const inter = Inter({ subsets: ["latin"] });
 
 interface CompareViewProps {
   song: any;
@@ -32,7 +29,6 @@ export default async function CompareView({ song, sample }: CompareViewProps) {
       <VideoView id={songYT} label={song ? song["title"] : ""} />
       <span>
         <h1
-          className={inter.className}
           style={{
             marginLeft: "1rem",
             marginRight: "1rem",

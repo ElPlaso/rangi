@@ -1,10 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Inter } from "@next/font/google";
 import YouTube from "react-youtube";
-
-const inter = Inter({ subsets: ["latin"] });
 
 interface VideoViewProps {
   id: string;
@@ -38,15 +35,9 @@ export default function VideoView({ id, label }: VideoViewProps) {
 
   return (
     <div className={`cardish shadowable video`}>
-      <p className={inter.className} style={{ marginBottom: "1rem" }}>
-        {label}
-      </p>
+      <p style={{ marginBottom: "1rem" }}>{label}</p>
       <div className="videoContainer">
-        {id ? (
-          <YouTube videoId={id} opts={opts} />
-        ) : (
-          <p className={inter.className}>Url not found</p>
-        )}
+        {id ? <YouTube videoId={id} opts={opts} /> : <p>Url not found</p>}
       </div>
     </div>
   );

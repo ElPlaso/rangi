@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import "@/app/styles/styles.css";
-import { Inter } from "@next/font/google";
 import { FastAverageColor } from "fast-average-color";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function AlbumTitle(props: any) {
   const [avgColor, setAvgColor] = useState("fff");
@@ -69,11 +66,9 @@ export default function AlbumTitle(props: any) {
         />
       </div>
       <div className="albumTitleHeader" style={{ paddingLeft: "1rem" }}>
-        <h3 className={inter.className}>Samples used in:</h3>
-        <h1 className={inter.className}>{albumData["name"]}</h1>
-        {albumData["artist"]["name"] && (
-          <h2 className={inter.className}>{albumData["artist"]["name"]}</h2>
-        )}
+        <h3>Samples used in:</h3>
+        <h1>{albumData["name"]}</h1>
+        {albumData["artist"]["name"] && <h2>{albumData["artist"]["name"]}</h2>}
       </div>
     </div>
   );
