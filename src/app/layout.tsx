@@ -1,4 +1,4 @@
-import "./styles/globals.css";
+import "./globals.css";
 import styles from "./styles/page.module.css";
 import SideNavigation from "./components/side_navigation";
 import LayoutWrapper from "./components/layout-wrapper";
