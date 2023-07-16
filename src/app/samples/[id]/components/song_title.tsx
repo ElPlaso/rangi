@@ -55,19 +55,18 @@ export default function SongTitle(props: any) {
         transition: "all 0.5s ease",
       }}
     >
-      <div>
-        <Image
-          src={songData["song_art_image_thumbnail_url"]}
-          alt={"Album Art"}
-          width={scrolled ? 75 : 150}
-          height={scrolled ? 75 : 150}
-          style={{
-            objectFit: "cover",
-            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-            transition: "all 0.5s ease",
-          }}
-        />
-      </div>
+      <Image
+        src={songData["song_art_image_thumbnail_url"]}
+        alt={"Album Art"}
+        width={scrolled ? 75 : 150}
+        height={scrolled ? 75 : 150}
+        style={{
+          objectFit: "cover",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+          transition: "all 0.5s ease",
+        }}
+        className={scrolled ? "w-[75px] h-[75px]" : "w-[150px] h-[150px]"}
+      />
       <div className="songTitleHeader text-xl">
         <h3 className="font-semibold">Showing results for:</h3>
         {songData["full_title"] && <h2>{songData["full_title"]}</h2>}

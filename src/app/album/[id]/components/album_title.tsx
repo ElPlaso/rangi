@@ -52,19 +52,18 @@ export default function AlbumTitle(props: any) {
         transition: "all 0.5s ease",
       }}
     >
-      <div>
-        <Image
-          src={albumData["cover_art_url"]}
-          alt={"Album Art"}
-          width={scrolled ? 100 : 200}
-          height={scrolled ? 100 : 200}
-          style={{
-            objectFit: "cover",
-            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-            transition: "all 0.5s ease",
-          }}
-        />
-      </div>
+      <Image
+        src={albumData["cover_art_url"]}
+        alt={"Album Art"}
+        width={scrolled ? 100 : 200}
+        height={scrolled ? 100 : 200}
+        style={{
+          objectFit: "cover",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+          transition: "all 0.5s ease",
+        }}
+        className={scrolled ? "w-[100px] h-[100px]" : "w-[200px] h-[200px]"}
+      />
       <div className="albumTitleHeader text-xl">
         <h3 className="font-semibold">Samples used in</h3>
         <h1>{albumData["name"]}</h1>
