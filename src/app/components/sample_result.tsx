@@ -73,42 +73,50 @@ export default function SampleResult(props: SampleResultProps) {
     <div
       id={result.id}
       onClick={handleCardClick}
-      className={`${styles.card} sample-result shadowable`}
+      className={`${styles.card} sample-result shadowable w-full h-full`}
       style={{ cursor: "pointer" }}
     >
       {showStar && parent && (
         <div className="sample-result-icon flex">
           <>
             {resultIsStarred ? (
-              <button onClick={handleUnstar} className="star-icon backdrop-blur-sm">
+              <button
+                onClick={handleUnstar}
+                className="star-icon backdrop-blur-sm"
+              >
                 <StarIcon />
               </button>
             ) : (
-              <button onClick={handleStar} className="star-icon backdrop-blur-sm">
+              <button
+                onClick={handleStar}
+                className="star-icon backdrop-blur-sm"
+              >
                 <StarBorderIcon />
               </button>
             )}
 
-            <button onClick={handlePlayClick} className="play-icon backdrop-blur-sm">
+            <button
+              onClick={handlePlayClick}
+              className="play-icon backdrop-blur-sm"
+            >
               <PlayArrowOutlinedIcon />
             </button>
           </>
         </div>
       )}
 
-      <div>
-        <Image
-          src={result.imgUrl}
-          alt="Cover Art"
-          width={100}
-          height={100}
-          style={{
-            objectFit: "cover",
-            borderRadius: "5px",
-            border: "1px solid #eaeaea",
-          }}
-        />
-      </div>
+      <Image
+        src={result.imgUrl}
+        alt="Cover Art"
+        width={100}
+        height={100}
+        style={{
+          objectFit: "cover",
+          borderRadius: "5px",
+          border: "1px solid #eaeaea",
+        }}
+        className="w-[100px] h-[100px]"
+      />
       <div
         className="sample-result-text"
         style={{
