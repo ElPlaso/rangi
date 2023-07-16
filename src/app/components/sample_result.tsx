@@ -80,16 +80,16 @@ export default function SampleResult(props: SampleResultProps) {
         <div className="sample-result-icon flex">
           <>
             {resultIsStarred ? (
-              <button onClick={handleUnstar} className="star-icon">
+              <button onClick={handleUnstar} className="star-icon backdrop-blur-sm">
                 <StarIcon />
               </button>
             ) : (
-              <button onClick={handleStar} className="star-icon">
+              <button onClick={handleStar} className="star-icon backdrop-blur-sm">
                 <StarBorderIcon />
               </button>
             )}
 
-            <button onClick={handlePlayClick} className="play-icon">
+            <button onClick={handlePlayClick} className="play-icon backdrop-blur-sm">
               <PlayArrowOutlinedIcon />
             </button>
           </>
