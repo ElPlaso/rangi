@@ -54,7 +54,7 @@ export default function StarredList() {
   }, []);
 
   return (
-    <div>
+    <div className="lg:w-[75%] md:w-full sm:w-full max-sm:w-full">
       <div className="search main-search" style={{ marginBottom: "0.5rem" }}>
         <input
           type="text"
@@ -96,7 +96,9 @@ export default function StarredList() {
         )
       ) : (
         // Show loader while waiting for client-side rendering
-        <DotsLoader />
+        <div className="w-full flex items-center justify-center">
+          <DotsLoader />
+        </div>
       )}
     </div>
   );

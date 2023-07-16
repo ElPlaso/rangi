@@ -76,10 +76,7 @@ export default function SampledByScrollingList(props: any) {
   }, []);
 
   return (
-    <div
-      className="gallery"
-      style={{ marginTop: "2rem", marginBottom: "4rem" }}
-    >
+    <div className="gallery">
       <div ref={galleryRef} className="gallery_scroller">
         {props.sampledByResults?.map((song: { [x: string]: any; id: any }) => {
           return (
@@ -101,19 +98,19 @@ export default function SampledByScrollingList(props: any) {
         })}
       </div>
       <span
-        className="btn prev"
+        className="btn prev hover:cursor-pointer hover:backdrop-blur-sm"
         onClick={scrollToPrevPage}
         onMouseDown={handlePrevMouseDown}
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseUp}
-      ></span>
+      />
       <span
-        className="btn next"
+        className="btn next hover:cursor-pointer hover:backdrop-blur-sm"
         onClick={scrollToNextPage}
         onMouseDown={handleNextMouseDown}
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseUp}
-      ></span>
+      />
     </div>
   );
 }

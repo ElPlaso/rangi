@@ -9,8 +9,8 @@ export default function SampledByResult(props: any) {
 
   return (
     <Link href={`/samples/${result.id}`}>
-      <div className={styles.card} style={{ height: "250px" }}>
-        <div style={{ alignContent: "center" }}>
+      <div className={`${styles.card} h-[250px] space-y-2`}>
+        <div className="w-[100px] h-[100px]">
           <Image
             src={result.imgUrl}
             alt=""
@@ -19,9 +19,9 @@ export default function SampledByResult(props: any) {
             style={{
               objectFit: "cover",
               borderRadius: "5px",
-              marginBottom: "1rem",
               border: "1px solid #eaeaea",
             }}
+            className="w-full h-full"
           />
         </div>
         <div

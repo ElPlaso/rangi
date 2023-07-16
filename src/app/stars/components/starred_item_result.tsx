@@ -6,7 +6,7 @@ export default function StarredItemResult(props: { result: Result }) {
   const result = props.result;
 
   return (
-    <div className="sample-result">
+    <div className="w-full h-full flex max-sm:flex-col">
       <Image
         src={result.imgUrl}
         alt="Cover Art"

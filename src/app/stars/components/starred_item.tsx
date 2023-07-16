@@ -31,32 +31,16 @@ export default function StarredItem(props: { item: SampleRelation }) {
 
   return (
     <div
-      className="starred-item hovered shadowable"
+      className="starred-item hovered shadowable p-4 cursor-pointer"
       onClick={onItemClick}
-      style={{ padding: "1rem 1.25rem", cursor: "pointer" }}
     >
       <button onClick={handleRemove} className="star-icon">
         <StarIcon />
       </button>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 2fr",
-          width: "100%",
-        }}
-      >
+      <div className="flex items-center justify-center space-x-4 w-full">
         <StarredItemResult result={item.sampler} />
-        <div
-          style={{
-            opacity: 0.5,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <ArrowForwardIcon />
-        </div>
+        <ArrowForwardIcon />
         <StarredItemResult result={item.samplee} />
       </div>
     </div>
