@@ -1,7 +1,7 @@
 import "./globals.css";
-import styles from "./styles/page.module.css";
-import SideNavigation from "./components/side_navigation";
-import LayoutWrapper from "./components/layout-wrapper";
+import styles from "@/styles/page.module.css";
+import SideNavigation from "@/components/layout/side_navigation";
+import LayoutWrapper from "@/components/layout/layout-wrapper";
 import { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";

@@ -1,6 +1,6 @@
-import styles from "@/app/styles/page.module.css";
-import SampleResult from "@/app/components/sample_result";
-import Result from "@/app/types/result";
+import styles from "@/styles/page.module.css";
+import SampleResult from "@/components/samples/sample_result";
+import Result from "@/types/result";
 import {GET as searchAPIGet } from "@/app/api/search/route";
 
 async function getSearchResults(search: string) {

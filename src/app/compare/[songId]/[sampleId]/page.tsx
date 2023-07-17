@@ -1,6 +1,5 @@
-import CompareView from "@/app/components/compare/compare_view";
-
-import { getSongs } from "./utils";
+import CompareView from "@/components/compare/compare_view";
+import { getSongs } from "@/lib/utils/song-utils";
 
 export async function generateMetadata({
   params,

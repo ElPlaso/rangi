@@ -1,9 +1,9 @@
-import Splash from "./components/splash";
-import "@/app/styles/styles.css";
-import Links from "./components/links";
-import Greeting from "./components/greeting";
+import Splash from "@/components/home/splash";
+import "@/styles/styles.css";
+import Links from "@/components/home/links";
+import Greeting from "@/components/home/greeting";
 import Image from "next/image";
-import InfoCard from "./components/info_card";
+import InfoCard from "@/components/home/info_card";
 
 export default function Home() {
   return (

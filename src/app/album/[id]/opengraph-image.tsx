@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/server";
-import { getAlbumData } from "./utils";
+import { getAlbumData } from "@/lib/utils/album-utils";
 
 // Route segment config
 export const runtime = "edge";

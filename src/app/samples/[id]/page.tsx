@@ -1,8 +1,8 @@
-import styles from "@/app/styles/page.module.css";
-import SampledByScrollingList from "./components/sampled_by_scrolling_list";
-import SampleResult from "@/app/components/sample_result";
-import SongTitle from "./components/song_title";
-import { getSongData } from "./utils";
+import styles from "@/styles/page.module.css";
+import SampledByScrollingList from "@/components/samples/sampled_by_scrolling_list";
+import SampleResult from "@/components/samples/sample_result";
+import SongTitle from "@/components/samples/song_title";
+import { getSongData } from "@/lib/utils/song-utils";
 
 export async function generateMetadata({ params }: any) {
   const songData: any = await getSongData(params.id);

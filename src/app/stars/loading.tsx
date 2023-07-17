@@ -1,5 +1,5 @@
-import LoadingIndicator from "@/app/components/loading_indicator";
-import "@/app/styles/styles.css";
+import LoadingIndicator from "@/components/loading/loading_indicator";
+import "@/styles/styles.css";
 
 export default function Loading() {
   return (

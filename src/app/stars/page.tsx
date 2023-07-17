@@ -1,4 +1,4 @@
-import StarredList from "./components/starred_list";
+import StarredList from "@/components/stars/starred_list";
 
 export default async function StarredPage() {
   return (

@@ -1,8 +1,8 @@
-import "@/app/styles/styles.css";
-import AlbumAppearanceResult from "./components/album_appearance_result";
-import AlbumTitle from "./components/album_title";
-import Result from "@/app/types/result";
-import { getAlbumAppearances, getAlbumData } from "./utils";
+import "@/styles/styles.css";
+import AlbumAppearanceResult from "@/components/album/album_appearance_result";
+import AlbumTitle from "@/components/album/album_title";
+import Result from "@/types/result";
+import { getAlbumAppearances, getAlbumData } from "@/lib/utils/album-utils";
 
 export async function generateMetadata({ params }: any) {
   const albumData: any = await getAlbumData(params.id);
