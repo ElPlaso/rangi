@@ -43,25 +43,25 @@ export default async function Image({ params }: { params: { id: string } }) {
             <img
               src={albumData["cover_art_url"]}
               alt="Cover art"
-              width={200}
-              height={200}
+              width={400}
+              height={400}
               style={{ marginBottom: "2rem", boxShadow: "0 0 10px #000" }}
             />
 
             <img
-              src="https://rangi.beatbotanica.com/rangi.png"
+              src={`${process.env.URL}/rangi.png`}
               alt="Rangi Logo"
-              width={200}
-              height={200}
+              width={250}
+              height={50}
             />
           </div>
         ) : (
           <>
             <img
-              src="https://rangi.beatbotanica.com/rangi.png"
+              src={`${process.env.URL}/rangi.png`}
               alt="Rangi Logo"
-              width={400}
-              height={400}
+              width={500}
+              height={100}
             />
           </>
         )}

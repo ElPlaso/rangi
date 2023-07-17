@@ -78,20 +78,19 @@ export default async function Image({
             </div>
 
             <img
-              src="https://rangi.beatbotanica.com/rangi.png"
+              src={`${process.env.URL}/rangi.png`}
               alt="Rangi Logo"
-              width={400}
+              width={250}
               height={50}
-              style={{ marginTop: "2rem" }}
             />
           </div>
         ) : (
           <>
             <img
-              src="https://rangi.beatbotanica.com/rangi.png"
+              src={`${process.env.URL}/rangi.png`}
               alt="Rangi Logo"
-              width={400}
-              height={50}
+              width={500}
+              height={100}
             />
           </>
         )}

@@ -28,14 +28,14 @@ export default async function Image() {
         }}
       >
         <img
-          src="https://rangi.beatbotanica.com/rangi.png"
+          src={`${process.env.URL}/rangi.png`}
           alt="Rangi Logo"
-          width={400}
-          height={400}
+          width={500}
+          height={100}
           style={{ filter: "invert(1)" }}
         />
         <img
-          src="https://rangi.beatbotanica.com/bird.png"
+          src={`${process.env.URL}/bird.png`}
           alt="Bird Logo"
           width={150}
           height={150}
