@@ -4,13 +4,15 @@ import Links from "@/components/home/links";
 import Greeting from "@/components/home/greeting";
 import Image from "next/image";
 import InfoCard from "@/components/home/info_card";
+import RandomLyricText from "../components/random_lyric/random_lyric_text";
 
 export default function Home() {
   return (
     <>
       <div className="container flex flex-col">
-        <div className="w-full">
+        <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }} >
           <Greeting />
+          <RandomLyricText />
         </div>
         <div className="w-full">
           <Splash />
