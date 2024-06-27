@@ -67,7 +67,7 @@ export default function SampleResult(props: SampleResultProps) {
         alreadyStarred(starred, { sampler: parent, samplee: result })
       );
     }
-  }, [starred]);
+  }, [parent, result, starred]);
 
   return (
     <div
@@ -77,7 +77,7 @@ export default function SampleResult(props: SampleResultProps) {
       style={{ cursor: "pointer" }}
     >
       {showStar && parent && (
-        <div className="sample-result-icon flex">
+        <div className="flex sample-result-icon">
           <>
             {resultIsStarred ? (
               <button

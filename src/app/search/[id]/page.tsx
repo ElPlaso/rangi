@@ -1,14 +1,14 @@
 import styles from "@/styles/page.module.css";
 import SampleResult from "@/components/samples/sample_result";
 import Result from "@/types/result";
-import {GET as searchAPIGet } from "@/app/api/search/route";
+import { GET as searchAPIGet } from "@/app/api/search/route";
 
 async function getSearchResults(search: string) {
-  const searchParams = new URLSearchParams({q: search, num: "15"});
+  const searchParams = new URLSearchParams({ q: search, num: "15" });
   const request = new Request(`${process.env.URL}/api/search?${searchParams}`);
   return (await searchAPIGet(request)).json();
 }
- 
+
 export default async function SearchResultsPage({ params }: any) {
   const searchResults = await getSearchResults(decodeURI(params.id));
 

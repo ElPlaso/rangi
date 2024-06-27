@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import "@/styles/styles.css";
 import { FastAverageColor } from "fast-average-color";
@@ -10,7 +10,9 @@ export default function SongTitle(props: any) {
   const [isLight, setIsLight] = useState(false);
   const songData = props.songData;
 
-  const fac = new FastAverageColor();
+  const fac = useMemo(() => {
+    return new FastAverageColor();
+  }, []);
 
   useEffect(() => {
     const setColor = async () => {
@@ -40,12 +42,12 @@ export default function SongTitle(props: any) {
     }
 
     window.onscroll = () => onScroll();
-  }, []);
+  }, [fac, songData]);
 
   return (
     <div
       id="header"
-      className="songTitleContainer space-x-4"
+      className="space-x-4 songTitleContainer"
       style={{
         backgroundColor: scrolled ? avgColor : "transparent",
         backgroundImage: scrolled
@@ -67,7 +69,7 @@ export default function SongTitle(props: any) {
         }}
         className={scrolled ? "w-[75px] h-[75px]" : "w-[150px] h-[150px]"}
       />
-      <div className="songTitleHeader text-xl">
+      <div className="text-xl songTitleHeader">
         <h3 className="font-semibold">Showing results for:</h3>
         {songData["full_title"] && <h2>{songData["full_title"]}</h2>}
       </div>

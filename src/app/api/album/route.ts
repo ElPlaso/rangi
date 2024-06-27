@@ -18,8 +18,8 @@ export async function GET(request: Request) {
   try {
     const appearancesResponse = await fetch(
       "https://genius-song-lyrics1.p.rapidapi.com/album/appearances/?id=" +
-        id +
-        "&page=1",
+      id +
+      "&page=1",
       options
     );
     const appearancesData = await appearancesResponse.json();

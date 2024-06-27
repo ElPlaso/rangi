@@ -82,7 +82,9 @@ export default async function SampleResultsPage({ params }: any) {
 
           {songsThatSampleThisSong.length > 0 && (
             <div>
-              <h4 className={`${styles.code} mb-8`}>Songs that sample {shortTitle}</h4>
+              <h4 className={`${styles.code} mb-8`}>
+                Songs that sample {shortTitle}
+              </h4>
               <SampledByScrollingList
                 sampledByResults={songsThatSampleThisSong}
               />

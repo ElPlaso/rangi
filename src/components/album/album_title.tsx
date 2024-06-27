@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import "@/styles/styles.css";
 import { FastAverageColor } from "fast-average-color";
@@ -10,7 +10,9 @@ export default function AlbumTitle(props: any) {
   const [isLight, setIsLight] = useState(false);
   const albumData = props.albumData;
 
-  const fac = new FastAverageColor();
+  const fac = useMemo(() => {
+    return new FastAverageColor();
+  }, []);
 
   useEffect(() => {
     const setColor = async () => {
@@ -37,12 +39,12 @@ export default function AlbumTitle(props: any) {
     }
 
     window.onscroll = () => onScroll();
-  }, []);
+  }, [albumData, fac]);
 
   return (
     <div
       id="header"
-      className="albumTitleContainer space-x-4"
+      className="space-x-4 albumTitleContainer"
       style={{
         backgroundColor: scrolled ? avgColor : "transparent",
         backgroundImage: scrolled
@@ -64,7 +66,7 @@ export default function AlbumTitle(props: any) {
         }}
         className={scrolled ? "w-[100px] h-[100px]" : "w-[200px] h-[200px]"}
       />
-      <div className="albumTitleHeader text-xl">
+      <div className="text-xl albumTitleHeader">
         <h3 className="font-semibold">Samples used in</h3>
         <h1>{albumData["name"]}</h1>
         {albumData["artist"]["name"] && <h2>{albumData["artist"]["name"]}</h2>}

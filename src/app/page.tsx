@@ -14,7 +14,7 @@ export default function Home() {
         </div>
         <div className="w-full">
           <Splash />
-          <div className="md:grid md:grid-cols-3 md:gap-x-3 sm:flex sm:flex-col md:space-y-0 sm:space-y-2 max-sm:space-y-2 mb-8">
+          <div className="mb-8 md:grid md:grid-cols-3 md:gap-x-3 sm:flex sm:flex-col md:space-y-0 sm:space-y-2 max-sm:space-y-2">
             <InfoCard
               title="Discover"
               description="Discover new music through samples used in your favourite songs and albums."
@@ -31,8 +31,8 @@ export default function Home() {
           <Links />
         </div>
       </div>
-      <div className="mt-24 fixed bottom-0 p-5 w-full flex justify-center items-center lg:bg-transparent md:dark:bg-black sm:dark:bg-black max-sm:dark:bg-black backdrop-blur-2xl">
-        <div className="flex flex-row space-x-2 items-center justify-center">
+      <div className="fixed bottom-0 flex items-center justify-center w-full p-5 mt-24 lg:bg-transparent md:dark:bg-black sm:dark:bg-black max-sm:dark:bg-black backdrop-blur-2xl">
+        <div className="flex flex-row items-center justify-center space-x-2">
           <Image
             src={"/favicon.ico"}
             alt="BeatBotanica Logo"
@@ -43,7 +43,7 @@ export default function Home() {
             Brought to you by{" "}
             <a
               href="https://beatbotanica.com"
-              className="hover:underline text-blue-600"
+              className="text-blue-600 hover:underline"
             >
               {" "}
               beatbotanica.com
