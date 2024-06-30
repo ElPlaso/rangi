@@ -3,12 +3,20 @@ import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import "@/styles/styles.css";
 import { FastAverageColor } from "fast-average-color";
+import Result from "@/types/result";
 
-export default function AlbumTitle(props: any) {
+export interface AlbumTitleProps {
+  album: Pick<Result, "title" | "artist" | "imgUrl">;
+}
+
+export default function AlbumTitle(props: AlbumTitleProps) {
+  const {
+    album: { title, artist, imgUrl },
+  } = props;
+
   const [avgColor, setAvgColor] = useState("fff");
   const [scrolled, setScrolled] = useState(false);
   const [isLight, setIsLight] = useState(false);
-  const albumData = props.albumData;
 
   const fac = useMemo(() => {
     return new FastAverageColor();
@@ -16,10 +24,11 @@ export default function AlbumTitle(props: any) {
 
   useEffect(() => {
     const setColor = async () => {
-      let color = await fac.getColorAsync(albumData["cover_art_url"], {
+      // TODO: Fix cors issue
+      let color = await fac.getColorAsync(imgUrl, {
         algorithm: "sqrt",
       });
-      color.isLight ? setIsLight(true) : setIsLight(false);
+      setIsLight(color.isLight);
       setAvgColor(color.hex);
     };
 
@@ -39,7 +48,7 @@ export default function AlbumTitle(props: any) {
     }
 
     window.onscroll = () => onScroll();
-  }, [albumData, fac]);
+  }, [imgUrl, fac]);
 
   return (
     <div
@@ -55,7 +64,7 @@ export default function AlbumTitle(props: any) {
       }}
     >
       <Image
-        src={albumData["cover_art_url"]}
+        src={imgUrl}
         alt={"Album Art"}
         width={scrolled ? 100 : 200}
         height={scrolled ? 100 : 200}
@@ -68,8 +77,8 @@ export default function AlbumTitle(props: any) {
       />
       <div className="text-xl albumTitleHeader">
         <h3 className="font-semibold">Samples used in</h3>
-        <h1>{albumData["name"]}</h1>
-        {albumData["artist"]["name"] && <h2>{albumData["artist"]["name"]}</h2>}
+        <h1>{title}</h1>
+        <h2>{artist}</h2>
       </div>
     </div>
   );

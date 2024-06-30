@@ -9,7 +9,11 @@ async function getSearchResults(search: string) {
   return (await searchAPIGet(request)).json();
 }
 
-export default async function SearchResultsPage({ params }: any) {
+export default async function SearchResultsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const searchResults = await getSearchResults(decodeURI(params.id));
 
   return (

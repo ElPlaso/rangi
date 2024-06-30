@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import { getAlbumData } from "@/lib/utils/album-utils";
+import Result from "@/types/result";
 
 // Route segment config
 export const runtime = "edge";
@@ -16,7 +17,7 @@ export const contentType = "image/png";
 
 // Image generation
 export default async function Image({ params }: { params: { id: string } }) {
-  const albumData: any = await getAlbumData(params.id);
+  const albumData = await getAlbumData(params.id);
 
   return new ImageResponse(
     (
@@ -42,7 +43,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             }}
           >
             <img
-              src={albumData["cover_art_url"]}
+              src={albumData.imgUrl}
               alt="Cover art"
               width={400}
               height={400}

@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  ChangeEvent,
+  useMemo,
+} from "react";
 import "./search.css";
 import SearchResult from "./search_result";
 import DotsLoader from "@/components/loading/dots_loader";
@@ -8,20 +14,30 @@ import Link from "next/link";
 import { GET as multiSearchAPIGet } from "@/app/api/search/multi/route";
 import Result from "@/types/result";
 
-export default function Search(props: any) {
+export interface SearchProps {
+  onResultClick: () => void;
+}
+
+export default function Search(props: SearchProps) {
+  const { onResultClick } = props;
+
   const [songResults, setSongResults] = useState<Result[]>([]);
   const [albumResults, setAlbumResults] = useState<Result[]>([]);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
-  const searchParams = new URLSearchParams({ q: input, num: "3" });
-  const request = new Request(
-    `${process.env.URL}/api/search/multi?${searchParams}`
+  const searchParams = useMemo(
+    () => new URLSearchParams({ q: input, num: "3" }),
+    [input]
+  );
+  const request = useMemo(
+    () => new Request(`${process.env.URL}/api/search/multi?${searchParams}`),
+    [searchParams]
   );
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
@@ -71,7 +87,7 @@ export default function Search(props: any) {
       // we wish to cancel the request if the input changes before the request is finished
       cancel = true;
     };
-  }, [input]);
+  }, [input, request]);
 
   return (
     <div className="search">
@@ -99,7 +115,7 @@ export default function Search(props: any) {
               }}
             >
               <h3>Songs</h3>
-              <div onClick={props.onResultClick}>
+              <div onClick={onResultClick}>
                 <Link
                   href={`/search/${input}`}
                   style={{ marginRight: "1rem", textDecoration: "underline" }}
@@ -109,8 +125,8 @@ export default function Search(props: any) {
               </div>
             </div>
             {songResults.length > 0 &&
-              songResults.map((result: any) => (
-                <div key={result.id} onClick={props.onResultClick}>
+              songResults.map((result: Result) => (
+                <div key={result.id} onClick={onResultClick}>
                   <SearchResult
                     type="samples"
                     key={result.id}
@@ -120,8 +136,8 @@ export default function Search(props: any) {
               ))}
             <h3>Albums</h3>
             {albumResults.length > 0 &&
-              albumResults.map((result: any) => (
-                <div key={result.id} onClick={props.onResultClick}>
+              albumResults.map((result: Result) => (
+                <div key={result.id} onClick={onResultClick}>
                   <SearchResult type="album" key={result.id} result={result} />
                 </div>
               ))}

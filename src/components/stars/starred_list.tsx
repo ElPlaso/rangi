@@ -96,7 +96,7 @@ export default function StarredList() {
         )
       ) : (
         // Show loader while waiting for client-side rendering
-        <div className="w-full flex items-center justify-center">
+        <div className="flex items-center justify-center w-full">
           <DotsLoader />
         </div>
       )}

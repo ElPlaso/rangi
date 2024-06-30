@@ -16,7 +16,7 @@ export const contentType = "image/png";
 
 // Image generation
 export default async function Image({ params }: { params: { id: string } }) {
-  const songData: any = await getSongData(params.id);
+  const songData = await getSongData(params.id);
 
   return new ImageResponse(
     (
@@ -42,7 +42,7 @@ export default async function Image({ params }: { params: { id: string } }) {
             }}
           >
             <img
-              src={songData["song_art_image_thumbnail_url"]}
+              src={songData.imgUrl}
               alt="Cover art"
               width={300}
               height={300}

@@ -53,7 +53,7 @@ export default async function Image({
               }}
             >
               <img
-                src={song["song_art_image_thumbnail_url"]}
+                src={song.imgUrl}
                 alt="Cover art"
                 width={400}
                 height={400}
@@ -70,7 +70,7 @@ export default async function Image({
                 style={{ margin: "2rem" }}
               />
               <img
-                src={sample["song_art_image_thumbnail_url"]}
+                src={sample.imgUrl}
                 alt="Cover art"
                 width={400}
                 height={400}

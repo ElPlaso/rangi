@@ -4,15 +4,21 @@ import "@/styles/styles.css";
 import Result from "@/types/result";
 import Link from "next/link";
 
-export default function SampledByResult(props: any) {
-  const result: Result = props.result || {};
+export interface SampledByResultProps {
+  result: Result;
+}
+
+export default function SampledByResult(props: SampledByResultProps) {
+  const {
+    result: { id, title, artist, year, imgUrl },
+  } = props;
 
   return (
-    <Link href={`/samples/${result.id}`}>
+    <Link href={`/samples/${id}`}>
       <div className={`${styles.card} h-[250px] space-y-2`}>
         <div className="w-[100px] h-[100px]">
           <Image
-            src={result.imgUrl}
+            src={imgUrl}
             alt=""
             width={100}
             height={100}
@@ -32,9 +38,9 @@ export default function SampledByResult(props: any) {
             overflow: "hidden",
           }}
         >
-          <h5 className="font-medium">{result.title}</h5>
-          <p>{result.artist}</p>
-          <p>{result.year}</p>
+          <h5 className="font-medium">{title}</h5>
+          <p>{artist}</p>
+          <p>{year}</p>
         </div>
       </div>
     </Link>

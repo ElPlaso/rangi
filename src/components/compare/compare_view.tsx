@@ -3,23 +3,27 @@
 import "@/styles/styles.css";
 import VideoView from "./video_view";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Song } from "@/types/song";
 
 interface CompareViewProps {
-  song: any;
-  sample: any;
+  song: Song;
+  sample: Song;
 }
 
-export default async function CompareView({ song, sample }: CompareViewProps) {
-  const songUrl = song ? song["youtube_url"] : "";
-  const sampleUrl = sample ? sample["youtube_url"] : "";
+export default function CompareView({ song, sample }: CompareViewProps) {
+  const songUrl = song.youtubeUrl || "";
+  const sampleUrl = sample.youtubeUrl || "";
 
   const regex = /http\:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})/;
 
-  const songYT = songUrl.match(regex) ? songUrl.match(regex)[1] : "";
-  const sampleYT = sampleUrl.match(regex) ? sampleUrl.match(regex)[1] : "";
+  const songYtRegX = songUrl.match(regex);
+  const sampleYtRegX = sampleUrl.match(regex);
+
+  const songYT = songYtRegX ? songYtRegX[1] : "";
+  const sampleYT = sampleYtRegX ? sampleYtRegX[1] : "";
 
   return (
-    <div className="videoComparisonRow flex items-center justify-center bg-white dark:bg-black shadow-lg p-4 rounded-xl">
+    <div className="flex items-center justify-center p-4 bg-white shadow-lg videoComparisonRow dark:bg-black rounded-xl">
       <VideoView id={songYT} label={song ? song["title"] : ""} />
       <span>
         <h1

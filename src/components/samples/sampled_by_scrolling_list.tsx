@@ -3,8 +3,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import SampledByResult from "./sampled_by_result";
 import "./horizontal_scroll.css";
+import Result from "@/types/result";
 
-export default function SampledByScrollingList(props: any) {
+export interface SampledByScrollingListProps {
+  sampledByResults: Array<Result>;
+}
+
+export default function SampledByScrollingList(
+  props: SampledByScrollingListProps
+) {
+  const { sampledByResults } = props;
+
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryItemSize, setGalleryItemSize] = useState<number>(0);
   const [scrollInterval, setScrollInterval] = useState<NodeJS.Timer>();
@@ -78,21 +87,10 @@ export default function SampledByScrollingList(props: any) {
   return (
     <div className="gallery">
       <div ref={galleryRef} className="gallery_scroller">
-        {props.sampledByResults?.map((song: { [x: string]: any; id: any }) => {
+        {sampledByResults?.map((song) => {
           return (
             <div className="item hovered" key={song.id}>
-              <SampledByResult
-                type="samples"
-                result={{
-                  id: song.id,
-                  title: song["title"],
-                  artist: song["artist_names"],
-                  year: song["release_date_components"]
-                    ? song["release_date_components"]["year"]
-                    : "-",
-                  imgUrl: song["song_art_image_thumbnail_url"],
-                }}
-              />
+              <SampledByResult result={song} />
             </div>
           );
         })}

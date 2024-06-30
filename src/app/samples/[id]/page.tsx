@@ -3,9 +3,11 @@ import SampledByScrollingList from "@/components/samples/sampled_by_scrolling_li
 import SampleResult from "@/components/samples/sample_result";
 import SongTitle from "@/components/samples/song_title";
 import { getSongData } from "@/lib/utils/song-utils";
+import { Song } from "@/types/song";
+import Result from "@/types/result";
 
-export async function generateMetadata({ params }: any) {
-  const songData: any = await getSongData(params.id);
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const songData: Song | null = await getSongData(params.id);
 
   if (!songData) {
     return {
@@ -15,29 +17,32 @@ export async function generateMetadata({ params }: any) {
 
   return {
     title: songData.title,
-    description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+    description: `Samples used in ${songData.title} by ${songData.artist}`,
     twitter: {
       card: "summary",
       site: "@rangi",
     },
     openGraph: {
-      description: `Samples used in ${songData.title} by ${songData.artist_names}`,
+      description: `Samples used in ${songData.title} by ${songData.artist}`,
       type: "website",
       url: `https://rangi.beatbotanica.com/samples/${params.id}`,
     },
   };
 }
 
-export default async function SampleResultsPage({ params }: any) {
-  const songData: any = await getSongData(params.id);
+export default async function SampleResultsPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const songData = await getSongData(params.id);
 
-  if (songData != null) {
-    let samples: any[] = songData["song_relationships"]["0"]["songs"];
+  if (songData !== null) {
+    const samples: Array<Result> = songData.samples || [];
 
-    let songsThatSampleThisSong: any[] =
-      songData["song_relationships"]["1"]["songs"];
+    const sampledBy: Array<Result> = songData.sampledBy || [];
 
-    let shortTitle: string = songData["title"];
+    const shortTitle: string = songData.title;
 
     return (
       <>
@@ -55,24 +60,8 @@ export default async function SampleResultsPage({ params }: any) {
                   return (
                     <SampleResult
                       key={sample.id}
-                      parent={{
-                        id: params.id,
-                        title: shortTitle,
-                        artist: songData["artist_names"],
-                        year: songData["release_date_components"]
-                          ? songData["release_date_components"]["year"]
-                          : "-",
-                        imgUrl: songData["song_art_image_thumbnail_url"],
-                      }}
-                      result={{
-                        id: sample.id,
-                        title: sample["title"],
-                        artist: sample["artist_names"],
-                        year: sample["release_date_components"]
-                          ? sample["release_date_components"]["year"]
-                          : "-",
-                        imgUrl: sample["song_art_image_thumbnail_url"],
-                      }}
+                      parent={songData}
+                      result={sample}
                     />
                   );
                 })}
@@ -80,18 +69,16 @@ export default async function SampleResultsPage({ params }: any) {
             </div>
           )}
 
-          {songsThatSampleThisSong.length > 0 && (
+          {sampledBy.length > 0 && (
             <div>
               <h4 className={`${styles.code} mb-8`}>
                 Songs that sample {shortTitle}
               </h4>
-              <SampledByScrollingList
-                sampledByResults={songsThatSampleThisSong}
-              />
+              <SampledByScrollingList sampledByResults={sampledBy} />
             </div>
           )}
 
-          {samples.length == 0 && songsThatSampleThisSong.length === 0 && (
+          {samples.length == 0 && sampledBy.length === 0 && (
             <h4 className={styles.code} style={{ marginTop: "2rem" }}>
               No info.
             </h4>

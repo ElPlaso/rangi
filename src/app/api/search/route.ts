@@ -1,4 +1,7 @@
-export async function GET(request: Request) {
+import Result from "@/types/result";
+import { NextResponse } from "next/server";
+
+export async function GET(request: Request): Promise<NextResponse<Array<Result>>> {
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q") || "";
   const num = searchParams.get("num") || "1";
@@ -27,17 +30,15 @@ export async function GET(request: Request) {
       return new Response(error.message, { status: 500 });
     });
 
-  const extractedResults = results.map((result: any) => ({
+  const extractedResults = results.map((result: { result: Record<string, string | Record<string, string>> }) => ({
     id: result.result.id,
     title: result.result.title,
-    artist: result.result.artist_names,
-    year: result.result.release_date_components
-      ? result.result.release_date_components.year
+    artist: result.result['artist_names'],
+    year: result.result['release_date_components']
+      ? (result.result['release_date_components'] as Record<string, string>).year
       : "-",
-    imgUrl: result.result.song_art_image_thumbnail_url,
+    imgUrl: result.result['song_art_image_thumbnail_url'],
   }));
 
-  return new Response(JSON.stringify(extractedResults), {
-    headers: { "content-type": "application/json" },
-  });
+  return NextResponse.json(extractedResults);
 }

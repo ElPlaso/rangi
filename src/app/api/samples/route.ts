@@ -1,4 +1,7 @@
-export async function GET(request: Request) {
+import Result from "@/types/result";
+import { NextResponse } from "next/server";
+
+export async function GET(request: Request): Promise<NextResponse<Result>> {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id") || "";
 
@@ -27,17 +30,15 @@ export async function GET(request: Request) {
 
   const samples = song["song_relationships"]["0"]["songs"];
 
-  const extractedSamples = samples.map((sample: any) => ({
+  const parsedSamples = samples.map((sample: Record<string, string | Record<string, string>>) => ({
     id: sample.id,
     title: sample.title,
-    artist: sample.artist_names,
-    year: sample.release_date_components
-      ? sample.release_date_components.year
+    artist: sample['artist_names'],
+    year: sample['release_date_components']
+      ? (sample['release_date_components'] as Record<string, string>).year
       : "-",
-    imgUrl: sample.song_art_image_thumbnail_url,
+    imgUrl: sample['song_art_image_thumbnail_url'],
   }));
 
-  return new Response(JSON.stringify(extractedSamples), {
-    headers: { "content-type": "application/json" },
-  });
+  return NextResponse.json(parsedSamples);
 }
