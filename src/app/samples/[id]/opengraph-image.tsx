@@ -1,4 +1,5 @@
-import { ImageResponse } from "next/server";
+/* eslint-disable @next/next/no-img-element */
+import { ImageResponse } from "next/og";
 import { getSongData } from "@/lib/utils/song-utils";
 
 // Route segment config
